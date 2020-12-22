@@ -3,7 +3,7 @@
 > VAG is the PlayStation single waveform data format for ADPCM-encoded data of sampled sounds, such as
 piano sounds, explosions, and music. The typical extension in DOS is “.VAG”.
 
-See [http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf](FileFormat47.pdf), p.209
+See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p.209
 
 
 ## WAV creation
@@ -18,7 +18,7 @@ You can use Audacity to edit sound.
 
 ## WAV to VAG convertion using WAV2VAG
 
-Get here : [https://github.com/ColdSauce/psxsdk/blob/master/tools/wav2vag.c](WAV2VAG)
+Get here : [WAV2VAG](https://github.com/ColdSauce/psxsdk/blob/master/tools/wav2vag.c)
 
 Change -freq according to the -ar setting above 
 
