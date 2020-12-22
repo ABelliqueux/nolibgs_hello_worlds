@@ -58,7 +58,7 @@ cd pcsx-redux/src/mips/psyq/cube
 make 
 ```
 
-You should know have a 'cube.ps-exe' file in the folder. This a PSX executable you can load with most emulators.
+You should know have a 'cube.ps-exe' file in the folder. This is a PSX executable you can load with most emulators.
 
 
 ## Embedding binary data in a ps-exe
