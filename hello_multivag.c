@@ -5,7 +5,7 @@
 // based on psyq/addons/sound/TUTO3.C
 //
 //
-// Load a VAG file to SPU sound buffer and play it back.
+// Load two VAG file to SPU sound buffer and play them back alternatively or simultaneously.
 //
 // WAV creation: use ffmpeg to create a 16-bit ADPCM mono WAV file - change -ar to reduce filesize (and quality)
 // $ ffmpeg -i input.mp3 -acodec pcm_s16le -ac 1 -ar 44100 output.wav
@@ -72,13 +72,21 @@ typedef struct VAGheader{		// All the values in this header must be big endian
 SpuCommonAttr commonAttributes;          // structure for changing common voice attributes
 SpuVoiceAttr  voiceAttributes ;          // structure for changing individual voice attributes
 
-u_long vag_spu_address;                  // address allocated in memory for first sound file
+u_long hello_spu_address;                  // address allocated in memory for first sound file
+u_long poly_spu_address;                 // address allocated in memory for second sound file
 
 // DEBUG : these allow printing values for debugging
 
-u_long spu_start_address;                
-u_long get_start_addr;
-u_long transSize;                            
+u_long hello_spu_start_address;                
+u_long hello_get_start_addr;
+u_long hello_transSize;                            
+
+u_long poly_spu_start_address;                
+u_long poly_get_start_addr;
+u_long poly_transSize;                            
+
+#define HELLO SPU_0CH                   // Play first vag on channel 0
+#define POLY SPU_2CH                    // Play second vag on channel 2
 
 // Memory management table ; allow MALLOC_MAX calls to SpuMalloc() - ibref47.pdf p.1044
 char spu_malloc_rec[SPU_MALLOC_RECSIZ * (2 + MALLOC_MAX+1)]; 
@@ -93,9 +101,14 @@ char spu_malloc_rec[SPU_MALLOC_RECSIZ * (2 + MALLOC_MAX+1)];
 	//~ $(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
 
 
-// hello_poly.vag - 44100 Khz
-extern unsigned char _binary_VAG_hello_poly_vag_start[]; // filename must begin with _binary_ followed by the full path, with . and / replaced, and then suffixed with _ and end with _start[]; or end[];
-extern unsigned char _binary_VAG_hello_poly_vag_end[];   // https://discord.com/channels/642647820683444236/663664210525290507/780866265077383189
+// hello.vag - 44100 Khz
+extern unsigned char _binary_VAG_hello_vag_start[]; // filename must begin with _binary_ followed by the full path, with . and / replaced, and then suffixed with _ and end with _start[]; or end[];
+extern unsigned char _binary_VAG_hello_vag_end[];   // https://discord.com/channels/642647820683444236/663664210525290507/780866265077383189
+
+// poly.vag - 44100 Khz
+extern unsigned char _binary_VAG_poly_vag_start[];
+extern unsigned char _binary_VAG_poly_vag_end[];
+
 
 void initGraph(void)
 {
@@ -210,57 +223,90 @@ void setVoiceAttr(unsigned int pitch, long channel, unsigned long soundAddr ){
     
 }
 
-void playSFX(void){
-    SpuSetKey(SpuOn,SPU_0CH);                               // Set several channels by ORing  each channel bit ; ex : SpuSetKey(SpuOn,SPU_0CH | SPU_3CH | SPU_8CH); channels 0, 3, 8 are on.
+void playSFX(unsigned long fx){
+    SpuSetKey(SpuOn, fx); 
 }
 
 int main(void)
 {
     short counter = 0;
     
-    const VAGhdr * VAGfileHeader = (VAGhdr *) _binary_VAG_hello_poly_vag_start;   // get header of VAG file
+    const VAGhdr * HellofileHeader = (VAGhdr *) _binary_VAG_hello_vag_start;   // get header of first VAG file
+    const VAGhdr * PolyfileHeader = (VAGhdr *) _binary_VAG_poly_vag_start;   // get header of second VAG file
     
     // From libover47.pdf :
     // The sampling frequency of the original audio file can be used to determine the pitch
     // at which to play the VAG. pitch = (sampling frequency << 12)/44100L 
     // Ex: 44.1kHz=0x1000 22.05kHz=0x800 etc
     
-    unsigned int pitch =   (SWAP_ENDIAN32(VAGfileHeader->samplingFrequency) << 12) / 44100L; 
+    unsigned int Hellopitch =   (SWAP_ENDIAN32(HellofileHeader->samplingFrequency) << 12) / 44100L; 
+    unsigned int Polypitch =   (SWAP_ENDIAN32(PolyfileHeader->samplingFrequency) << 12) / 44100L; 
     
     SpuInit();                                                                            // Initialize SPU. Called only once.
     
     initSnd();
     
-    //~ // First VAG
+    // First VAG
     
-    vag_spu_address   = SpuMalloc(SWAP_ENDIAN32(VAGfileHeader->dataSize));                // Allocate an area of dataSize bytes in the sound buffer. 
+    hello_spu_address   = SpuMalloc(SWAP_ENDIAN32(HellofileHeader->dataSize));                // Allocate an area of dataSize bytes in the sound buffer. 
     
-    spu_start_address = SpuSetTransferStartAddr(vag_spu_address);                         // Sets a starting address in the sound buffer
+    hello_spu_start_address = SpuSetTransferStartAddr(hello_spu_address);                         // Sets a starting address in the sound buffer
     
-    get_start_addr    = SpuGetTransferStartAddr();                                        // SpuGetTransferStartAddr() returns current sound buffer transfer start address.
+    hello_get_start_addr    = SpuGetTransferStartAddr();                                        // SpuGetTransferStartAddr() returns current sound buffer transfer start address.
     
-    transSize         = sendVAGtoRAM(SWAP_ENDIAN32(VAGfileHeader->dataSize), _binary_VAG_hello_poly_vag_start);
+    hello_transSize         = sendVAGtoRAM(SWAP_ENDIAN32(HellofileHeader->dataSize), _binary_VAG_hello_vag_start);
+    
+     // First VAG
+    
+    poly_spu_address   = SpuMalloc(SWAP_ENDIAN32(PolyfileHeader->dataSize));                // Allocate an area of dataSize bytes in the sound buffer. 
+    
+    poly_spu_start_address = SpuSetTransferStartAddr(poly_spu_address);                         // Sets a starting address in the sound buffer
+    
+    poly_get_start_addr    = SpuGetTransferStartAddr();                                        // SpuGetTransferStartAddr() returns current sound buffer transfer start address.
+    
+    poly_transSize         = sendVAGtoRAM(SWAP_ENDIAN32(PolyfileHeader->dataSize), _binary_VAG_poly_vag_start);
+    
     
     // set VAG to channel 
     
-    setVoiceAttr(pitch, SPU_0CH, vag_spu_address);
+    setVoiceAttr(Hellopitch, HELLO, hello_spu_address); // SPU_0CH == hello
     
+    setVoiceAttr(Polypitch, POLY, poly_spu_address);  // SPU_2CH == poly
+
     initGraph();
     
     while (1)
     {
         
         if(!counter){
-            playSFX();
-            counter = 180;
+            playSFX(HELLO);     // Play first VAG
+            counter = 240;
+        }
+        if(counter == 160){      
+            playSFX(POLY);      // Play second VAG
+        }
+        if(counter == 80){
+            playSFX(HELLO|POLY); // Play both VAGs simultaneously
         }
         
-        FntPrint("\nPitch             : %08x-%dKhz", pitch, (SWAP_ENDIAN32(VAGfileHeader->samplingFrequency)) );
-        FntPrint("\nSet Start addr    : %08x", vag_spu_address);
-        FntPrint("\nReturn start addr : %08x", spu_start_address);      
-        FntPrint("\nGet Start  addr   : %08x", get_start_addr);  
-        FntPrint("\nSend size         : %08x", SWAP_ENDIAN32(VAGfileHeader->dataSize));  
-        FntPrint("\nReturn size       : %08x\n", transSize);  
+        
+        FntPrint("First VAG:");
+        FntPrint("\nPitch             : %08x-%dKhz", Hellopitch, (SWAP_ENDIAN32(HellofileHeader->samplingFrequency)) );
+        FntPrint("\nSet Start addr    : %08x", hello_spu_address);
+        FntPrint("\nReturn start addr : %08x", hello_spu_start_address);      
+        FntPrint("\nGet Start  addr   : %08x", hello_get_start_addr);  
+        FntPrint("\nSend size         : %08x", SWAP_ENDIAN32(HellofileHeader->dataSize));  
+        FntPrint("\nReturn size       : %08x\n", hello_transSize);  
+        
+        FntPrint("\nSecond VAG:");
+        FntPrint("\nPitch             : %08x-%dKhz", Polypitch, (SWAP_ENDIAN32(HellofileHeader->samplingFrequency)) );
+        FntPrint("\nSet Start addr    : %08x", poly_spu_address);
+        FntPrint("\nReturn start addr : %08x", poly_spu_start_address);      
+        FntPrint("\nGet Start  addr   : %08x", poly_get_start_addr);  
+        FntPrint("\nSend size         : %08x", SWAP_ENDIAN32(PolyfileHeader->dataSize));  
+        FntPrint("\nReturn size       : %08x\n", poly_transSize);  
+        
+        
         FntPrint("\nCounter       : %d\n", counter);  
     
         FntFlush(-1);
