@@ -117,7 +117,7 @@ That's it! When you'll type `make` next time, it should convert your files to .o
 # Links and Doc
 
   * [Getting started with PSX dev](https://psx.arthus.net/starting.html)
-  * [PsyQ docs](http://psx.arthus.net/sdk/Psy-Q/DOCS/)(PsyQ Doc)
+  * [PsyQ docs](http://psx.arthus.net/sdk/Psy-Q/DOCS/)
   * [Ps1 dev links](https://ps1.consoledev.net/)
   * [psxdev.net](http://psxdev.net/)
   * [psxdev Discord](https://discord.com/invite/N2mmwp?utm_source=Discord%20Widget&utm_medium=Connect)
