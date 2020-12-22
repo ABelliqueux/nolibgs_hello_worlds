@@ -21,17 +21,35 @@ You can use open source tools : Gimp, Aseprite
 
 To convert your image files to TIM, use [IMG2TIM](https://github.com/Lameguy64/img2tim) :
 
-
 ## 4bpp and 8bpp specificities 
 
 If you want to generate 4bpp and 8bpp TIMs, your original image must be in indexed mode with a palette.
 
-  * For 8bpp, < 256 colors 
+  * For 8bpp, < 256 colors , and dimensions must be a multiple of 2
 
-  * For 4bpp, < 16 colors, and size must be a multiple of 4
+  * For 4bpp, < 16 colors, and dimensions must be a multiple of 4
+  
+See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p.182
 
 You can use TIMTOOL.EXE from legacy PsyQ to check your TIM files, or use Lameguy64's [TIMedit](https://github.com/Lameguy64/TIMedit)
 
+
+# Reproducing the TIM in this example
+
+```bash
+img2tim -bpp 4 -org 512 0 -plt 0 481 -usealpha -o TIM4.tim TIM4.png 
+img2tim -bpp 8 -org 512 256 -plt 0 480 -usealpha -o TIM8.tim TIM8.png 
+img2tim -bpp 16 -org 768 0 -usealpha -o TIM16.tim TIM16.png 
+```
+## Content of Makefile :
+
+```mk
+SRCS = hello_sprt.c \
+../common/crt0/crt0.s \
+TIM/TIM16.tim \
+TIM/TIM8.tim \
+TIM/TIM4.tim \
+```
 
 # Links 
 
