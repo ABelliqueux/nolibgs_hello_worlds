@@ -117,12 +117,12 @@ int main(void)
     POLY_F4 *poly = {0};                            // pointer to a POLY_F4 
     SVECTOR RotVector = {0, 0, 0};                  // Initialize rotation vector {x, y, z}
     VECTOR  MovVector = {CENTERX, CENTERY, 0};      // Initialize translation vector {x, y, z}
-
-    SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0
-            {-32, -32, 1 },                         // see here : https://psx.arthus.net/docs/poly_f4.jpg
-            {-32,  32, 1 },                           
-            { 32, -32, 1 },                          
-            { 32,  32, 1  }                           
+                                                    
+    SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0 - see here : https://psx.arthus.net/docs/poly_f4.jpg
+            {-32, -32, 1 },                         // Vert 1 
+            {-32,  32, 1 },                         // Vert 2
+            { 32, -32, 1 },                         // Vert 3
+            { 32,  32, 1  }                         // Vert 4
         };                                          
     MATRIX PolyMatrix = IDMATRIX;                   
     
