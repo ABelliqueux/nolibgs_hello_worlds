@@ -67,7 +67,7 @@ So, if you don't know it yet, the fun in PSX development is to be able to upload
 This means that the data you'll use in your program ( graphics, sounds, etc.) will have to be embedded in your exe in a binary form, 
 as you won't be able to stream them from the serial port. 
 
-/Well technically you could load them in memory before uploading your exe or stream them from a cd, but let's keep things simple for now./
+*Well technically you could load them in memory before uploading your exe or stream them from a cd, but let's keep things simple for now.*
 
 With our setup, this is quite easy !
 
