@@ -54,7 +54,7 @@ wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
   6. That's it ! After that you can check everything's working byt trying to compile some example code :
   
 ```bash 
-cd pcsx-redux/src/mips/psyq/
+cd pcsx-redux/src/mips/psyq/cube
 make 
 ```
 
