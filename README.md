@@ -114,6 +114,10 @@ The filename variable must begin with `_binary_` followed by the full path of yo
 
 That's it! When you'll type `make` next time, it should convert your files to .o, then include them in your ps-exe.
 
+## Compiling the examples in this repo
+
+All you have to do is uncomment the corresponding rules in `Makefile` then compile with `make`.
+
 # Links and Doc
 
   * [Getting started with PSX dev](https://psx.arthus.net/starting.html)
