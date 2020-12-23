@@ -6,7 +6,7 @@ This repo is destined to host a bunch of simple examples, each describing how to
 
 The code here will be using PsyQ, the "Official" Sony SDK, but we will not be using libGS, the Extended Graphics Library.
 
-Instead we'll try to devises methods to reproduce libgs functions. This will not necessarly more efficient, but we'll learn
+Instead we'll try to devise methods to reproduce libgs functions. This will not necessarly be more efficient, but we'll learn
 a lot more stuff !
 
  
