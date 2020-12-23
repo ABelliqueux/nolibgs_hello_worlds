@@ -5,6 +5,13 @@ TYPE = ps-exe
 SRCS = hello_world.c \
 ../common/crt0/crt0.s \
 
+## Hello tile
+#~ TARGET = hello_tile
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_tile.c \
+#~ ../common/crt0/crt0.s \
+
 #~ ## Hello poly
 #~ TARGET = hello_poly
 #~ TYPE = ps-exe
