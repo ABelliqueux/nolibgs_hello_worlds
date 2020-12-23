@@ -1,9 +1,9 @@
-## Hello world
-TARGET = hello_world
-TYPE = ps-exe
+#~ ## Hello world
+#~ TARGET = hello_world
+#~ TYPE = ps-exe
 
-SRCS = hello_world.c \
-../common/crt0/crt0.s \
+#~ SRCS = hello_world.c \
+#~ ../common/crt0/crt0.s \
 
 ## Hello tile
 #~ TARGET = hello_tile
@@ -11,6 +11,13 @@ SRCS = hello_world.c \
 
 #~ SRCS = hello_tile.c \
 #~ ../common/crt0/crt0.s \
+
+#~ ## Hello tile
+TARGET = hello_pad
+TYPE = ps-exe
+
+SRCS = hello_pad.c \
+../common/crt0/crt0.s \
 
 #~ ## Hello poly
 #~ TARGET = hello_poly

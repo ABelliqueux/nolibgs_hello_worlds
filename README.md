@@ -10,7 +10,7 @@ Instead we'll try to devise methods to reproduce libgs functions. This will not 
 a lot more stuff !
 
  
-## Setting up the SDK : Modern GCC + PsyQ a.k.a Nugget
+## Setting up the SDK : Modern GCC + PsyQ a.k.a Nugget+PsyQ
 
 For this we'll rely heavily on grumpy-coder' s pcsx-redux, which will provide us with:
 
