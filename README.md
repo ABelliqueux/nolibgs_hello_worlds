@@ -1,3 +1,6 @@
+
+![PSX dev is fun!](http://psx.arthus.net/homebrew/polyfun.jpg)
+
 # Nolibgs Hello Worlds !
 
 So you want to begin developping on the original PSX but don't know where to start ?
