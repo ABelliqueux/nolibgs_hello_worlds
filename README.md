@@ -4,7 +4,7 @@ So you want to begin developping on the original PSX but don't know where to sta
 
 This repo is destined to host a bunch of simple examples, each describing how to do one thing.
 
-The code here will be using PsyQ, the "Official" Sony SDK, but we will not be using libGS, the Extended Graphics Library.
+The code here will be using PsyQ, the "Official" Sony SDK, but we will not be using libGS, the Extended Graphics Library for the graphic stuff...
 
 Instead we'll try to devise methods to reproduce libgs functions. This will not necessarly be more efficient, but we'll learn
 a lot more stuff !
@@ -19,7 +19,10 @@ For this we'll rely heavily on grumpy-coder' s pcsx-redux, which will provide us
   
 ### Let's do it !
 
-  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal
+  * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)
+  
+  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions.
+
 
   1. Install the needed software packages ( aka dependencies in Linux world ) :
 
