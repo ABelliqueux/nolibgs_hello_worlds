@@ -12,7 +12,7 @@ a lot more stuff !
  
 ## Setting up the SDK : Modern GCC + PsyQ a.k.a Nugget+PsyQ
 
-For this we'll rely heavily on grumpy-coder' s pcsx-redux, which will provide us with:
+For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pcsx-redux)'s work with pcsx-redux and various tools, which will provide us with:
 
   * A way to compile the code with a modern version of GCC
   * An emulator with a lot of debugging features
@@ -128,3 +128,8 @@ All you have to do is uncomment the corresponding rules in `Makefile` then compi
   * [Ps1 dev links](https://ps1.consoledev.net/)
   * [psxdev.net](http://psxdev.net/)
   * [psxdev Discord](https://discord.com/invite/N2mmwp?utm_source=Discord%20Widget&utm_medium=Connect)
+
+# Credits, thanks, hugs
+
+Everything here was learnt from some more talented persons, mainly but not excluding others that hang around on the [psxdev discord](https://discord.com/channels/642647820683444236/642848627823345684)
+Nicolas Noble, Lameguy64, NDR008, Jaby smoll seamonstah, danhans42, rama, sickle, paul, squaresoft74, and lot mores !
