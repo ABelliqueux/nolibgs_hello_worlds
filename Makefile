@@ -1,9 +1,9 @@
 #~ ## Hello world
-#~ TARGET = hello_world
-#~ TYPE = ps-exe
+TARGET = hello_world
+TYPE = ps-exe
 
-#~ SRCS = hello_world.c \
-#~ ../common/crt0/crt0.s \
+SRCS = hello_world.c \
+../common/crt0/crt0.s \
 
 ## Hello tile
 #~ TARGET = hello_tile
@@ -12,12 +12,19 @@
 #~ SRCS = hello_tile.c \
 #~ ../common/crt0/crt0.s \
 
-#~ ## Hello tile
-TARGET = hello_pad
-TYPE = ps-exe
+#~ ## Hello pad
+#~ TARGET = hello_pad
+#~ TYPE = ps-exe
 
-SRCS = hello_pad.c \
-../common/crt0/crt0.s \
+#~ SRCS = hello_pad.c \
+#~ ../common/crt0/crt0.s \
+
+## Hello pad 2
+#~ TARGET = hello_2pads
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_2pads.c \
+#~ ../common/crt0/crt0.s \
 
 #~ ## Hello poly
 #~ TARGET = hello_poly
@@ -25,6 +32,22 @@ SRCS = hello_pad.c \
 
 #~ SRCS = hello_poly.c \
 #~ ../common/crt0/crt0.s \
+
+#~ ## Hello textured
+#~ TARGET = hello_poly_ft
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_poly_ft.c \
+#~ ../common/crt0/crt0.s \
+#~ TIM/bousai.tim \
+
+#~ ## Hello shaded
+#~ TARGET = hello_poly_gt
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_poly_gt.c \
+#~ ../common/crt0/crt0.s \
+#~ TIM/bousai.tim \
 
 #~ ## Hello sprt
 #~ TARGET = hello_sprt
@@ -52,6 +75,14 @@ SRCS = hello_pad.c \
 #~ ../common/crt0/crt0.s \
 #~ VAG/hello.vag
 #~ VAG/poly.vag
+
+#~ ## Poly fun !
+#~ TARGET = fun_with_poly
+#~ TYPE = ps-exe
+
+#~ SRCS = fun_with_poly.c \
+#~ ../common/crt0/crt0.s \
+
 
 
 CPPFLAGS += -I../psyq/include
