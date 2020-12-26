@@ -1,6 +1,18 @@
 // With help from Nicolas Noble, Jaby smoll Seamonstah
 // Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
+//
+// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
 // 
+ /*		   PSX screen coordinate system 
+ *
+ *                           Z+
+ *                          /
+ *                         /
+ *                        +------X+
+ *                       /|
+ *                      / |
+ *                     /  Y+
+ *                   eye		*/
 
 #include <sys/types.h>
 #include <stdio.h>
@@ -156,7 +168,7 @@ int main(void)
                     );                                // Perform coordinate and perspective transformation for 4 vertices
         
         
-        RotVector.vz+=16;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing toward the screen. 
+        RotVector.vz+=16;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen.  
 
         addPrim(ot[db], poly);                         // add poly to the Ordering table
         
