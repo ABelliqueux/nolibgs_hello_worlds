@@ -174,11 +174,12 @@ int main(void)
 
         // Pad stuff
 
-        pad = PadRead(0);                             // Read pad input. id is unused, always 0
+        pad = PadRead(0);                             // Read pads input. id is unused, always 0.
+                                                      // PadRead() returns a 32 bit value, where input from pad 1 is stored in the low 2 bytes and input from pad 2 is stored in the high 2 bytes. (https://matiaslavik.wordpress.com/2015/02/13/diving-into-psx-development/)
+                                                      
+        // D-pad        
         
-        // D-pad
-        
-        if(pad & PADLup)   {PADL->y0 = CENTERY - 16;} // 🡩
+        if(pad & PADLup)   {PADL->y0 = CENTERY - 16;} // 🡩           // To access pad 2, use ( pad >> 16 & PADLup)...
         if(pad & PADLdown) {PADL->y0 = CENTERY + 16;} // 🡫
         if(pad & PADLright){PADL->x0 = CENTERX - 64;} // 🡪
         if(pad & PADLleft) {PADL->x0 = CENTERX - 96;} // 🡨
