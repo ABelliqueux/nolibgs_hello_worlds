@@ -1,6 +1,19 @@
 // With help from Nicolas Noble, Jaby smoll Seamonstah
 // Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
 // 
+// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
+// 
+ /*		   PSX screen coordinate system 
+ *
+ *                           Z+
+ *                          /
+ *                         /
+ *                        +------X+
+ *                       /|
+ *                      / |
+ *                     /  Y+
+ *                   eye		*/
+
 
 #include <sys/types.h>
 #include <stdio.h>
@@ -81,7 +94,7 @@ void init(void)
 	
     InitGeom();
 	SetGeomOffset(CENTERX,CENTERY);
-	SetGeomScreen(8);
+	SetGeomScreen(CENTERX);
     
     SetDefDispEnv(&disp[0], 0, 0, SCREENXRES, SCREENYRES);
     SetDefDispEnv(&disp[1], 0, SCREENYRES, SCREENXRES, SCREENYRES);
@@ -136,7 +149,7 @@ int main(void)
     
     POLY_GT4 *poly = {0};                           // pointer to a POLY_G4 
     SVECTOR RotVector = {0, 0, 0};                  // Initialize rotation vector {x, y, z}
-    VECTOR  MovVector = {0,0, 12};                   // Initialize translation vector {x, y, z}
+    VECTOR  MovVector = {0, 0, 120, 0};                   // Initialize translation vector {x, y, z}
                                                     
     SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0 - see here : https://psx.arthus.net/docs/poly_f4.jpg
             {-32, -32, 0 },                         // Vert 1 
@@ -186,7 +199,7 @@ int main(void)
         
         setUV4(poly, 0, 0, 0, 144, 144, 0, 144, 144);  // Set UV coordinates in order Top Left, Bottom Left, Top Right, Bottom Right 
         
-        RotVector.vz += 16;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
+        RotVector.vx += 8;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
 
         addPrim(ot[db], poly);                         // add poly to the Ordering table
 

@@ -73,8 +73,8 @@ void init(void)
     // Initialize and setup the GTE
 	
     InitGeom();
-	SetGeomOffset(0,0);
-	SetGeomScreen(1);
+	SetGeomOffset(CENTERX,CENTERY);
+	SetGeomScreen(CENTERX);
     
     SetDefDispEnv(&disp[0], 0, 0, SCREENXRES, SCREENYRES);
     SetDefDispEnv(&disp[1], 0, SCREENYRES, SCREENXRES, SCREENYRES);
@@ -128,8 +128,9 @@ int main(void)
     
     POLY_F4 *poly = {0};                            // pointer to a POLY_F4 
     SVECTOR RotVector = {0, 0, 0};                  // Initialize rotation vector {x, y, z}
-    VECTOR  MovVector = {CENTERX, CENTERY, 0};      // Initialize translation vector {x, y, z}
-                                                    
+    VECTOR  MovVector = {0, 0, CENTERX, 0};         // Initialize translation vector {x, y, z}
+    VECTOR  ScaleVector ={ONE, ONE, ONE};           // ONE is define as 4096 in libgte.h
+    
     SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0 - see here : https://psx.arthus.net/docs/poly_f4.jpg
             {-32, -32, 1 },                         // Vert 1 
             {-32,  32, 1 },                         // Vert 2
@@ -140,6 +141,7 @@ int main(void)
     
     long polydepth;
     long polyflag;
+    long OTz;
     
     init();
     
@@ -152,7 +154,8 @@ int main(void)
         // Set transform matrices for this polygon
                 
         RotMatrix(&RotVector, &PolyMatrix);           // Apply rotation matrix
-        TransMatrix(&PolyMatrix, &MovVector);         // Apply translation matrix   
+        TransMatrix(&PolyMatrix, &MovVector);
+        ScaleMatrix(&PolyMatrix, &ScaleVector);         // Apply translation matrix   
         
         SetRotMatrix(&PolyMatrix);                    // Set default rotation matrix
         SetTransMatrix(&PolyMatrix);                  // Set default transformation matrix
@@ -160,7 +163,17 @@ int main(void)
         setPolyF4(poly);                              // Initialize poly as a POLY_F4 
         setRGB0(poly, 255, 0, 255);                   // Set poly color
 
-        RotTransPers4(
+        
+        // RotTransPers
+        
+        //~ OTz = RotTransPers(&VertPos[0], (long*)&poly->x0, &polydepth, &polyflag);
+        //~ RotTransPers(&VertPos[1], (long*)&poly->x1, &polydepth, &polyflag);
+        //~ RotTransPers(&VertPos[2], (long*)&poly->x2, &polydepth, &polyflag);
+        //~ RotTransPers(&VertPos[3], (long*)&poly->x3, &polydepth, &polyflag);
+        
+        // RotTransPers4 equivalent 
+        
+        OTz = RotTransPers4(
                     &VertPos[0],      &VertPos[1],      &VertPos[2],      &VertPos[3],
                     (long*)&poly->x0, (long*)&poly->x1, (long*)&poly->x2, (long*)&poly->x3,
                     &polydepth,
@@ -168,7 +181,10 @@ int main(void)
                     );                                // Perform coordinate and perspective transformation for 4 vertices
         
         
-        RotVector.vz+=16;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen.  
+        
+        
+        RotVector.vy += 4;
+        RotVector.vz += 4;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen.  
 
         addPrim(ot[db], poly);                         // add poly to the Ordering table
         

@@ -1,6 +1,18 @@
 // With help from Nicolas Noble, Jaby smoll Seamonstah
 // Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
 // 
+// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
+// 
+ /*		   PSX screen coordinate system 
+ *
+ *                           Z+
+ *                          /
+ *                         /
+ *                        +------X+
+ *                       /|
+ *                      / |
+ *                     /  Y+
+ *                   eye		*/
 
 #include <sys/types.h>
 #include <stdio.h>
@@ -80,8 +92,8 @@ void init(void)
     // Initialize and setup the GTE
 	
     InitGeom();
-	SetGeomOffset(0,0);
-	SetGeomScreen(1);
+	SetGeomOffset(CENTERX,CENTERY);
+	SetGeomScreen(CENTERX);
     
     SetDefDispEnv(&disp[0], 0, 0, SCREENXRES, SCREENYRES);
     SetDefDispEnv(&disp[1], 0, SCREENYRES, SCREENXRES, SCREENYRES);
@@ -133,10 +145,11 @@ int main(void)
     
     MATRIX IDMATRIX = identity(3);                  // Generate 3x3 identity matrix
     
-    POLY_FT4 *poly = {0};                            // pointer to a POLY_G4 
+    POLY_FT4 *poly = {0};                           // pointer to a POLY_G4 
     SVECTOR RotVector = {0, 0, 0};                  // Initialize rotation vector {x, y, z}
-    VECTOR  MovVector = {CENTERX, CENTERY, 0};      // Initialize translation vector {x, y, z}
-                                                    
+    VECTOR  MovVector = {0, 0, CENTERX/2, 0};               // Initialize translation vector {x, y, z, pad}
+    VECTOR  ScaleVector = {ONE, ONE, ONE};          // ONE is define as 4096 in libgte.h
+    
     SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0 - see here : https://psx.arthus.net/docs/poly_f4.jpg
             {-32, -32, 1 },                         // Vert 1 
             {-32,  32, 1 },                         // Vert 2
@@ -147,6 +160,8 @@ int main(void)
         
     long polydepth;
     long polyflag;
+    
+    int ping = 0;
     
     init();
     
@@ -162,6 +177,7 @@ int main(void)
                 
         RotMatrix(&RotVector, &PolyMatrix);           // Apply rotation matrix
         TransMatrix(&PolyMatrix, &MovVector);         // Apply translation matrix   
+        ScaleMatrix(&PolyMatrix, &ScaleVector);       // Apply scale matrix   
         
         SetRotMatrix(&PolyMatrix);                    // Set default rotation matrix
         SetTransMatrix(&PolyMatrix);                  // Set default transformation matrix
@@ -180,9 +196,27 @@ int main(void)
                     );                                 // Perform coordinate and perspective transformation for 4 vertices
         
         setUV4(poly, 0, 0, 0, 144, 144, 0, 144, 144);  // Set UV coordinates in order Top Left, Bottom Left, Top Right, Bottom Right 
-        
-        RotVector.vz+=16;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
 
+        
+        // Let's have some fun on the Z axis
+
+        if(!ping){
+            if (MovVector.vz < CENTERX){               // While Poly position on Z axis is < 160, push it
+                MovVector.vz += 1;                     // Push on Z axis
+            } else {
+                ping = !ping;                          // Switch ping value
+            }
+        }
+        
+        if(ping){
+            if (MovVector.vz > CENTERX/2){              // While Poly position on Z axis is > 80, pull it
+                MovVector.vz -= 1;                      // Pull on Z axis
+            } else {
+                ping = !ping;                           // Switch ping value
+            }
+        }
+            
+            
         addPrim(ot[db], poly);                         // add poly to the Ordering table
         
         nextpri += sizeof(POLY_FT4);                    // increment nextpri address with size of a POLY_F4 struct 

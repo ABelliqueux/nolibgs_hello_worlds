@@ -1,4 +1,4 @@
-#~ ## Hello world
+## Hello world
 TARGET = hello_world
 TYPE = ps-exe
 
@@ -26,7 +26,7 @@ SRCS = hello_world.c \
 #~ SRCS = hello_2pads.c \
 #~ ../common/crt0/crt0.s \
 
-#~ ## Hello poly
+## Hello poly
 #~ TARGET = hello_poly
 #~ TYPE = ps-exe
 
@@ -76,7 +76,7 @@ SRCS = hello_world.c \
 #~ VAG/hello.vag
 #~ VAG/poly.vag
 
-#~ ## Poly fun !
+## Poly fun !
 #~ TARGET = fun_with_poly
 #~ TYPE = ps-exe
 
