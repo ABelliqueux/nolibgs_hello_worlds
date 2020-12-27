@@ -180,9 +180,6 @@ int main(void)
                     &polyflag
                     );                                // Perform coordinate and perspective transformation for 4 vertices
         
-        
-        
-        
         RotVector.vy += 4;
         RotVector.vz += 4;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen.  
 
