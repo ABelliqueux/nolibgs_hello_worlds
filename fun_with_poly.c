@@ -25,7 +25,7 @@
 
 #define FONTSIZE 8 * 7           // Text Field Height
 
-#define OTLEN 8              // Ordering Table Length 
+#define OTLEN 16              // Ordering Table Length 
 
 DISPENV disp[2];             // Double buffered DISPENV and DRAWENV
 DRAWENV draw[2];
@@ -66,8 +66,8 @@ void init(void)
     // Initialize and setup the GTE : Not needed ?
 	
     InitGeom();
-	SetGeomOffset(0,0);
-	SetGeomScreen(10);
+	SetGeomOffset(CENTERX,CENTERY);
+	SetGeomScreen(CENTERX);
     
     PadInit(0);
     
@@ -176,7 +176,7 @@ int main(void)
         {255, 255, 255},        // color
         30, 30,                 // width, height
         {0,0,0},                // RotV_L
-        {0,0,0},                // TransV_L
+        {0,0,0, 0},             // TransV_L
         {4096,4096,4096},       // ScaleV_L
         {1,1,1},                // PivotV
         {                       // Verts[4]
@@ -195,7 +195,7 @@ int main(void)
     {255, 0, 0},                      // color
     30, 30,                           // width, height
     {0,0,0},                          // RotV_L
-    {CENTERX/2-48, CENTERY/2-30, 0},  // TransV_L
+    {-48, -30, 0, 0},                    // TransV_L
     {4096,4096,4096},                 // ScaleV_L
     {15,15,1},                        // PivotV
     {                                 // Verts[4]
@@ -218,7 +218,7 @@ int main(void)
     {255, 187, 0},                    // color
     28, 28,                           // width, height
     {0,0,0},                          // RotV_L
-    {CENTERX/2-20, CENTERY/2+10, 0},  // TransV_L
+    {-20, 10, 0, 0},                  // TransV_L
     {4096,4096,4096},                 // ScaleV_L
     {4,4,1},                          // PivotV
     {                                 // Verts[4]
@@ -241,7 +241,7 @@ int main(void)
     {0, 255, 153},                    // color
     24, 24,                           // width, height
     {0,0,0},                          // RotV_L
-    {CENTERX/2+36, CENTERY/2-10, 0},  // TransV_L
+    {36, -10, 0, 0},                  // TransV_L
     {4096,4096,4096},                 // ScaleV_L
     {12,12,1},                        // PivotV
     {                                 // Verts[4]
@@ -264,7 +264,7 @@ int main(void)
     {112, 254, 254},                  // color
     26, 26,                           // width, height
     {0,0,0},                          // RotV_L
-    {CENTERX/2+20, CENTERY/2+20, 0},  // TransV_L
+    {20, 20, 0, 0},                   // TransV_L
     {4096,4096,4096},                 // ScaleV_L
     {13,13,1},                        // PivotV
     {                                 // Verts[4]
@@ -273,7 +273,7 @@ int main(void)
         {0, 0, 0},
         {0, 0, 0}
     },
-    IDMATRIX,                       // Matrix
+    IDMATRIX,                         // Matrix
     0,0,                              //depth, flag
     256,                              //rotSpeed
     4                                 // z-index
@@ -333,7 +333,6 @@ int main(void)
         
         setPolyF4(polyS.poly_f4);
         setRGB0(polyS.poly_f4, polyS.color.r,polyS.color.g,polyS.color.b);        
-        setXY4(polyS.poly_f4, 0,0,0,0,0,0,0,0);
         RotTransPers4(
                     &polyS.Verts[0],      &polyS.Verts[1],      &polyS.Verts[2],      &polyS.Verts[3],
                     (long*)&polyS.poly_f4->x0, (long*)&polyS.poly_f4->x1, (long*)&polyS.poly_f4->x2, (long*)&polyS.poly_f4->x3,
@@ -361,7 +360,6 @@ int main(void)
         
         setPolyF4(poly1S.poly_f4);
         setRGB0(poly1S.poly_f4, poly1S.color.r,poly1S.color.g,poly1S.color.b);        
-        setXY4(poly1S.poly_f4, 0,0,0,0,0,0,0,0);
         RotTransPers4(
                     &poly1S.Verts[0],      &poly1S.Verts[1],      &poly1S.Verts[2],      &poly1S.Verts[3],
                     (long*)&poly1S.poly_f4->x0, (long*)&poly1S.poly_f4->x1, (long*)&poly1S.poly_f4->x2, (long*)&poly1S.poly_f4->x3,
@@ -390,7 +388,6 @@ int main(void)
         
         setPolyF4(poly2S.poly_f4);
         setRGB0(poly2S.poly_f4, poly2S.color.r,poly2S.color.g,poly2S.color.b);        
-        setXY4(poly2S.poly_f4, 0,0,0,0,0,0,0,0);
         RotTransPers4(
                     &poly2S.Verts[0],      &poly2S.Verts[1],      &poly2S.Verts[2],      &poly2S.Verts[3],
                     (long*)&poly2S.poly_f4->x0, (long*)&poly2S.poly_f4->x1, (long*)&poly2S.poly_f4->x2, (long*)&poly2S.poly_f4->x3,
@@ -417,7 +414,6 @@ int main(void)
         
         setPolyF4(poly3S.poly_f4);
         setRGB0(poly3S.poly_f4, poly3S.color.r,poly3S.color.g,poly3S.color.b);        
-        setXY4(poly3S.poly_f4, 0,0,0,0,0,0,0,0);
         RotTransPers4(
                     &poly3S.Verts[0],      &poly3S.Verts[1],      &poly3S.Verts[2],      &poly3S.Verts[3],
                     (long*)&poly3S.poly_f4->x0, (long*)&poly3S.poly_f4->x1, (long*)&poly3S.poly_f4->x2, (long*)&poly3S.poly_f4->x3,
@@ -563,6 +559,8 @@ int main(void)
             if(BtnTimer == 0){
                 CurrentPoly->ScaleV_L.vx += 100;
                 CurrentPoly->ScaleV_L.vy += 100;
+                //~ CurrentPoly->TransV_L.vz += 1;
+
             } 
         }
         if(pad & PADselect){
@@ -570,8 +568,8 @@ int main(void)
             if(BtnTimer == 0){
                CurrentPoly->ScaleV_L.vx -= 100;
                CurrentPoly->ScaleV_L.vy -= 100;
-                //~ CurrentPoly->otz += 1;
-                //~ BtnTimer = 10;
+               //~ CurrentPoly->TransV_L.vz -= 1;
+
             } 
         }
         
