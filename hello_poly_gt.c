@@ -202,7 +202,8 @@ int main(void)
         RotVector.vx += 8;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
 
         addPrim(ot[db], poly);                         // add poly to the Ordering table
-
+    
+        nextpri += sizeof(POLY_GT4);                    // increment nextpri address with size of a POLY_F4 struct 
     
         FntPrint("Hello textured shaded !");                   
             
