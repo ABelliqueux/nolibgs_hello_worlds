@@ -41,11 +41,19 @@ SRCS = hello_world.c \
 #~ ../common/crt0/crt0.s \
 #~ TIM/bousai.tim \
 
-#~ ## Hello shaded
+#~ ## Hello shaded textured
 #~ TARGET = hello_poly_gt
 #~ TYPE = ps-exe
 
 #~ SRCS = hello_poly_gt.c \
+#~ ../common/crt0/crt0.s \
+#~ TIM/bousai.tim \
+
+#~ ## Hello shaded window textured
+#~ TARGET = hello_poly_gt_tw
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_poly_gt_tw.c \
 #~ ../common/crt0/crt0.s \
 #~ TIM/bousai.tim \
 
