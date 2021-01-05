@@ -247,6 +247,8 @@ int main() {
 			
 		}
         
+        FntPrint("Hello gouraud shaded cube!\n");
+        
         FntFlush(-1);
 		
 		display();
