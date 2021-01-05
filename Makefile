@@ -91,7 +91,11 @@ SRCS = hello_world.c \
 #~ SRCS = fun_with_poly.c \
 #~ ../common/crt0/crt0.s \
 
+#~ TARGET = hello_cube
+#~ TYPE = ps-exe
 
+#~ SRCS = hello_cube.c \
+#~ ../common/crt0/crt0.s \
 
 CPPFLAGS += -I../psyq/include
 LDFLAGS += -L../psyq/lib
