@@ -97,6 +97,13 @@ SRCS = hello_world.c \
 #~ SRCS = hello_cube.c \
 #~ ../common/crt0/crt0.s \
 
+#~ TARGET = hello_cubetex
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_cubetex.c \
+#~ ../common/crt0/crt0.s \
+#~ TIM/cubetex.tim \
+
 CPPFLAGS += -I../psyq/include
 LDFLAGS += -L../psyq/lib
 LDFLAGS += -Wl,--start-group
