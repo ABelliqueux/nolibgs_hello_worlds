@@ -42,7 +42,7 @@ git clone https://github.com/grumpycoders/pcsx-redux.git --recursive
   3. Compile pcsx-redux : 
   
 ```bash 
-cd pcsx-redux && ./configure && make
+make -C pcsx-redux
 ```
   
   4. Get the converted PsyQ 4.7 libs : 
