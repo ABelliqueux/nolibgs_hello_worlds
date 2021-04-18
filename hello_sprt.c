@@ -207,7 +207,7 @@ int main(void)
         
         nextpri += sizeof(SPRT);
         
-        // Set Texture page for the 8bit tim : 512, 256 - CLUT is at 0, 480
+        // Set Texture page for the 4bit tim : 512, 256 - CLUT is at 0, 480
         
         tpage_4b = (DR_TPAGE*)nextpri;
         
