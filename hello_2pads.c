@@ -220,8 +220,6 @@ int main(void)
     
     TILE * START, * SELECT;
     
-    int pad = 0;                    
-    
     init();
     
     InitPAD(controllers[0].pad, 34, controllers[1].pad, 34);
@@ -323,10 +321,10 @@ int main(void)
         
             // Start & Select
 
-            case 0xFE:
+            case 0xF7:
                 START->w = 32; START->h = 32;START->x0 -= 4;START->y0 -= 4; // START
                 break;
-            case 0xF7:                                                      // SELECT
+            case 0xFE:                                                      // SELECT
                 START->r0 = 0;
                 break;
         
