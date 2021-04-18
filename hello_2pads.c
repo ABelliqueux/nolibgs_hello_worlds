@@ -368,10 +368,10 @@ int main(void)
                 TRIGGERL->y0 = CENTERY - 96;
                 break;
             
-            case 0xFD:                       // R1
+            case 0xF7:                       // R1
                 TRIGGERR->y0 = CENTERY - 96;
                 break;
-            case 0xF7:                       // R2
+            case 0xFD:                       // R2
                 TRIGGERR->y0 = CENTERY - 64;
                 break;
         
@@ -405,10 +405,10 @@ int main(void)
 					theControllers[1].type,             // Controller type : 00 == none,  41 == standard, 73 == analog/dualshock, 12 == mouse, 23 == steering wheel, 63 == gun, 53 == analog joystick
 					theControllers[1].button1,          // 
 					theControllers[1].button2,
-					theControllers[1].analog0,
-					theControllers[1].analog1,
-					theControllers[1].analog2,
-					theControllers[1].analog3 );
+					theControllers[1].analog0,          // R3 horizontal
+					theControllers[1].analog1,          // R3 vertical
+					theControllers[1].analog2,          // L3 horizontal
+					theControllers[1].analog3 );        // L3 vertical
         FntFlush(-1);
         
         display();
