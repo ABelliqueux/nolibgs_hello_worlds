@@ -169,8 +169,7 @@ int main(void)
     DR_MODE * dr_mode;                              // Pointer to dr_mode prim
     
     RECT tws = {64, 32, 32, 32};                    // Texture window coordinates : x, y, w, h
-                                                    // x, y are in increments of 32 - w, h, min abs coord == 25 
-    
+                                                    // See libref47.pdf, p.242, 7-6, table 7-2 for possible values
     init();
     
     LoadTexture(_binary_TIM_bousai_tim_start, &bousai);
@@ -207,7 +206,7 @@ int main(void)
         
         setUV4(poly, 0, 0, 0, 144, 144, 0, 144, 144);  // Set UV coordinates in order Top Left, Bottom Left, Top Right, Bottom Right 
         
-        RotVector.vy += 4;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
+        RotVector.vy += 14;                              // Apply rotation on Z-axis. On PSX, the Z-axis is pointing away from the screen. 
 
         addPrim(ot[db], poly);                         // add poly to the Ordering table
 
@@ -217,7 +216,7 @@ int main(void)
            
         dr_mode = (DR_MODE *)nextpri;                   // initialize drawing mode primitive
         
-        setDrawMode(dr_mode,1,0, getTPage(bousai.mode&0x3, 0, bousai.prect->x, bousai.prect->y), &tws);  //set tewture window
+        setDrawMode(dr_mode, 1, 0, getTPage(bousai.mode&0x3, 0, bousai.prect->x, bousai.prect->y), &tws);  //set texture window
         
         addPrim(ot[db], dr_mode);                      
 
