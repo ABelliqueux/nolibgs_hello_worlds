@@ -5,7 +5,7 @@ TYPE = ps-exe
 SRCS = hello_world.c \
 ../common/crt0/crt0.s \
 
-## Hello tile
+#~ ## Hello tile
 #~ TARGET = hello_tile
 #~ TYPE = ps-exe
 
@@ -19,14 +19,14 @@ SRCS = hello_world.c \
 #~ SRCS = hello_pad.c \
 #~ ../common/crt0/crt0.s \
 
-## Hello pad 2
+#~ ## Hello pad 2
 #~ TARGET = hello_2pads
 #~ TYPE = ps-exe
 
 #~ SRCS = hello_2pads.c \
 #~ ../common/crt0/crt0.s \
 
-## Hello poly
+#~ ## Hello poly
 #~ TARGET = hello_poly
 #~ TYPE = ps-exe
 
@@ -73,7 +73,7 @@ SRCS = hello_world.c \
 
 #~ SRCS = hello_vag.c \
 #~ ../common/crt0/crt0.s \
-#~ VAG/hello_poly.vag
+#~ VAG/hello_poly.vag \
 
 #~ ## hello multivag
 #~ TARGET = hello_multivag
@@ -81,10 +81,10 @@ SRCS = hello_world.c \
 
 #~ SRCS = hello_multivag.c \
 #~ ../common/crt0/crt0.s \
-#~ VAG/hello.vag
-#~ VAG/poly.vag
+#~ VAG/hello.vag \
+#~ VAG/poly.vag \
 
-## Poly fun !
+#~ ## Poly fun !
 #~ TARGET = fun_with_poly
 #~ TYPE = ps-exe
 
@@ -103,6 +103,13 @@ SRCS = hello_world.c \
 #~ SRCS = hello_cubetex.c \
 #~ ../common/crt0/crt0.s \
 #~ TIM/cubetex.tim \
+
+#~ ## Hello sio
+#~ TARGET = hello_sio
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_sio.c \
+#~ ../common/crt0/crt0.s \
 
 CPPFLAGS += -I../psyq/include
 LDFLAGS += -L../psyq/lib
@@ -128,6 +135,7 @@ LDFLAGS += -lsio
 LDFLAGS += -lsnd
 LDFLAGS += -lspu
 LDFLAGS += -ltap
+LDFLAGS += -lcd
 LDFLAGS += -Wl,--end-group
 
 include ../common.mk \
