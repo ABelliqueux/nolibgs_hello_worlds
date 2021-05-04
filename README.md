@@ -1,7 +1,14 @@
-
-![PSX dev is fun!](http://psx.arthus.net/homebrew/polyfun.jpg)![Hello gt](hello_gt.jpg)
-
 # Nolibgs Hello Worlds !
+
+<p align="center">
+
+    <img height="240px" src="cube.gif" alt="3D power !">
+
+    <img height="240px" src="http://psx.arthus.net/homebrew/polyfun.jpg" alt="3D power !">
+
+    <img height="240px" src="hello_gt.jpg" alt="3D power !">
+
+</p>
 
 So you want to begin developping on the original PSX but don't know where to start ?
 
