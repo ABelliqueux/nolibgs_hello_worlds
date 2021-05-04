@@ -2,11 +2,11 @@
 
 <p align="center">
 
-    <img height="240px" src="cube.gif" alt="3D power !">
+<img height="240px" src="cube.gif" alt="3D power !">
 
-    <img height="240px" src="http://psx.arthus.net/homebrew/polyfun.jpg" alt="3D power !">
+<img height="240px" src="http://psx.arthus.net/homebrew/polyfun.jpg" alt="3D power !">
 
-    <img height="240px" src="hello_gt.jpg" alt="3D power !">
+<img height="240px" src="hello_gt.jpg" alt="3D power !">
 
 </p>
 
