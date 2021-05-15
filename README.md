@@ -31,8 +31,7 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
 
   * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)
   
-  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions.
-
+  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions. Alternatively, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 4 and 5.
 
   1. Install the needed software packages ( aka dependencies in Linux world ) :
 
@@ -58,7 +57,7 @@ make -C pcsx-redux
 wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
 ```
   
-  5. Extract to [...]pcsx-redux/src/mips/psyq/ : 
+  5. Extract this archive to [...]pcsx-redux/src/mips/psyq/ : 
 
 ```bash
 7z x -o/pcsx-redux/src/mips/psyq/
@@ -89,11 +88,11 @@ With our setup, this is quite easy !
   ```mk
 # convert TIM file to bin
 %.o: %.tim
-	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
+    $(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
 
 # convert VAG files to bin
 %.o: %.vag
-	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
+    $(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
 ```
 
 If you pay attention, you can see that's the same command, but for different file types. TIM files are bitmap images and VAG is the sound format used in this example.
