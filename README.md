@@ -81,7 +81,7 @@ wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
 7z x -o./pcsx-redux/src/mips/psyq/ psyq-4.7-converted-full.7z
 ```
 
-Your `pcsx-redux/src/mips/psyq/` directory should not contain an `include` and a `lib` folder with a bunch of files in each of them :
+Your `pcsx-redux/src/mips/psyq/` directory should now contain an `include` and a `lib` folder with a bunch of files in each of them :
     
 ```bash 
 $tree /pcsx-redux/src/mips/psyq/
