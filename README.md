@@ -33,9 +33,7 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
   
   * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions.  
   
-  Alternatively, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/),  
-  unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).  
-  Then go on with steps 4 and 5.
+  * Alternatively on Windows, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 4 and 5.
 
   1. Install the needed software packages ( aka dependencies in Linux world ) :  
   
