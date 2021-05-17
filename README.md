@@ -67,7 +67,7 @@ If you encounter an error due to an old version of GCC (< 10) like something abo
 CC=clang CXX=clang++ LD=clang++ make -C pcsx-redux
 ```
   
-  4. Get the converted PsyQ 4.7 libs : 
+  4. Get the converted [PsyQ 4.7 libs](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z) : 
   
 ```bash
 wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
