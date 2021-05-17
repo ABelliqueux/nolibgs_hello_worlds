@@ -73,6 +73,28 @@ wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
 ```bash
 7z x -o/pcsx-redux/src/mips/psyq/
 ```
+
+    Your `pcsx-redux/src/mips/psyq/` directory should not contain an `include` and a `lib` folder with a bunch of files in each of them :
+    
+```bash 
+$tree /pcsx-redux/src/mips/psyq/
+.
+├── include
+│   ├── abs.h
+│   ├── ...
+│   ├── strings.h
+│   └── sys
+│       ├── errno.h
+│       ├── ...
+│       └── types.h
+├── lib
+│   ├── libapi.a
+│   ├── ...
+│   └── libtap.a
+└── tree
+
+3 directories, 82 files
+```
   
   6. That's it ! After that you can check everything's working byt trying to compile some example code :
   
