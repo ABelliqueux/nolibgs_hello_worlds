@@ -78,7 +78,7 @@ wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
   5. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path  in the command below to the folder you cloned pcsx-redux in :
 
 ```bash
-7z x -o/pcsx-redux/src/mips/psyq/
+7z x -o./pcsx-redux/src/mips/psyq/ psyq-4.7-converted-full.7z
 ```
 
 Your `pcsx-redux/src/mips/psyq/` directory should not contain an `include` and a `lib` folder with a bunch of files in each of them :
