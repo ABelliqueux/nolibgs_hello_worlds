@@ -61,6 +61,13 @@ git clone https://github.com/grumpycoders/pcsx-redux.git --recursive
 ```bash 
 make -C pcsx-redux
 ```
+
+If you encounter an error due to an old version of GCC (< 10) like something about `-fcoroutines`, then you can use **clang** to compile `pcsx-redux` :
+
+```bash
+
+CC=clang CXX=clang++ LD=clang++ make -C pcsx-redux
+```
   
   4. Get the converted PsyQ 4.7 libs : 
   
