@@ -31,14 +31,25 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
 
   * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)
   
-  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions. Alternatively, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 4 and 5.
-
-  1. Install the needed software packages ( aka dependencies in Linux world ) :
-
-```bash
-sudo apt-get install -y git make pkg-config clang-10 g++-9 gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
-```
+  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions.  
   
+  Alternatively, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/),  
+  unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).  
+  Then go on with steps 4 and 5.
+
+  1. Install the needed software packages ( aka dependencies in Linux world ) :  
+  
+   * To be able to build PsyQ code, you only need the MIPS toolchain :  
+   
+```bash
+sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
+```
+   * If you want to compile pcsx-redux, you need a few more packages :  
+   
+```bash
+sudo apt-get install -y git make pkg-config clang g++ libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
+```
+
   2. Clone the pcsx-redux repo : 
   
 ```bash
