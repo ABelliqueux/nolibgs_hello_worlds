@@ -31,9 +31,9 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
 
   * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)
   
-  * On windows, install WSL2 and Debian then launch a GNU/Linux terminal, then proceed with the following instructions.  
+  * On windows, either follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows), or install WSL2 and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
   
-  * Alternatively on Windows, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 4 and 5.
+  * Alternatively on Windows, if you don't care about compiling pcsx-redux, you can skip steps 1 and 3, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 4 and 5.
 
   1. Install the needed software packages ( aka dependencies in Linux world ) :  
   
@@ -42,10 +42,11 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
 ```bash
 sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
 ```
+
    * If you want to compile pcsx-redux, you need a few more packages :  
    
 ```bash
-sudo apt-get install -y git make pkg-config clang g++ libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
+sudo apt-get install -y git make pkg-config clang g++ libfreetype6-dev libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
 ```
 
   2. Clone the pcsx-redux repo : 
@@ -53,36 +54,41 @@ sudo apt-get install -y git make pkg-config clang g++ libavcodec-dev libavformat
 ```bash
 git clone https://github.com/grumpycoders/pcsx-redux.git --recursive
 ```
-  
-  3. Compile pcsx-redux : 
+
+  3. Enter pcsx-redux folder:
+```bash
+cd pcsx-redux
+```
+
+  4. Compile pcsx-redux : 
   
 ```bash 
-make -C pcsx-redux
+make
 ```
 
 If you encounter an error due to an old version of GCC (< 10) like something about `-fcoroutines`, then you can use **clang** ( min version 9) to compile `pcsx-redux` :
 
 ```bash
 
-CC=clang CXX=clang++ LD=clang++ make -C pcsx-redux
+CC=clang CXX=clang++ LD=clang++ make
 ```
   
-  4. Get the converted [PsyQ 4.7 libs](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z) : 
+  5. Get the converted [PsyQ 4.7 libs](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z) : 
   
 ```bash
 wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
 ```
   
-  5. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path  in the command below to the folder you cloned pcsx-redux in :
+  6. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path  in the command below to the folder you cloned pcsx-redux in :
 
 ```bash
-7z x -o./pcsx-redux/src/mips/psyq/ psyq-4.7-converted-full.7z
+7z x -o./src/mips/psyq/ psyq-4.7-converted-full.7z
 ```
 
 Your `pcsx-redux/src/mips/psyq/` directory should now contain an `include` and a `lib` folder with a bunch of files in each of them :
     
 ```bash 
-$tree /pcsx-redux/src/mips/psyq/
+$tree ~/pcsx-redux/src/mips/psyq/
 .
 ├── include
 │   ├── abs.h
@@ -104,7 +110,7 @@ $tree /pcsx-redux/src/mips/psyq/
   6. That's it ! After that you can check everything's working byt trying to compile some example code :
   
 ```bash 
-cd pcsx-redux/src/mips/psyq/cube
+cd src/mips/psyq/cube
 make 
 ```
 
