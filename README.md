@@ -28,12 +28,15 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
   * An emulator with a lot of debugging features
   
 ### Let's do it !
-
-  * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)
-  
-  * On windows, either follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows), or install WSL2 and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
-  
-  * Alternatively on Windows, if you don't care about compiling pcsx-redux, you can skip steps 1, 3 and 4, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 5 and 6.
+#### MacOS
+  * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)  
+#### Windows 10  
+  * Native build :  
+  Follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows) to build pcsx-redux or download a pre-compiled [pcsx-redux binary here](https://install.appcenter.ms/orgs/grumpycoders/apps/pcsx-redux/distribution_groups/public).
+  * Win 10 + WSL2 (needs GUI support):  
+  Install WSL2 with GUI support and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
+   
+  * Alternatively on Windows, if you don't care about getting/compiling pcsx-redux, you can skip steps 1, 3 and 4, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 5 and 6.
 
   1. Install the needed software packages ( aka dependencies in Linux world ) :  
   
@@ -79,7 +82,7 @@ CC=clang CXX=clang++ LD=clang++ make
 wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
 ```
   
-  6. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path  in the command below to the folder you cloned pcsx-redux in :
+  6. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path ( the part after `-o`)  in the command below to the folder you cloned pcsx-redux in :
 
 ```bash
 7z x -o./src/mips/psyq/ psyq-4.7-converted-full.7z
@@ -107,7 +110,7 @@ $tree ~/pcsx-redux/src/mips/psyq/
 3 directories, 82 files
 ```
   
-  7. That's it ! After that you can check everything's working byt trying to compile some example code :
+  7. That's it ! After that you can check everything's working by trying to compile some example code :
   
 ```bash 
 cd src/mips/psyq/cube
