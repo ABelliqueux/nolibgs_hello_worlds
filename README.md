@@ -37,7 +37,7 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
   Install WSL2 with GUI support and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
    
   * Alternatively on Windows, if you don't care about getting/compiling pcsx-redux, you can skip steps 1, 3 and 4, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 5 and 6.
-
+#### GNU/Linux
   1. Install the needed software packages ( aka dependencies in Linux world ) :  
   
    * To be able to build PsyQ code, you only need the MIPS toolchain :  
@@ -51,6 +51,8 @@ sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-l
 ```bash
 sudo apt-get install -y git make pkg-config clang g++ libfreetype6-dev libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
 ```
+
+See [here](https://github.com/grumpycoders/pcsx-redux#gnulinux-dependencies) if you're using an Arch derivative.
 
   2. Clone the pcsx-redux repo : 
   
