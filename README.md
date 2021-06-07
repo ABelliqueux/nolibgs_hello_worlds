@@ -145,7 +145,7 @@ With our setup, this is quite easy !
 ```
 
 If you pay attention, you can see that's the same command, but for different file types. TIM files are bitmap images and VAG is the sound format used in this example.
-Each time you'll want to add a file type, just duplicate and change `%.vag` to `%.filetype`
+Each time you'll want to add a file type, duplicate and change `%.vag` to `%.filetype`
 
 Then, in your project folder, copy the makefile from the cube example :
 
@@ -162,7 +162,7 @@ SRCS = main.c \
 file_to_embed.ext \
 ```
 
-  2. So this part takes care of converting our data to binary. Now to access them from your program, just use this in your sources :
+  2. So this part takes care of converting our data to binary. Now to access them from your program, use this in your sources :
 ```c
 extern ulong _binary_filename_extension_start[]; 
 extern ulong _binary_filename_extension_end[];
