@@ -3,7 +3,7 @@
 //
 // From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
 // 
- /*		   PSX screen coordinate system 
+ /*        PSX screen coordinate system 
  *
  *                           Z+
  *                          /
@@ -12,13 +12,14 @@
  *                       /|
  *                      / |
  *                     /  Y+
- *                   eye		*/
+ *                   eye        */
 
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>
 #include <libetc.h>
 #include <libgpu.h>
+#include <libapi.h>
 
 
 #define VMODE 0                 // Video Mode : 0 : NTSC, 1: PAL
@@ -69,12 +70,11 @@ MATRIX identity(int num)           // generate num x num matrix
 void init(void)
 {
     ResetGraph(0);
-
+    
     // Initialize and setup the GTE
-	
     InitGeom();
-	SetGeomOffset(CENTERX,CENTERY);
-	SetGeomScreen(CENTERX);
+    SetGeomOffset(CENTERX,CENTERY);
+    SetGeomScreen(CENTERX);
     
     SetDefDispEnv(&disp[0], 0, 0, SCREENXRES, SCREENYRES);
     SetDefDispEnv(&disp[1], 0, SCREENYRES, SCREENXRES, SCREENYRES);

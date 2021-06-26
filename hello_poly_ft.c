@@ -3,7 +3,7 @@
 // 
 // From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
 // 
- /*		   PSX screen coordinate system 
+ /*        PSX screen coordinate system 
  *
  *                           Z+
  *                          /
@@ -12,7 +12,7 @@
  *                       /|
  *                      / |
  *                     /  Y+
- *                   eye		*/
+ *                   eye        */
 
 #include <sys/types.h>
 #include <stdio.h>
@@ -73,16 +73,16 @@ MATRIX identity(int num)           // generate num x num matrix
 }
 
 void LoadTexture(u_long * tim, TIM_IMAGE * tparam){     // This part is from Lameguy64's tutorial series : lameguy64.net/svn/pstutorials/chapter1/3-textures.html login/pw: annoyingmous
-		OpenTIM(tim);                                   // Open the tim binary data, feed it the address of the data in memory
-		ReadTIM(tparam);                                // This read the header of the TIM data and sets the corresponding members of the TIM_IMAGE structure
-		
+        OpenTIM(tim);                                   // Open the tim binary data, feed it the address of the data in memory
+        ReadTIM(tparam);                                // This read the header of the TIM data and sets the corresponding members of the TIM_IMAGE structure
+        
         LoadImage(tparam->prect, tparam->paddr);        // Transfer the data from memory to VRAM at position prect.x, prect.y
-		DrawSync(0);                                    // Wait for the drawing to end
-		
-		if (tparam->mode & 0x8){ // check 4th bit       // If 4th bit == 1, TIM has a CLUT
-			LoadImage(tparam->crect, tparam->caddr);    // Load it to VRAM at position crect.x, crect.y
-			DrawSync(0);                                // Wait for drawing to end
-	}
+        DrawSync(0);                                    // Wait for the drawing to end
+        
+        if (tparam->mode & 0x8){ // check 4th bit       // If 4th bit == 1, TIM has a CLUT
+            LoadImage(tparam->crect, tparam->caddr);    // Load it to VRAM at position crect.x, crect.y
+            DrawSync(0);                                // Wait for drawing to end
+    }
 }
 
 void init(void)
@@ -90,10 +90,10 @@ void init(void)
     ResetGraph(0);
 
     // Initialize and setup the GTE
-	
+    
     InitGeom();
-	SetGeomOffset(CENTERX,CENTERY);
-	SetGeomScreen(CENTERX);
+    SetGeomOffset(CENTERX,CENTERY);
+    SetGeomScreen(CENTERX);
     
     SetDefDispEnv(&disp[0], 0, 0, SCREENXRES, SCREENYRES);
     SetDefDispEnv(&disp[1], 0, SCREENYRES, SCREENXRES, SCREENYRES);
