@@ -1,10 +1,5 @@
-/*  primdrawG.c, by Schnappy, 12-2020
-    - Draw a gouraud shaded mesh exported as a TMESH by the blender <= 2.79b plugin io_export_psx_tmesh.py
-    based on primdraw.c by Lameguy64 (http://www.psxdev.net/forum/viewtopic.php?f=64&t=537)
-    2014 Meido-Tek Productions.
-    Demonstrates:
-        - Using a primitive OT to draw triangles without libgs.
-        - Using the GTE to rotate, translate, and project 3D primitives.
+/*  hello_light.c, by Schnappy, 06-2021
+    - Demonstrates setting and using light sources in 3D without libgs.
     Controls:
         Start                           - Toggle interactive/non-interactive mode.
         Select                          - Reset object's position and angles.
@@ -12,6 +7,8 @@
         L2/R2                           - Rotate object (XY).
         Up/Down/Left/Right              - Rotate object (XZ/YZ).
         Triangle/Cross/Square/Circle    - Move object up/down/left/right.
+    based on primdraw.c by Lameguy64 (http://www.psxdev.net/forum/viewtopic.php?f=64&t=537)
+    2014 Meido-Tek Productions.
 */
  /*        PSX screen coordinate system 
  *
