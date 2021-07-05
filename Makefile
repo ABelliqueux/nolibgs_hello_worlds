@@ -33,6 +33,13 @@ SRCS = hello_world.c \
 #~ SRCS = hello_poly.c \
 #~ ../common/crt0/crt0.s \
 
+## Hello poly
+#~ TARGET = hello_poly_inline
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_poly_inline.c \
+#~ ../common/crt0/crt0.s \
+
 #~ ## Hello textured
 #~ TARGET = hello_poly_ft
 #~ TYPE = ps-exe
@@ -91,18 +98,27 @@ SRCS = hello_world.c \
 #~ SRCS = fun_with_poly.c \
 #~ ../common/crt0/crt0.s \
 
+## hello cube
 #~ TARGET = hello_cube
 #~ TYPE = ps-exe
 
 #~ SRCS = hello_cube.c \
 #~ ../common/crt0/crt0.s \
 
+## hello cubetex
 #~ TARGET = hello_cubetex
 #~ TYPE = ps-exe
 
 #~ SRCS = hello_cubetex.c \
 #~ ../common/crt0/crt0.s \
 #~ TIM/cubetex.tim \
+
+#~ ## hello light
+#~ TARGET = hello_light
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_light.c \
+#~ ../common/crt0/crt0.s \
 
 #~ ## Hello sio
 #~ TARGET = hello_sio
