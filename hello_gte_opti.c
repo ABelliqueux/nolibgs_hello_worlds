@@ -1,5 +1,4 @@
 // Hello free cycles !
-// Let's win some CPU cycles back 
 //
 // Ref :     /psyq/DOCS/Devrefs/Inlinref.pdf, p.18
 //           /psyq/psx/sample/scea/GTE
@@ -87,7 +86,7 @@ void display(void)
     // Wait for drawing
     DrawSync(0);
     // Wait for vsync
-    VSync(0);
+    VSync(1);
     // Flip DISP and DRAW env
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
@@ -102,7 +101,8 @@ void display(void)
 int main(void)
 {
     long p, flag, OTz;
-    SVECTOR rotVector, rotVector4 = {0};                  // Initialize rotation vector {x, y, z}
+    SVECTOR rotVector = {0};                    
+    SVECTOR rotVector4 = {0};                  // Initialize rotation vector {x, y, z} - ALWAYS !
     VECTOR  transVector = {0, 0, CENTERX, 0};         // Initialize translation vector {x, y, z}
     SVECTOR vertPos[4] = {
         { 0, -32, 0, 0 },           // Vert 1 
@@ -135,8 +135,7 @@ int main(void)
         // Draw on the left part of the screen
         transVector.vx = -CENTERX/2;
         // Increment rotation angle on Y axis
-        rotVector.vy += 8;
-        //~ rotVector.vx -= 4 ;
+        rotVector.vy += 1;
         // Find rotation matrix from vector, store in 
         RotMatrix_gte(&rotVector, &workMatrix);
         // Ditto for translation        
@@ -177,8 +176,8 @@ int main(void)
         // Set matrices - Move to right of screen
         transVector.vx = CENTERX/2;
         // Increment rot on X/Y axis
-        rotVector4.vy -= 8 ;
-        rotVector4.vx -= 4 ;
+        rotVector4.vy -= 1 ;
+        rotVector4.vx -= 1 ;
         // Set matrices
         RotMatrix_gte(&rotVector4, &workMatrix);
         TransMatrix(&workMatrix, &transVector);
