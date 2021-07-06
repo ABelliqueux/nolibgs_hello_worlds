@@ -33,11 +33,25 @@ SRCS = hello_world.c \
 #~ SRCS = hello_poly.c \
 #~ ../common/crt0/crt0.s \
 
-## Hello poly
+#~ ## Hello inline GTE
 #~ TARGET = hello_poly_inline
 #~ TYPE = ps-exe
 
 #~ SRCS = hello_poly_inline.c \
+#~ ../common/crt0/crt0.s \
+
+## Hello inline GTE
+#~ TARGET = hello_gte_opti
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_gte_opti.c \
+#~ ../common/crt0/crt0.s \
+
+## Hello poly subdiv
+#~ TARGET = hello_poly_subdiv
+#~ TYPE = ps-exe
+
+#~ SRCS = hello_poly_subdiv.c \
 #~ ../common/crt0/crt0.s \
 
 #~ ## Hello textured
