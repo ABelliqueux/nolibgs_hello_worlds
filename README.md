@@ -32,7 +32,7 @@ For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pc
   * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)  
 #### Windows 10  
   * Native build :  
-  Follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows) to build pcsx-redux or download a pre-compiled [pcsx-redux binary here](https://install.appcenter.ms/orgs/grumpycoders/apps/pcsx-redux/distribution_groups/public).
+  Follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows) to build pcsx-redux or download a pre-compiled [pcsx-redux binary here](https://github.com/grumpycoders/pcsx-redux/#where).
   * Win 10 + WSL2 (needs GUI support):  
   Install WSL2 with GUI support and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
    
