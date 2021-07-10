@@ -2,190 +2,100 @@
 
 <p align="center">
 
-<img height="240px" src="cube.gif" alt="3D power !">
+<img height="240px" src="http://wiki.arthus.net/pico/assets/cube.gif" alt="3D power !">
 
-<img height="240px" src="http://psx.arthus.net/homebrew/polyfun.jpg" alt="3D power !">
+<img height="240px" src="http://wiki.arthus.net/pico/assets/polyfun.jpg" alt="3D power !">
 
-<img height="240px" src="hello_gt.jpg" alt="3D power !">
+<img height="240px" src="http://wiki.arthus.net/pico/assets/hello_gt.jpg" alt="3D power !">
 
 </p>
 
-So you want to begin developping on the original PSX but don't know where to start ?
+So you want to begin developping on the original PSX but don't know where to start ?  
 
-This repo is destined to host a bunch of simple examples, each describing how to do one thing.
+This repo is destined to host a bunch of simple examples, each describing how to do one thing.  
 
-The code here will be using PsyQ, the "Official" Sony SDK, but we will not be using libGS, the Extended Graphics Library for the graphic stuff...
+The code here will be using **Nugget + PsyQ**, the "Official" Sony SDK but with a modern MIPS toolchain.  
+
+We will not be using libGS, the Extended Graphics Library for the graphic stuff...  
 
 Instead we'll try to devise methods to reproduce libgs functions. This will not necessarly be more efficient, but we'll learn
-a lot more stuff !
+a lot more stuff !  
 
- 
-## Setting up the SDK : Modern GCC + PsyQ a.k.a Nugget+PsyQ
+## Installation
 
-For this we'll rely heavily on [grumpy-coder](https://github.com/grumpycoders/pcsx-redux)'s work with pcsx-redux and various tools, which will provide us with:
+We'll keep things simple for now. If you want to read about more methods to get things up and running, see the wiki's [Installation methods](https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/Installation-methods) section. 
 
-  * A way to compile the code with a modern version of GCC
-  * An emulator with a lot of debugging features
-  
-### Let's do it !
-#### MacOS
-  * On MacOs, a brew installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos)  
-#### Windows 10  
-  * Native build :  
-  Follow the [instructions here](https://github.com/grumpycoders/pcsx-redux#windows) to build pcsx-redux or download a pre-compiled [pcsx-redux binary here](https://github.com/grumpycoders/pcsx-redux/#where).
-  * Win 10 + WSL2 (needs GUI support):  
-  Install WSL2 with GUI support and [Ubuntu 20.04](https://www.microsoft.com/en-gb/p/ubuntu-2004-lts/9n6svws3rx71?activetab=pivot:overviewtab) then launch a GNU/Linux terminal, then proceed with the following instructions.  
-   
-  * Alternatively on Windows, if you don't care about getting/compiling pcsx-redux, you can skip steps 1, 3 and 4, get the latest precompiled toolchain from here : [http://static.grumpycoder.net/pixel/mips/](http://static.grumpycoder.net/pixel/mips/), unzip it somewhere and [add the `bin` folder to your PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417). Then go on with steps 5 and 6.
-#### GNU/Linux
-  1. Install the needed software packages ( aka dependencies in Linux world ) :  
-  
-   * To be able to build PsyQ code, you only need the MIPS toolchain :  
-   
+### Windows
+
+#### MIPS toolchain setup
+1. Download the MIPS toolchain here : [http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip](http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip)
+2. Unzip anywhere on your hard-drive and add the `bin` folder to [your $PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).
+3. Test everything is fine by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) and typing `mipsel-none-elf-gcc.exe --version`. If you get a message like `mipsel-none-gnu-gcc (GCC) 10.3.0`, then it's working !
+
+#### Nugget + PsyQ setup
+1. Download the PsyQ converted libraries here : [http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip](http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip)  
+2. Download this repository's archive here    : [REPLACEME](REPLACEME)
+3. Unzip the **`main.zip`** file anywhere on your hard-drive. We'll use `C:\psxdev\` as an example
+4. Unzip the `psyq-4_7-converted-light.zip` file in `C:\psxdev\psyq`. You should now have `C:\psxdev\psyq\include` and `C:\psxdev\psyq\lib`.
+5. Test everything is working by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089), change to the `C:\psxdev\` directory with the following command: `cd C:\psxdev\`, then type `make` and hit enter. By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\psxdev\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
+
+### Linux 
+
+#### Install your distribution's MIPS toolchain
+
+In a terminal :
+
+On Debian derivatives (Ubuntu, Mint...) :
 ```bash
 sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
 ```
-
-   * If you want to compile pcsx-redux, you need a few more packages :  
-   
+On Arch derivatives (Manjaro), the mipsel environment can be installed from [AUR](https://wiki.archlinux.org/index.php/Aur) : [cross-mipsel-linux-gnu-binutils](https://aur.archlinux.org/packages/cross-mipsel-linux-gnu-binutils/) and [cross-mipsel-linux-gnu-gcc](https://aur.archlinux.org/packages/cross-mipsel-linux-gnu-gcc/) using your [AURhelper](https://wiki.archlinux.org/index.php/AUR_helpers) of choice:
 ```bash
-sudo apt-get install -y git make pkg-config clang g++ libfreetype6-dev libavcodec-dev libavformat-dev libavutil-dev libglfw3-dev libsdl2-dev libswresample-dev libuv1-dev zlib1g-dev
+trizen -S cross-mipsel-linux-gnu-binutils cross-mipsel-linux-gnu-gcc
 ```
+#### Nugget + PsyQ setup
 
-See [here](https://github.com/grumpycoders/pcsx-redux#gnulinux-dependencies) if you're using an Arch derivative.
+Let's do it all on the [CLI](https://en.wikipedia.org/wiki/Command-line_interface) !
 
-  2. Clone the pcsx-redux repo : 
-  
+ 1. Install the git client :
 ```bash
-git clone https://github.com/grumpycoders/pcsx-redux.git --recursive
+sudo apt-get install git
 ```
-
-  3. Enter pcsx-redux folder:
+ 2. Clone this repository :
 ```bash
-cd pcsx-redux
+git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git --recursive
 ```
-
-  4. Compile pcsx-redux : 
-  
-```bash 
+ 3. Change to the repo's directory and get the PsyQ converted libraries:
+```bash
+cd nolibgs_hello_worlds
+wget http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip
+unzip psyq-4_7-converted-light.zip
+```
+ 4. Try your setup :
+```bash
 make
 ```
+By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\psxdev\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
 
-If you encounter an error due to an old version of GCC (< 10) like something about `-fcoroutines`, then you can use **clang** ( min version 9) to compile `pcsx-redux` :
+### MacOS
 
-```bash
+A [brew](https://brew.sh/) installation script can be found [here.](https://github.com/grumpycoders/pcsx-redux#macos).  
 
-CC=clang CXX=clang++ LD=clang++ make
-```
-  
-  5. Get the converted [PsyQ 4.7 libs](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z) : 
-  
-```bash
-wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-```
-  
-  6. Extract this archive to `[...]pcsx-redux/src/mips/psyq/`, adapting the path ( the part after `-o`)  in the command below to the folder you cloned pcsx-redux in :
+## Compilation
 
-```bash
-7z x -o./src/mips/psyq/ psyq-4.7-converted-full.7z
-```
+In a terminal, `cd` to your psxdev setup directory and type `make all` to build all examples in their respective directories.  
 
-Your `pcsx-redux/src/mips/psyq/` directory should now contain an `include` and a `lib` folder with a bunch of files in each of them :
-    
-```bash 
-$tree ~/pcsx-redux/src/mips/psyq/
-.
-├── include
-│   ├── abs.h
-│   ├── ...
-│   ├── strings.h
-│   └── sys
-│       ├── errno.h
-│       ├── ...
-│       └── types.h
-├── lib
-│   ├── libapi.a
-│   ├── ...
-│   └── libtap.a
-└── tree
+Alternatively, you can use `make example_name` to only build that example, i.e : `make hello_poly`.  
 
-3 directories, 82 files
-```
-  
-  7. That's it ! After that you can check everything's working by trying to compile some example code :
-  
-```bash 
-cd src/mips/psyq/cube
-make 
-```
-
-You should know have a 'cube.ps-exe' file in the folder. This is a PSX executable you can load with most emulators.
-
-
-## Embedding binary data in a ps-exe
-
-So, if you don't know it yet, the fun in PSX development is to be able to upload your exes on real hardware with a USB/Serial cable.
-This means that the data you'll use in your program ( graphics, sounds, etc.) will have to be embedded in your exe in a binary form, 
-as you won't be able to stream them from the serial port. 
-
-*Well technically you could load them in memory before uploading your exe or stream them from a cd, but let's keep things simple for now.*
-
-With our setup, this is quite easy !
-
-  1. In `pcsx-redux/src/mips/common.mk` , add the lines :
-  
-  ```mk
-# convert TIM file to bin
-%.o: %.tim
-    $(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
-
-# convert VAG files to bin
-%.o: %.vag
-    $(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
-```
-
-If you pay attention, you can see that's the same command, but for different file types. TIM files are bitmap images and VAG is the sound format used in this example.
-Each time you'll want to add a file type, duplicate and change `%.vag` to `%.filetype`
-
-Then, in your project folder, copy the makefile from the cube example :
-
-```bash
-mkdir new_project && cd new_project
-cp ../cube/Makefile ../
-```
-
-All you have to do now is add the files you wish to embed to the SRCS variable, without forgetting the \ :
-
-```bash
-SRCS = main.c \
-../common/crt0/crt0.s \
-file_to_embed.ext \
-```
-
-  2. So this part takes care of converting our data to binary. Now to access them from your program, use this in your sources :
-```c
-extern ulong _binary_filename_extension_start[]; 
-extern ulong _binary_filename_extension_end[];
-extern ulong _binary_bowsht_tim_length[];
-```
-
-The filename variable must begin with `_binary_` followed by the full path of your file, with . and / replaced by _ (underscore), and end with `_start[];` or `_end[];` or `_length[];` [source](https://discord.com/channels/642647820683444236/663664210525290507/780866265077383189)
-
-`_start` and `_end` are pointers, while `_length` is a constant.
-
-That's it! When you'll type `make` next time, it should convert your files to .o, then include them in your ps-exe.
-
-## Compiling the examples in this repo
-
-All you have to do is uncomment the corresponding rules in `Makefile` then compile with `make`.
+If you want to remove all the files generated by the compilation process, type `make clean`.  
 
 # Links and Doc
-
+  
   * [Getting started with PSX dev](https://psx.arthus.net/starting.html)
+  * [Ps1 dev ressource center](https://ps1.consoledev.net/)
   * [PsyQ docs](http://psx.arthus.net/sdk/Psy-Q/DOCS/)
-  * [Ps1 dev links](https://ps1.consoledev.net/)
   * [psxdev.net](http://psxdev.net/)
-  * [psxdev Discord](https://discord.com/invite/N2mmwp?utm_source=Discord%20Widget&utm_medium=Connect)
+  * [psxdev Discord](https://discord.com/invite/N2mmwp)
 
 # Credits, thanks, hugs
 

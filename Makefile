@@ -1,171 +1,88 @@
-## Hello world
-TARGET = hello_world
-TYPE = ps-exe
+hello_world:
+	$(MAKE) -C hello_world
+hello_2pads:
+	$(MAKE) -C hello_2pads
+hello_cube:
+	$(MAKE) -C hello_cube 
+hello_cubetex:
+	$(MAKE) -C hello_cubetex 
+hello_poly_fun:
+	$(MAKE) -C hello_poly_fun 
+hello_gte_opti:
+	$(MAKE) -C hello_gte_opti 
+hello_light:
+	$(MAKE) -C hello_light 
+hello_multivag:
+	$(MAKE) -C hello_multivag 
+hello_pad:
+	$(MAKE) -C hello_pad 
+hello_poly:
+	$(MAKE) -C hello_poly 
+hello_poly_ft:
+	$(MAKE) -C hello_poly_ft 
+hello_poly_gt:
+	$(MAKE) -C hello_poly_gt 
+hello_poly_gt_tw:
+	$(MAKE) -C hello_poly_gt_tw 
+hello_poly_inline:
+	$(MAKE) -C hello_poly_inline 
+hello_poly_subdiv:
+	$(MAKE) -C hello_poly_subdiv 
+hello_rsd:
+	$(MAKE) -C hello_rsd 
+hello_sio:
+	$(MAKE) -C hello_sio 
+hello_sprt:
+	$(MAKE) -C hello_sprt 
+hello_tile:
+	$(MAKE) -C hello_tile 
+hello_vag:
+	$(MAKE) -C hello_vag 
 
-SRCS = hello_world.c \
-../common/crt0/crt0.s \
+clean:
+	$(MAKE) -C hello_2pads clean
+	$(MAKE) -C hello_cube clean
+	$(MAKE) -C hello_cubetex clean
+	$(MAKE) -C hello_poly_fun clean
+	$(MAKE) -C hello_gte_opti clean
+	$(MAKE) -C hello_light clean
+	$(MAKE) -C hello_multivag clean
+	$(MAKE) -C hello_pad clean
+	$(MAKE) -C hello_poly clean
+	$(MAKE) -C hello_poly_ft clean
+	$(MAKE) -C hello_poly_gt clean
+	$(MAKE) -C hello_poly_gt_tw clean
+	$(MAKE) -C hello_poly_inline clean
+	$(MAKE) -C hello_poly_subdiv clean
+	$(MAKE) -C hello_rsd clean
+	$(MAKE) -C hello_sio clean
+	$(MAKE) -C hello_sprt clean
+	$(MAKE) -C hello_tile clean
+	$(MAKE) -C hello_vag clean
+	$(MAKE) -C hello_world clean
 
-#~ ## Hello tile
-#~ TARGET = hello_tile
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_tile.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello pad
-#~ TARGET = hello_pad
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_pad.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello pad 2
-#~ TARGET = hello_2pads
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_2pads.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello poly
-#~ TARGET = hello_poly
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello inline GTE
-#~ TARGET = hello_poly_inline
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly_inline.c \
-#~ ../common/crt0/crt0.s \
-
-## Hello inline GTE
-#~ TARGET = hello_gte_opti
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_gte_opti.c \
-#~ ../common/crt0/crt0.s \
-
-## Hello poly subdiv
-#~ TARGET = hello_poly_subdiv
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly_subdiv.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello textured
-#~ TARGET = hello_poly_ft
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly_ft.c \
-#~ ../common/crt0/crt0.s \
-#~ TIM/bousai.tim \
-
-#~ ## Hello shaded textured
-#~ TARGET = hello_poly_gt
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly_gt.c \
-#~ ../common/crt0/crt0.s \
-#~ TIM/bousai.tim \
-
-#~ ## Hello shaded window textured
-#~ TARGET = hello_poly_gt_tw
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_poly_gt_tw.c \
-#~ ../common/crt0/crt0.s \
-#~ TIM/bousai.tim \
-
-#~ ## Hello sprt
-#~ TARGET = hello_sprt
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_sprt.c \
-#~ ../common/crt0/crt0.s \
-#~ TIM/TIM16.tim \
-#~ TIM/TIM8.tim \
-#~ TIM/TIM4.tim \
-
-#~ ## hello vag
-#~ TARGET = hello_vag
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_vag.c \
-#~ ../common/crt0/crt0.s \
-#~ VAG/hello_poly.vag \
-
-#~ ## hello multivag
-#~ TARGET = hello_multivag
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_multivag.c \
-#~ ../common/crt0/crt0.s \
-#~ VAG/hello.vag \
-#~ VAG/poly.vag \
-
-#~ ## Poly fun !
-#~ TARGET = fun_with_poly
-#~ TYPE = ps-exe
-
-#~ SRCS = fun_with_poly.c \
-#~ ../common/crt0/crt0.s \
-
-## hello cube
-#~ TARGET = hello_cube
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_cube.c \
-#~ ../common/crt0/crt0.s \
-
-## hello cubetex
-#~ TARGET = hello_cubetex
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_cubetex.c \
-#~ ../common/crt0/crt0.s \
-#~ TIM/cubetex.tim \
-
-#~ ## hello light
-#~ TARGET = hello_light
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_light.c \
-#~ ../common/crt0/crt0.s \
-
-#~ ## Hello sio
-#~ TARGET = hello_sio
-#~ TYPE = ps-exe
-
-#~ SRCS = hello_sio.c \
-#~ ../common/crt0/crt0.s \
-
-CPPFLAGS += -I../psyq/include
-LDFLAGS += -L../psyq/lib
-LDFLAGS += -Wl,--start-group
-LDFLAGS += -lapi
-LDFLAGS += -lc
-LDFLAGS += -lc2
-LDFLAGS += -lcard
-LDFLAGS += -lcomb
-LDFLAGS += -lds
-LDFLAGS += -letc
-LDFLAGS += -lgpu
-LDFLAGS += -lgs
-LDFLAGS += -lgte
-LDFLAGS += -lgun
-LDFLAGS += -lhmd
-LDFLAGS += -lmath
-LDFLAGS += -lmcrd
-LDFLAGS += -lmcx
-LDFLAGS += -lpad
-LDFLAGS += -lpress
-LDFLAGS += -lsio
-LDFLAGS += -lsnd
-LDFLAGS += -lspu
-LDFLAGS += -ltap
-LDFLAGS += -lcd
-LDFLAGS += -Wl,--end-group
-
-include ../common.mk \
+all:
+	$(MAKE) -C hello_2pads 
+	$(MAKE) -C hello_cube 
+	$(MAKE) -C hello_cubetex 
+	$(MAKE) -C hello_poly_fun 
+	$(MAKE) -C hello_gte_opti 
+	$(MAKE) -C hello_light 
+	$(MAKE) -C hello_multivag 
+	$(MAKE) -C hello_pad 
+	$(MAKE) -C hello_poly 
+	$(MAKE) -C hello_poly_ft 
+	$(MAKE) -C hello_poly_gt 
+	$(MAKE) -C hello_poly_gt_tw 
+	$(MAKE) -C hello_poly_inline 
+	$(MAKE) -C hello_poly_subdiv 
+	$(MAKE) -C hello_rsd 
+	$(MAKE) -C hello_sio 
+	$(MAKE) -C hello_sprt 
+	$(MAKE) -C hello_tile 
+	$(MAKE) -C hello_vag 
+	$(MAKE) -C hello_world 
+	
+# declare phony rules
+.PHONY: hello_2pads hello_cube hello_cubetex hello_poly_fun hello_gte_opti hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt hello_poly_gt_tw hello_poly_inline hello_poly_subdiv hello_rsd hello_sio hello_sprt hello_tile hello_vag hello_world \
+		clean all
