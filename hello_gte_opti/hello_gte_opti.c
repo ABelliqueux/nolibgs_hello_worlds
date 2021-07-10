@@ -61,15 +61,8 @@ void init(void)
     // Set draw environment
     SetDefDrawEnv(&draw[0], 0, SCREENYRES, SCREENXRES, SCREENYRES);
     SetDefDrawEnv(&draw[1], 0, 0, SCREENXRES, SCREENYRES);
-    // If PAL, use 320x256, hence 256 - 240 = 16 / 2 = 8 px vertical offset
-    if (VMODE)
-    {
-        SetVideoMode(MODE_PAL);
-        disp[0].screen.y += 8;
-        disp[1].screen.y += 8;
-    }
-        SetDispMask(1);
-
+    if (VMODE){ SetVideoMode(MODE_PAL);}
+    SetDispMask(1);
     // Set background color
     setRGB0(&draw[0], 50, 50, 50);
     setRGB0(&draw[1], 50, 50, 50);
