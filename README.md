@@ -34,7 +34,7 @@ We'll keep things simple for now. If you want to read about more methods to get 
 
 #### Nugget + PsyQ setup
 1. Download the PsyQ converted libraries here : [http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip](http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip)  
-2. Download this repository's archive here    : [REPLACEME](REPLACEME)
+2. Download this repository's release : [https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip](https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip)
 3. Unzip the **`main.zip`** file anywhere on your hard-drive. We'll use `C:\psxdev\` as an example
 4. Unzip the `psyq-4_7-converted-light.zip` file in `C:\psxdev\psyq`. You should now have `C:\psxdev\psyq\include` and `C:\psxdev\psyq\lib`.
 5. Test everything is working by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089), change to the `C:\psxdev\` directory with the following command: `cd C:\psxdev\`, then type `make` and hit enter. By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\psxdev\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
