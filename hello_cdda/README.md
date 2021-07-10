@@ -1,6 +1,6 @@
 ##  Creating the disk image
 
-You need [mkpsxiso](https://github.com/Lameguy64/mkpsxiso) in your $PATH and type in a command line :
+After compiling, you need to generate a disk image with  [mkpsxiso](https://github.com/Lameguy64/mkpsxiso):
 
 ```bash
 mkpsxiso -y isoconfig.xml
