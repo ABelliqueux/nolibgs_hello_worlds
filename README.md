@@ -75,7 +75,7 @@ unzip psyq-4_7-converted-light.zip
 ```bash
 make
 ```
-By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\psxdev\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
+By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `./hello_world/`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
 
 ### MacOS
 
