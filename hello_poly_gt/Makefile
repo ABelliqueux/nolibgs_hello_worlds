@@ -4,4 +4,3 @@ SRCS = hello_poly_gt.c \
 ../TIM/bousai.tim \
 
 include ../common.mk 
-include ../thirdparty/nugget/common.mk \

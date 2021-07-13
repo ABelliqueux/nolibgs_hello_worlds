@@ -29,10 +29,14 @@ LDFLAGS += -ltap
 LDFLAGS += -lcd
 LDFLAGS += -Wl,--end-group
 
+THISDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
+include $(THISDIR)/thirdparty/nugget/common.mk
+
 # convert TIM file to bin
 %.o: %.tim
-	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
+	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O $(FORMAT) -B mips $< $@
 
 # convert VAG files to bin
 %.o: %.vag
-	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O elf32-tradlittlemips -B mips $< $@
+	$(PREFIX)-objcopy -I binary --set-section-alignment .data=4 --rename-section .data=.rodata,alloc,load,readonly,data,contents -O $(FORMAT) -B mips $< $@

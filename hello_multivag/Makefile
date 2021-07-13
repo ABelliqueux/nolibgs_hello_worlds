@@ -5,4 +5,3 @@ SRCS = hello_multivag.c \
 ../VAG/poly.vag \
 
 include ../common.mk 
-include ../thirdparty/nugget/common.mk \
