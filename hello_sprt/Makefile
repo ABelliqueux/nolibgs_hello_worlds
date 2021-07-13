@@ -6,4 +6,3 @@ SRCS = hello_sprt.c \
 ../TIM/TIM4.tim \
 
 include ../common.mk 
-include ../thirdparty/nugget/common.mk \
