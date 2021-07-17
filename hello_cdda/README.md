@@ -1,6 +1,19 @@
-##  Creating the disk image
+## Compiling
 
-After compiling, you need to generate a disk image with  [mkpsxiso](https://github.com/Lameguy64/mkpsxiso):
+You need [mkpsxiso](https://github.com/Lameguy64/mkpsxiso) in your $PATH to generate a PSX disk image.
+Typing 
+```bash
+make
+```
+in a terminal will compile and generate the bin/cue files.  
+
+Typing
+```bash
+make cleansub
+``` 
+will clean the current directory
+
+##  Creating the disk image
 
 ```bash
 mkpsxiso -y isoconfig.xml
