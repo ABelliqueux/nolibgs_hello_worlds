@@ -121,3 +121,15 @@ PSX audio tools : https://forum.xentax.com/viewtopic.php?t=10136
 PIMP tools : https://psx.arthus.net/tools/pimp-psx.zip
 
 Source : https://discord.com/channels/642647820683444236/663664210525290507/843211084609617930
+
+## Music credits
+
+Track 1 :
+Beach Party by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/3429-beach-party
+License: https://filmmusic.io/standard-license  
+
+Track 2:
+Funk Game Loop by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/3787-funk-game-loop
+License: https://filmmusic.io/standard-license

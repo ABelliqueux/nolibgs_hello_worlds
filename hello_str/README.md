@@ -67,3 +67,7 @@ Original PsyQ sample code : `/psyq/addons/cd/MOVIE`
 Original post : http://www.psxdev.net/forum/viewtopic.php?t=507  
 Video to STR conversion tutorial : http://www.psxdev.net/forum/viewtopic.php?f=51&t=277  
 MDEC notes : http://psx.arthus.net/sdk/Psy-Q/DOCS/TECHNOTE/mdecnote.pdf  
+
+## Video credits 
+
+The video and song used in this example are by Nina Paley : https://archive.org/details/CopyingIsNotTheft-ScratchTrack1280X720Hdv  
