@@ -66,7 +66,7 @@ You can use [`MC32.EXE`](https://psx.arthus.net/tools/pimp-psx.zip) or [`xainter
 
 `mode` can be 0 for full raw sectors or 1 for just XA (divisible by 2336)
 
-`in.txt` is a manifest txt file as seen [here](https://github.com/ChenThread/fromage/blob/master/res/music.txt)
+`in.txt` is a manifest txt file as seen [here](https://github.com/ABelliqueux/nolibgs_hello_worlds/blob/main/hello_xa/xa/interleave4.txt)
 
 Example for 1 music file, to be played at 1x CD speed (4 channels):
 
@@ -98,9 +98,9 @@ See here for more details : https://github.com/Lameguy64/mkpsxiso/blob/c44b78e37
 
 ## PsyQ XA Tools
 
-[XAPLAY.EXE](https://docs.google.com/uc?export=download&confirm=G9cM&id=0B_GAaDjR83rLZGVaZ2pvV2tjSVE) : Single channel XA playback
-[XATOOL.EXE](http://psx.arthus.net/code/XA/xatut.zip) : XA structure inspector
-[MC32.EXE](https://psx.arthus.net/tools/pimp-psx.zip)   : Converts WAV > XA > Interleaved XA
+[XAPLAY.EXE](https://docs.google.com/uc?export=download&confirm=G9cM&id=0B_GAaDjR83rLZGVaZ2pvV2tjSVE) : Single channel XA playback  
+[XATOOL.EXE](http://psx.arthus.net/code/XA/xatut.zip) : XA structure inspector  
+[MC32.EXE](https://psx.arthus.net/tools/pimp-psx.zip)   : Converts WAV > XA > Interleaved XA  
 
 ## More
 
