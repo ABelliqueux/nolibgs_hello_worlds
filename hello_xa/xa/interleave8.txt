@@ -1,0 +1,8 @@
+1 xa xa/funk.xa 1 0
+1 xa xa/beach.xa 1 1
+1 null
+1 null
+1 null
+1 null
+1 null
+1 null
