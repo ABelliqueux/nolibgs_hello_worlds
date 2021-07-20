@@ -34,6 +34,10 @@ You can check (and delete) this with PsyQ's VAGEDIT.EXE.
 
 You can also force the sampling frequency of an existing VAG file.
 
+## VAGedit
+
+You can find a graphical editor in the [PsyQ sdk](http://psx.arthus.net/sdk/Psy-Q/PSYQ_SDK.zip) named `VAGEDIT.exe`.
+
 ## VAG & SPU Docs
 
 See 
