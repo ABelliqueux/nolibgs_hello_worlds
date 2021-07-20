@@ -110,6 +110,8 @@ Full XAtut archive : http://psx.arthus.net/code/XA/xatut.zip
 
 XA ADPCM documentation : http://psx.arthus.net/code/XA/XA%20ADPCM%20documentation.txt  
 
+https://psx-spx.consoledev.net/cdromdrive/#cdrom-xa-audio-adpcm-compression  
+
 PsyQ XA player example : `psyq/addons/scee/CD/XAPLAYER`
 
 XA SCEE Technical note - July 1998 : http://psx.arthus.net/sdk/Psy-Q/DOCS/CONF/SCEE/98July/xa_sound.pdf
