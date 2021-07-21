@@ -35,7 +35,7 @@ identify bace.tim
 bace.tim TIM 320x240 320x240+0+0 8-bit sRGB 230420B 0.000u 0:00.000
 ```
 
-### Image > RGB ppm with imagemagick
+### Image > RGB with imagemagick
 
 You can convert your image to RGB with:
 
