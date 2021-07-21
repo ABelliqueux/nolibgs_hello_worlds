@@ -23,7 +23,7 @@ make cleansub
 Convert your image to a 24bpp TIM with [`img2tim`](https://github.com/Lameguy64/img2tim):
 
 ```bash
-img2tim -bpp 24 -o bs.tim bs.png
+img2tim -bpp 24 -o output.tim input.png
 ```
 
 Then use `MC32` as instructed below.
