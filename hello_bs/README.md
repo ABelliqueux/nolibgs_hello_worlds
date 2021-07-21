@@ -28,6 +28,13 @@ img2tim -bpp 24 -o bs.tim bs.png
 
 Then use `MC32` as instructed below.
 
+Result :  
+
+```bash
+identify bace.tim 
+bace.tim TIM 320x240 320x240+0+0 8-bit sRGB 230420B 0.000u 0:00.000
+```
+
 ### Image > RGB ppm with imagemagick
 
 You can convert your image to RGB with:
@@ -35,6 +42,12 @@ You can convert your image to RGB with:
 ```bash
 convert input.png RGB:output.rgb
 ```
+Result :  
+```bash
+identify -size 320x240 -depth 8 RGB:bace.rgb
+RGB:bace.rgb=>bace.rgb RGB 320x240 320x240+0+0 8-bit sRGB 230400B 0.000u 0:00.003
+```
+
 
 ### Image > YUV422 UYVY with imagemagick
 
@@ -43,6 +56,12 @@ You can convert your image to YUV with:
 ```bash
 convert input.png UYVY:output.yuv
 ```
+Result :  
+```bash
+dentify -size 320x240 UYVY:bace.yuv 
+UYVY:bace.yuv=>bace.yuv UYVY 320x240 320x240+0+0 8-bit YCbCr 153600B 0.000u 0:00.005
+```
+
 
 ### TIM/RGB/UYVY > BS conversion
 
