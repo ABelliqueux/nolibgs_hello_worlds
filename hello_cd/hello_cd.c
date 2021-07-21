@@ -29,7 +29,7 @@ short db = 0;                      // index of which buffer is used, values 0, 1
 // Converting bytes to sectors SECTOR_SIZE is defined in words, aka int
 #define BtoS(len) ( ( len + CD_SECTOR_SIZE - 1 ) / CD_SECTOR_SIZE ) 
 // Name of file to load
-static char * exeFile;
+static char * loadFile;
 // libcd's CD file structure contains size, location and filename
 CdlFILE filePos = {0};
 //~ struct EXEC * exeStruct;
@@ -86,9 +86,9 @@ int main(void)
     // If the other method was chosen at l.39
     // InitHeap((void *)0x80030D40, 0x40000);
     // Set name of file to load
-    exeFile = "\\HELO.DAT;1";
+    loadFile = "\\HELO.DAT;1";
     // Get file position from filename
-    CdSearchFile( &filePos, exeFile);
+    CdSearchFile( &filePos, loadFile);
     // Allocate memory
     dataBuffer = malloc( BtoS(filePos.size) * CD_SECTOR_SIZE );
     // Issue  CdlSetloc CDROM command : Set the seek target position
