@@ -30,13 +30,21 @@ Then use `MC32` as instructed below.
 
 ### Image > RGB ppm with imagemagick
 
-You can convert any image to PPM, then change the file's extension to .rgb, and convert it with MC32.
+You can convert your image to RGB with:
 
 ```bash
-mogrify -format ppm image.xxx
+convert input.png RGB:output.rgb
 ```
 
-### TIM/RGB > BS conversion
+### Image > YUV422 UYVY with imagemagick
+
+You can convert your image to YUV with:
+
+```bash
+convert input.png UYVY:output.yuv
+```
+
+### TIM/RGB/UYVY > BS conversion
 
 Use the [`MC32` tool](http://psx.arthus.net/tools/pimp-psx.zip) conversion tool to import the image, specifying the right dimensions, and convert to `bs` with those settings :
 
@@ -56,3 +64,4 @@ img2tim : https://github.com/Lameguy64/img2tim
 MC32 : http://psx.arthus.net/tools/pimp-psx.zip  
 
 mdecnote : http://psx.arthus.net/sdk/Psy-Q/DOCS/TECHNOTE/mdecnote.pdf  
+PSX RGB and YUV format : http://psx.arthus.net/sdk/Psy-Q/DOCS/Devrefs/Dataconv.pdf , p.68
