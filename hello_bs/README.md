@@ -84,3 +84,8 @@ MC32 : http://psx.arthus.net/tools/pimp-psx.zip
 
 mdecnote : http://psx.arthus.net/sdk/Psy-Q/DOCS/TECHNOTE/mdecnote.pdf  
 PSX RGB and YUV format : http://psx.arthus.net/sdk/Psy-Q/DOCS/Devrefs/Dataconv.pdf , p.68
+
+YUV pixel format : https://www.fourcc.org/pixel-format/yuv-uyvy/
+RGB pixel format : https://www.fourcc.org/rgb.php
+
+RGB<>YUV conversion formulas : https://www.fourcc.org/fccyvrgb.php
