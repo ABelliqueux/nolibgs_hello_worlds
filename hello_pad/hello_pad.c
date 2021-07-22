@@ -51,6 +51,7 @@ void init(void)
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
         }
+    SetDispMask(1);                 // Display on screen    
         
     setRGB0(&draw[0], 50, 50, 50);
     setRGB0(&draw[1], 50, 50, 50);
@@ -73,8 +74,6 @@ void display(void)
     
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    
-    SetDispMask(1);
     
     DrawOTag(ot[db] + OTLEN - 1);
     

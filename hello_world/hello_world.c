@@ -40,7 +40,9 @@ void init(void)
         disp[0].screen.y += 8;  // add offset : 240 + 8 + 8 = 256
         disp[1].screen.y += 8;
         }
-        
+
+    SetDispMask(1);                 // Display on screen    
+
     setRGB0(&draw[0], 50, 50, 50); // set color for first draw area
     setRGB0(&draw[1], 50, 50, 50); // set color for second draw area
     
@@ -63,8 +65,6 @@ void display(void)
     PutDispEnv(&disp[db]);          // set alternate disp and draw environnments
     PutDrawEnv(&draw[db]);  
     
-    SetDispMask(1);                 // Display on screen    
-        
     db = !db;                       // flip db value (0 or 1)
 }
 

@@ -95,6 +95,7 @@ void init(){
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
     }
+    SetDispMask(1);
     // Set light env
     // Set far color
     SetFarColor( BGc.r, BGc.g, BGc.b );
@@ -119,7 +120,6 @@ void display(void){
     VSync(0);
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    SetDispMask(1);
     DrawOTag(ot[db] + OTLEN - 1);
     db = !db;
     nextpri = primbuff[db];

@@ -53,32 +53,32 @@ short db = 0;                    // index of which buffer is used, values 0, 1
 
 typedef struct
 {
-	unsigned short    v_count;      // Y-axis (vertical scan counter)
-	unsigned short    h_count;      // H-axis (horizontal pixel clock value)
+    unsigned short    v_count;      // Y-axis (vertical scan counter)
+    unsigned short    h_count;      // H-axis (horizontal pixel clock value)
 } Gun_Position;
 
 // Structure for storing processed controller data
 
 typedef struct
 {
-	int             xpos, ypos;     // Stored position for sprite(s)
-	int             xpos2, ypos2;   // controlled by this controller.
+    int             xpos, ypos;     // Stored position for sprite(s)
+    int             xpos2, ypos2;   // controlled by this controller.
 
-	unsigned char   status;         // These 8 values are obtained
-	unsigned char   type;           // directly from the controller
-	unsigned char   button1;        // buffer we installed with InitPAD.
-	unsigned char   button2;
-	unsigned char   analog0;
-	unsigned char   analog1;
-	unsigned char   analog2;
-	unsigned char   analog3;
+    unsigned char   status;         // These 8 values are obtained
+    unsigned char   type;           // directly from the controller
+    unsigned char   button1;        // buffer we installed with InitPAD.
+    unsigned char   button2;
+    unsigned char   analog0;
+    unsigned char   analog1;
+    unsigned char   analog2;
+    unsigned char   analog3;
 } Controller_Data;
 
 // All-purpose controller data buffer
 
 typedef struct
 {
-	unsigned char pad[34];          // 8-bytes w/o Multi-Tap, 34-bytes w/Multi-Tap
+    unsigned char pad[34];          // 8-bytes w/o Multi-Tap, 34-bytes w/Multi-Tap
 } Controller_Buffer;
 
 Controller_Buffer controllers[2];   // Buffers for reading controllers
@@ -101,7 +101,9 @@ void init(void)
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
         }
-        
+
+    SetDispMask(1);                 // Display on screen    
+
     setRGB0(&draw[0], 50, 50, 50);
     setRGB0(&draw[1], 50, 50, 50);
     
@@ -124,8 +126,6 @@ void display(void)
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
     
-    SetDispMask(1);
-    
     DrawOTag(ot[db] + OTLEN - 1);
     
     db = !db;
@@ -137,19 +137,19 @@ void get_digital_direction( Controller_Data *c, int buttondata ) // get analog s
 {
 int i;
 
-	i = ~(buttondata);
+    i = ~(buttondata);
 
-	if( i & 0x80 )
-		c->xpos -= 1;
-				
-	if( i & 0x20 )
-		c->xpos += 1;
-				
-	if( i & 0x40 )
-		c->ypos += 1;
-				
-	if( i & 0x10 )
-		c->ypos -= 1;
+    if( i & 0x80 )
+        c->xpos -= 1;
+                
+    if( i & 0x20 )
+        c->xpos += 1;
+                
+    if( i & 0x40 )
+        c->ypos += 1;
+                
+    if( i & 0x10 )
+        c->ypos -= 1;
 }
 
 void read_controller( Controller_Data *c, unsigned char *buf, int port )  // get the raw values from controller
@@ -393,22 +393,22 @@ int main(void)
         FntPrint("Hello 2 pads!\n\n");
                 
         FntPrint( "Pad 1 : %02x\nButtons:%02x %02x, Stick:%02x %02x %02x %02x\n",
-					theControllers[0].type,             // Controller type : 00 == none,  41 == standard, 73 == analog/dualshock, 12 == mouse, 23 == steering wheel, 63 == gun, 53 == analog joystick
-					theControllers[0].button1,          // 
-					theControllers[0].button2,
-					theControllers[0].analog0,
-					theControllers[0].analog1,
-					theControllers[0].analog2,
-					theControllers[0].analog3 );
+                    theControllers[0].type,             // Controller type : 00 == none,  41 == standard, 73 == analog/dualshock, 12 == mouse, 23 == steering wheel, 63 == gun, 53 == analog joystick
+                    theControllers[0].button1,          // 
+                    theControllers[0].button2,
+                    theControllers[0].analog0,
+                    theControllers[0].analog1,
+                    theControllers[0].analog2,
+                    theControllers[0].analog3 );
                     
         FntPrint( "Pad 2 : %02x\nButtons:%02x %02x, Stick:%02x %02x %02x %02x\n",
-					theControllers[1].type,             // Controller type : 00 == none,  41 == standard, 73 == analog/dualshock, 12 == mouse, 23 == steering wheel, 63 == gun, 53 == analog joystick
-					theControllers[1].button1,          // 
-					theControllers[1].button2,
-					theControllers[1].analog0,          // R3 horizontal
-					theControllers[1].analog1,          // R3 vertical
-					theControllers[1].analog2,          // L3 horizontal
-					theControllers[1].analog3 );        // L3 vertical
+                    theControllers[1].type,             // Controller type : 00 == none,  41 == standard, 73 == analog/dualshock, 12 == mouse, 23 == steering wheel, 63 == gun, 53 == analog joystick
+                    theControllers[1].button1,          // 
+                    theControllers[1].button2,
+                    theControllers[1].analog0,          // R3 horizontal
+                    theControllers[1].analog1,          // R3 vertical
+                    theControllers[1].analog2,          // L3 horizontal
+                    theControllers[1].analog3 );        // L3 vertical
         FntFlush(-1);
         
         display();

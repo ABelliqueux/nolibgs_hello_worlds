@@ -46,7 +46,9 @@ void init(void)
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
         }
-        
+    
+    SetDispMask(1);                 // Display on screen    
+
     setRGB0(&draw[0], 50, 50, 50);
     setRGB0(&draw[1], 50, 50, 50);
     
@@ -68,9 +70,6 @@ void display(void)
     
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    
-    SetDispMask(1);
-    
     // We're using a reverse OT, so we want to display the last item first. See PsyQ's LibRef47.pdf, p.277
     DrawOTag(ot[db] + OTLEN - 1);
     // Uncomment the following line to use a regular oredered OT. Uncomment l.100 accordingly

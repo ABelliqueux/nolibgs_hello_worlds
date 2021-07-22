@@ -67,6 +67,7 @@ void init(){
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
     }
+    SetDispMask(1);                 // Display on screen        
     setRGB0(&draw[0], 0, 128, 255);
     setRGB0(&draw[1], 0, 128, 255);
     draw[0].isbg = 1;
@@ -82,7 +83,6 @@ void display(void){
     VSync(0);
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    SetDispMask(1);
     DrawOTag(ot[db] + OTLEN - 1);
     db = !db;
     nextpri = primbuff[db];

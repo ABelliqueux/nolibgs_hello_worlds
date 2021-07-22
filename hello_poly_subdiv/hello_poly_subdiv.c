@@ -37,6 +37,8 @@ char primbuff[2][32768] = {1};     // double primitive buffer of length 32768 * 
 char *nextpri = primbuff[0];       // pointer to the next primitive in primbuff. Initially, points to the first bit of primbuff[0]
 short db = 0;                      // index of which buffer is used, values 0, 1
 
+short subdiv = 1;
+
 void init(void)
 {
     ResetGraph(0);
@@ -89,29 +91,25 @@ void display(void)
 int main(void)
 {
     long p, flag, OTz;
-    SVECTOR rotVector, rotVector4 = {0};                  // Initialize rotation vector {x, y, z}
+    SVECTOR rotVector = {0};
+    SVECTOR rotVector4 = {0};                  // Initialize rotation vector {x, y, z}
     VECTOR  transVector = {0, 0, CENTERX, 0};         // Initialize translation vector {x, y, z}
-    SVECTOR vertPos[4] = {
-        { 0, -32, 0, 0 },           // Vert 1 
-        { 32,  0, 0, 0 },           // Vert 2
-        { -32, 0, 0, 0 },
-        { 0,  32, 0, 0 }
+    SVECTOR vertPos[4] = {                    // 0 ______ 1
+        { -64, -32, 0, 0 },           // Vert 1  |        |
+        { 32,  -32, 0, 0 },           // Vert 2  | _______|
+        { -32, 48, 0, 0 },              //      2          3
+        { 22,  50, 0, 0 }
     };           // Vert 3
     MATRIX workMatrix = {0};                       
-    POLY_F3 * poly  = {0};                            // pointer to a POLY_F4 
+    POLY_F4 * poly  = {0};                            // pointer to a POLY_F4 
     POLY_F4 * poly4 = {0};                            // pointer to a POLY_F4 
+    POLY_F4 * polySub[4] = {0};                            // pointer to a POLY_F4 
     init();
     while (1)
     {
         // Set Ordering table
         ClearOTagR(ot[db], OTLEN);
-        
-        
-        // Draw on the left part of the screen
-        transVector.vx = -CENTERX/2;
-        // Increment rotation angle on Y axis
-        rotVector.vy += 8;
-        rotVector.vx -= 4 ;
+        rotVector.vz += 4;
         // Find rotation matrix from vector, store in 
         RotMatrix_gte(&rotVector, &workMatrix);
         // Ditto for translation        
@@ -119,72 +117,69 @@ int main(void)
         // Set the matrices we just found
         gte_SetRotMatrix(&workMatrix);
         gte_SetTransMatrix(&workMatrix);
-        
-        // Cast next primitive in buffer as a POLY_F4 (see display() )
-        poly = (POLY_F3 *)nextpri;        
-        
-        // Draw a Tri
-        
-        // Initialize poly as a POLY_F3
-        setPolyF3(poly);                
-        // Set poly color - Hot pink
-        setRGB0(poly, 255, 0, 255);                   
-        // Store vertex positions for current polygon in registers v0,v1,v2 
-        // Can be replaced by one gte_ldv3 call :
-        // gte_ldv3(&vertPos[0], &vertPos[1], &vertPos[2]);
-        gte_ldv0(&vertPos[0]);
-        gte_ldv1(&vertPos[1]);
-        gte_ldv2(&vertPos[2]);
-        
-        // RotTransPers3 : Perform coordinate and perspective transformation for three vertices.
-        // Use gte_rtps() for one vertex.
-        gte_rtpt();
-        // Get screen coordinates from cop2 registers XY0,XY1,XY2 and store them in primitive's x0, y0, x1, y1, x2, y2 members.
-        // Can be replace with one gte_stsxy3() call :
-        // gte_stsxy3(&poly->x0, &poly->x1, &poly->x2);
-        // Can also be replaced with a primitive type dependant version :
-        // gte_stsxy3_f3(poly);
-        gte_stsxy0(&poly->x0);
-        gte_stsxy1(&poly->x1);
-        gte_stsxy2(&poly->x2);
-        // Get depth interpolation coefficient p
-        gte_stdp(&p);
-        // Get the flag - see libover47.pdf, p.143 for details on ppossible values
-        gte_stflg(&flag);
-        // Get screen coordinate Z/4  
-        gte_stszotz(&OTz);
-        // GTE macro version - needs 'gtemac.h' to be included - uncomment l.21
-        //~ gte_RotTransPers3( &VertPos[0], &VertPos[1], &VertPos[2],
-                           //~ &poly->x0, &poly->x1, &poly->x2,
-                           //~ &p, &flag, &OTz );
-        // add poly to the Ordering table
-        addPrim(ot[db], poly);
-        // increment nextpri address with size of a POLY_F3 struct 
-        nextpri += sizeof(POLY_F3);
-        
-        // Draw a Quad
-        //
-        // The GTE rtpt can only transform 3 vertices at a time, so we have to do all operations as 3 + 1.
-        
-        // Move to right of screen
-        transVector.vx = CENTERX/2;
-        // Increment rot on X/Y axis
-        rotVector4.vy -= 8 ;
-        rotVector4.vx -= 4 ;
-        // Set matrices
-        RotMatrix_gte(&rotVector4, &workMatrix);
-        TransMatrix(&workMatrix, &transVector);
-        gte_SetRotMatrix(&workMatrix);
-        gte_SetTransMatrix(&workMatrix);
-        
-        // Cast a POLY_F4 at the address we just incremented.
+    
         poly4 = (POLY_F4 *)nextpri;
+        nextpri += sizeof(POLY_F4);    // increment nextpri address with size of a POLY_F3 struct 
+
+        polySub[0] = (POLY_F4 *)nextpri;
+        nextpri += sizeof(POLY_F4);
+        polySub[1] = (POLY_F4 *)nextpri;
+        nextpri += sizeof(POLY_F4);
+        polySub[2] = (POLY_F4 *)nextpri;
+        nextpri += sizeof(POLY_F4);
+        polySub[3] = (POLY_F4 *)nextpri;
         
-        // Initialize poly as a POLY_F4
-        setPolyF4(poly4);           
-        // Set Poly color - Blue                    
-        setRGB0(poly4, 0, 255, 255);
+        polySub[0]->x0 = poly4->x0;
+        polySub[0]->y0 = poly4->y0;
         
+        polySub[0]->x1 = (poly4->x0 + poly4->x1) >> 1;
+        polySub[0]->y1 = (poly4->y0 + poly4->y1) >> 1;
+        
+        polySub[0]->x2 = (poly4->x0 + poly4->x2) >> 1;
+        polySub[0]->y2 = (poly4->y0 + poly4->y2) >> 1;
+        
+        polySub[0]->x3 = (poly4->x0 + poly4->x3) >> 1;
+        polySub[0]->y3 = (poly4->y0 + poly4->y3) >> 1;
+
+        
+        polySub[1]->x0 = polySub[0]->x1;
+        polySub[1]->y0 = polySub[0]->y1;
+        
+        polySub[1]->x1 = poly4->x1;
+        polySub[1]->y1 = poly4->y1;
+        
+        polySub[1]->x2 = polySub[0]->x3;
+        polySub[1]->y2 = polySub[0]->y3;
+        
+        polySub[1]->x3 = (poly4->x1 + poly4->x3) >> 1;
+        polySub[1]->y3 = (poly4->y1 + poly4->y3) >> 1;
+        
+        polySub[2]->x0 = polySub[0]->x2;
+        polySub[2]->y0 = polySub[0]->y2;
+        
+        polySub[2]->x1 = polySub[0]->x3;
+        polySub[2]->y1 = polySub[0]->y3;
+        
+        polySub[2]->x2 = poly4->x2;
+        polySub[2]->y2 = poly4->y2;
+        
+        polySub[2]->x3 = (poly4->x2 + poly4->x3) >> 1;
+        polySub[2]->y3 = (poly4->y2 + poly4->y3) >> 1;
+        
+        polySub[3]->x0 = polySub[0]->x3;
+        polySub[3]->y0 = polySub[0]->y3;
+        
+        polySub[3]->x1 = polySub[1]->x3;
+        polySub[3]->y1 = polySub[1]->y3;
+        
+        polySub[3]->x2 = polySub[2]->x3;
+        polySub[3]->y2 = polySub[2]->y3;
+        
+        polySub[3]->x3 = poly4->x3;
+        polySub[3]->y3 = poly4->y3;
+
+        // Draw a Quad
+
         // Transform 3 first vertices
         gte_ldv3(&vertPos[0], &vertPos[1], &vertPos[2]);
         gte_rtpt();
@@ -199,11 +194,30 @@ int main(void)
         gte_stflg(&flag);
         gte_stszotz(&OTz);
         
-        addPrim(ot[db], poly4);         // add poly to the Ordering table
-        nextpri += sizeof(POLY_F4);    // increment nextpri address with size of a POLY_F3 struct 
+        if ( subdiv == 0){
+            setPolyF4(poly4);           
+            setRGB0(poly4, 0, 255, 255);
+            addPrim(ot[db], poly4); 
+        } else {
+            setPolyF4(polySub[0]);                
+            setRGB0(polySub[0], 255, 0, 255);                   
+            addPrim(ot[db], polySub[0]);
 
+            setPolyF4(polySub[1]);         
+            setRGB0(polySub[1], 128, 0, 255);
+            addPrim(ot[db], polySub[1]);
+            
+            setPolyF4(polySub[2]);                
+            setRGB0(polySub[2], 0, 128, 255);                   
+            addPrim(ot[db], polySub[2]);
+            
+            setPolyF4(polySub[3]);                
+            setRGB0(polySub[3], 100, 255, 0);                   
+            addPrim(ot[db], polySub[3]);
+        }
+        
         // Display text
-        FntPrint("Hello Inline GTE !\n");                   
+        FntPrint("Hello poly subdiv !\n");                   
         FntFlush(-1);
         
         display();

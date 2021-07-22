@@ -64,10 +64,10 @@ void init(void)
     ResetGraph(0);
     
     // Initialize and setup the GTE : Not needed ?
-	
+    
     InitGeom();
-	SetGeomOffset(CENTERX,CENTERY);
-	SetGeomScreen(CENTERX);
+    SetGeomOffset(CENTERX,CENTERY);
+    SetGeomScreen(CENTERX);
     
     PadInit(0);
     
@@ -83,7 +83,8 @@ void init(void)
         disp[0].screen.y += 8;
         disp[1].screen.y += 8;
         }
-        
+    SetDispMask(1);                 // Display on screen    
+
     setRGB0(&draw[0], BgColor->r, BgColor->g, BgColor->b);
     setRGB0(&draw[1], BgColor->r, BgColor->g, BgColor->b);
     
@@ -105,8 +106,6 @@ void display(void)
     
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    
-    SetDispMask(1);
     
     DrawOTag(ot[db] + OTLEN - 1);
     
