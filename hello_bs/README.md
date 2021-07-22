@@ -86,6 +86,6 @@ mdecnote : http://psx.arthus.net/sdk/Psy-Q/DOCS/TECHNOTE/mdecnote.pdf
 PSX RGB and YUV format : http://psx.arthus.net/sdk/Psy-Q/DOCS/Devrefs/Dataconv.pdf , p.68
 
 YUV pixel format : https://www.fourcc.org/pixel-format/yuv-uyvy/
-RGB pixel format : https://www.fourcc.org/rgb.php
+RGB pixelformat : https://www.fourcc.org/pixel-format/rgb-bi_rgb/
 
 RGB<>YUV conversion formulas : https://www.fourcc.org/fccyvrgb.php
