@@ -35,6 +35,14 @@ ffmpeg -i input.mp3 -acodec pcm_s16le -ac 2 -ar 44100 output.wav
 ffmpeg -i herb.wav.new -filter_complex "[0:a][0:a]amerge=inputs=2[a]" -map "[a]" herbi.wav
 ```
 
+### Adding the audio track to the CD
+
+Add a track section **after** your data track in `isoconfig.xml` :  
+
+```xml
+<track type="audio" source="file.wav"/>
+```
+
 ## Music credits
 
 Track 1 :
