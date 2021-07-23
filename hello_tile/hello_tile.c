@@ -71,7 +71,7 @@ void display(void)
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
     // We're using a reverse OT, so we want to display the last item first. See PsyQ's LibRef47.pdf, p.277
-    DrawOTag(ot[db] + OTLEN - 1);
+    DrawOTag(&ot[db][OTLEN - 1]);
     // Uncomment the following line to use a regular oredered OT. Uncomment l.100 accordingly
     //~ DrawOTag(ot[db]);
     

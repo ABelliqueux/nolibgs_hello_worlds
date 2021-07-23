@@ -131,7 +131,7 @@ void display(void)
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
     
-    DrawOTag(ot[db] + OTLEN - 1);
+    DrawOTag(&ot[db][OTLEN - 1]);
     
     db = !db;
     

@@ -120,7 +120,7 @@ void display(void){
     VSync(0);
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    DrawOTag(ot[db] + OTLEN - 1);
+    DrawOTag(&ot[db][OTLEN - 1]);
     db = !db;
     nextpri = primbuff[db];
     }

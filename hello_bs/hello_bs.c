@@ -6,7 +6,6 @@
 #include <libgte.h>
 #include <libetc.h>
 #include <libgpu.h>
-#include <libapi.h>
 // CD library
 #include <libcd.h>
 // CODEC library

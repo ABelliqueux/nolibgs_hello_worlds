@@ -81,7 +81,7 @@ void display(void)
     // Flip DISP and DRAW env
     PutDispEnv(&disp[db]);
     PutDrawEnv(&draw[db]);
-    DrawOTag(ot[db] + OTLEN - 1);
+    DrawOTag(&ot[db][OTLEN - 1]);
     // Flip db index
     db = !db;
     // Get next primitive in buffer
