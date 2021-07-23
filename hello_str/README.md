@@ -63,7 +63,12 @@ Alternatively, open the STR file in `MC32.exe` and look at the bottom left of th
 MC32 : http://psx.arthus.net/tools/pimp-psx.zip  
 STR converter : http://psx.arthus.net/tools/str_converter.rar  
 
-Original PsyQ sample code : `/psyq/addons/cd/MOVIE`  
+Original PsyQ sample code : 
+```
+/psyq/psx/sample/scee/CD/MOVIE2
+/psyq/addons/cd/MOVIE (same as /psx/sample/cd/MOVIE )
+/addons/sound/STREAM/TUTO2.C
+```  
 Original post : http://www.psxdev.net/forum/viewtopic.php?t=507  
 Video to STR conversion tutorial : http://www.psxdev.net/forum/viewtopic.php?f=51&t=277  
 MDEC notes : http://psx.arthus.net/sdk/Psy-Q/DOCS/TECHNOTE/mdecnote.pdf  
