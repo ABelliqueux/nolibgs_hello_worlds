@@ -1,3 +1,5 @@
+This example will play a fullscreen STR file and is as straightforward as possible. If you need more advanced control other the display size and position, see the [STR playback library](https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/hello_str#str-playback-library) section.
+
 ## Compiling
 
 You need [mkpsxiso](https://github.com/Lameguy64/mkpsxiso) in your $PATH to generate a PSX disk image.
