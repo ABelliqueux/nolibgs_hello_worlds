@@ -45,7 +45,7 @@ typedef struct {
 // Declare an array of XA_TRACK
 XA_TRACK XATrack[XA_TRACKS];
 // Name of file to load
-static char * loadXA = "\\INTER4.XA;1";
+static char * loadXA = "\\INTER8.XA;1";
 CdlFILE XAPos = {0};
 // Start and end position of XA data, in sectors
 static int      StartPos, EndPos;
