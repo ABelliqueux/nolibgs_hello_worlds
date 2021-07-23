@@ -33,8 +33,37 @@ See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p
 
 You can use TIMTOOL.EXE from legacy PsyQ to check your TIM files, or use Lameguy64's [TIMedit](https://github.com/Lameguy64/TIMedit)
 
-
 # Reproducing the TIM in this example
+
+## Image > 4bpp, 8bpp
+
+To convert your images to palettized 4bpp and 8bpp pngs, you can use [pngquant](https://pngquant.org/) :
+
+4bpp (16 colors) image :
+
+```bash
+pngquant 16 input.png -o output.png --force 
+```
+8bpp (256 colors) image :
+
+```bash
+pngquant 256 input.png -o output.png --force 
+```
+ 
+Alternatively, you can use imagemagick :
+
+4bpp (16 colors) image :
+
+```bash
+convert input.png -colors 16 output.png 
+```
+8bpp (256 colors) image :
+
+```bash
+convert input.png -colors 256 output.png
+```
+
+## 
 
 ```bash
 img2tim -bpp 4 -org 512 0 -plt 0 481 -usealpha -o TIM4.tim TIM4.png 
