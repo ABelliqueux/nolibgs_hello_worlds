@@ -124,8 +124,7 @@ int main() {
     StSetStream(TRUECOL, 1, StrFileLength, 0, 0);
     // Get the CD location of the STR file to play
     if ( CdSearchFile(&STRfile, StrFileName) == 0 ) {
-        printf("File not found :%s\n", StrFileName);
-        //~ SetDispMask(1);
+        FntPrint("File not found :%s\n", StrFileName);
     }
     // Set the seek target position
     CdControl(CdlSetloc, (u_char *)&STRfile.pos, 0);
@@ -145,9 +144,9 @@ int main() {
     
     // Main loop
     while (1) {
-        u_long * curVLCptr = &VlcBuff[db][0];
+        // Set some pointers to the relevant buffer addresses
+        u_long * curVLCptr = &VlcBuff[!db][0];
         u_short * curIMGptr = &ImgBuff[db][0];
-
         // While end of str is not reached, play it
         while (!endPlayback) {
             // Use this area to draw the slices
@@ -162,15 +161,15 @@ int main() {
             // Dont try decoding if not data has been loaded from ring buffer
             if ( frameAddr ){
                 // Begin decoding RLE-encoded MDEC image data
-                DecDCTin( &VlcBuff[db][0] , DCT_MODE);
+                DecDCTin( curVLCptr , DCT_MODE);
                 // Prepare to receive the decoded image data from the MDEC
                 while (curSlice.x < STR_POS_X + SCREENXRES * PPW) {
                     // Receive decoded data : a 16*ppw*240 px slice 
-                    DecDCTout( (u_long *) &ImgBuff[db][0], curSlice.w * curSlice.h / 2);
+                    DecDCTout( (u_long *) curIMGptr, curSlice.w * curSlice.h / 2);
                     // Wait for transfer end
                     DecDCToutSync(1);
                     // Transfer data from main memory to VRAM
-                    LoadImage(&curSlice, (u_long *) &ImgBuff[db][0]);
+                    LoadImage(&curSlice, (u_long *) curIMGptr );
                     // Increment drawArea's X with slice width (16 or 24 pix)
                     curSlice.x += 16 * PPW;
                 }
