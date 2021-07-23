@@ -63,10 +63,10 @@ int main(void)
     SpuInit();
     // Set master & CD volume to max
     spuSettings.mask = (SPU_COMMON_MVOLL | SPU_COMMON_MVOLR | SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX);
-    spuSettings.mvol.left  = 0x7FFF;
-    spuSettings.mvol.right = 0x7FFF;
-    spuSettings.cd.volume.left = 0x7FFF;
-    spuSettings.cd.volume.right = 0x7FFF;
+    spuSettings.mvol.left  = 0x6000;
+    spuSettings.mvol.right = 0x6000;
+    spuSettings.cd.volume.left = 0x6000;
+    spuSettings.cd.volume.right = 0x6000;
     // Enable CD input ON
     spuSettings.cd.mix = SPU_ON;
     // Apply settings
