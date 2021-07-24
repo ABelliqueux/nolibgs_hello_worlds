@@ -2,9 +2,9 @@
 
 Standard bitmap images that can be transferred directly to the PSX VRAM.
 
-Can be 4bit or 8bit with a CLUT, 16bit or 24 bit in direct color.  
+Can be 4bit or 8bit with a [CLUT (Colour Look Up Table)](https://en.wikipedia.org/wiki/Palette_(computing)), 16bit or 24 bit in direct color.  
 
-See [this page](https://www.fourcc.org/pixel-format/rgb-bi_rgb/) for further information on how information is stored in the different modes.  
+See [this page](https://www.fourcc.org/pixel-format/rgb-bi_rgb/) for further information on how information is stored in the 16/24bpp modes.  
 
 You can access the TIM mode through TIM_IMAGE->mode. 
 Mode can be :
