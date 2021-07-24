@@ -119,8 +119,8 @@ TODO : Make this presentable
 
 // Access Pixels STP, R, G, B 
 typedef struct RGB_PIX {
-    u_int STP:1, B:5, G:5, R:5;
-    } RGB_PIX;
+    u_int  R:5, G:5, B:5, STP:1;
+} RGB_PIX;
     
 
 typedef struct PIXEL {
