@@ -110,6 +110,73 @@ TIM/TIM16.tim \
 TIM/TIM8.tim \
 TIM/TIM4.tim \
 ```
+## Using the TIM file in code
+
+TODO : Make this presentable
+
+```c
+// Some structures to handle TIM files 
+
+// Access Pixels STP, R, G, B 
+typedef struct RGB_PIX {
+    u_int STP:1, B:5, G:5, R:5;
+    } RGB_PIX;
+    
+
+typedef struct PIXEL {
+    u_long bnum;
+    u_short DX, DY;
+    u_short W, H;
+    RGB_PIX data[]; 
+} PIXEL;
+
+typedef struct CLUT {
+    u_long bnum;
+    u_short DX, DY;
+    u_short W, H;
+    u_short clut[]; 
+} CLUT;
+
+typedef struct TIM_FILE_CLUT{
+    u_long ID;
+    u_long flag;
+    u_long clut;
+    PIXEL pixel[];
+} TIM_FILE_CLUT;
+
+typedef struct TIM_FILE{
+    u_long ID;
+    u_long flag;
+    PIXEL pixel[];
+} TIM_FILE;
+
+// If we were using C++, we could use templates 
+//~ struct EmbeddedClut { u_long clut; };
+//~ struct NoEmbeddedClut { };
+//~ template<has_clut>
+//~ struct TIM_FILE {
+    //~ u_long ID;
+    //~ u_long flag;
+    //~ std::conditional<has_clut, EmbeddedClut, NoEmbeddedClut> clut;
+    //~ PIXEL pixel[];
+//~ };
+
+// 16bpp TIM
+// STP set on black pixels ( STP, B, R, G == 1, 0, 0 ,0)
+extern TIM_FILE _binary_TIM_transBlack_tim_start;
+// STP set on image's alpha ( STP, B, R, G == 1, n, n ,n)
+extern TIM_FILE _binary_TIM_transAlpha_tim_start;
+// STP set on image's alpha ( STP, B, R, G == 1, n, n ,n) with threshold (img2tim -alpt option)
+extern TIM_FILE _binary_TIM_transAlphaS_tim_start;
+// STP set on 8bpp TIM's CLUT index 
+extern TIM_FILE _binary_TIM_trans8bpp_tim_start;
+// Store in an array so we can iterate over it
+TIM_FILE * timFiles[4];
+TIM_IMAGE timImages[4];
+        
+FntPrint("RGB: %d\n", _binary_TIM_transBlack_tim_start.pixel->data[0].R );                   
+FntPrint("RGB: %d %d %d %d", timFiles[0]->pixel->data[8192].STP, timFiles[0]->pixel->data[8192].R, timFiles[0]->pixel->data[8192].G, timFiles[0]->pixel->data[8192].B );  
+```
 
 # Links 
 
