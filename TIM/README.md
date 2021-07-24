@@ -34,7 +34,16 @@ Here are the transparency modes for various values on semi-transparent and opaqu
  | Semi-transparent primitive | Transparent | Semi-transparent  | Non-transparent black |  Semi-transparent  |  
 
 See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p.56, p.192,   
-[LibOver47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/LibOver47.pdf), p.107
+[LibOver47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/LibOver47.pdf), p.107, Table 8-12:
+
+Here is an overview of the various STP modes :
+
+![STP](https://wiki.arthus.net/assets/psx-stp-modes-1.jpg)  
+
+In the following picture, STP refers to the transparency rate mode as seen in [LibRef47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/LibRef47.pdf), p.306 :  
+
+![STP rate](https://wiki.arthus.net/assets/psx-stp-modes.jpg)
+
 
 ## img2tim semi-transparency options
 
