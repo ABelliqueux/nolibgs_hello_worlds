@@ -121,6 +121,8 @@ int main(void)
     // XA setup
     u_char param[4];
     // ORing the parameters we need to set ; drive speed,  ADPCM play, Subheader filter, sector size
+    // If using CdlModeSpeed(Double speed), you need to load an XA file that has 8 channels.
+    // In single speed, a 4 channels XA is to be used.
     param[0] = CdlModeSpeed|CdlModeRT|CdlModeSF|CdlModeSize1;
     // Issue primitive command to CD-ROM system (Blocking-type)
     // Set the parameters above
