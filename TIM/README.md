@@ -40,11 +40,11 @@ See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p
 
 `img2tim` has several options related to pixel transparency :  
 
- * -t            - Set semi-transparent bit (STP) on non fully black pixels. This will set the STP to 1 on pixels with RGB values different from B0,G0,R0.
- * -usealpha     - Use alpha channel (if available) as transparency mask. This will use the converted image's alpha channel (PNG, TGA, TIFF, GIF)
- * -alpt <value> - Threshold value when alpha channel is used as transparency mask (Default: 127). Transparency values above this wil be treated as opaque.
- * -tindex <col> - Specify color index to be treated as transparent (ignored on non palletized images). When using 4bpp/8bpp, specified color to be used as transparent.
- * -tcol <r g b> - Specify RGB color value to be treated as transparent. Same as above for 16bpp.
+ * `-t`            : Set semi-transparent bit (STP) on non fully black pixels. This will set the STP to 1 on pixels with RGB values different from B0,G0,R0.
+ * `-usealpha`     : Use alpha channel (if available) as transparency mask. This will use the converted image's alpha channel (PNG, TGA, TIFF, GIF)
+ * `-alpt <value>` : Threshold value when alpha channel is used as transparency mask (Default: 127). Transparency values above this wil be treated as opaque.
+ * `-tindex <col>` : Specify color index to be treated as transparent (ignored on non palletized images). When using 4bpp/8bpp, specified color to be used as transparent.
+ * `-tcol <r g b>` : Specify RGB color value to be treated as transparent. Same as above for 16bpp.
 
 # Tools
 
