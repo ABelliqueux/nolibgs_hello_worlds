@@ -2,7 +2,9 @@
 
 Standard bitmap images that can be transferred directly to the PSX VRAM.
 
-Can be 4bit or 8bit with a CLUT, 16bit or 24 bit in direct color.
+Can be 4bit or 8bit with a CLUT, 16bit or 24 bit in direct color.  
+
+See [this page](https://www.fourcc.org/pixel-format/rgb-bi_rgb/) for further information on how information is stored in the different modes.  
 
 You can access the TIM mode through TIM_IMAGE->mode. 
 Mode can be :
@@ -18,8 +20,11 @@ See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p
 # Transparency
 
 In 16bpp mode, only 15b are used for colors (R 5, G 5, B 5). The 15th bit is defined as the STP or Semi-Transparency flag.  
-A primitive transparency is set with `SetSemiTrans()`.  The only case where a primitive with unset (=0) STP is transparent is when all values are 0.  
-i.e ; using STP 0, B 0, G 0, R 0 will result in a transparent pixel wether the primitive is set to semi-tranparent or not.  
+
+A primitive transparency is set with `SetSemiTrans()`.  
+
+The only case where a primitive with unset (=0) STP is transparent is when all values are 0.  i.e ; using STP 0, B 0, G 0, R 0  
+will result in a transparent pixel wether the primitive is set to semi-tranparent or not.  
 
 Here are the transparency modes for various values on semi-transparent and opaque primitives :
 
@@ -29,7 +34,7 @@ Here are the transparency modes for various values on semi-transparent and opaqu
  | Semi-transparent primitive | Transparent | Semi-transparent  | Non-transparent black |  Semi-transparent  |  
 
 See [FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/FileFormat47.pdf), p.56, p.192,   
-[FileFormat47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/LibOver47.pdf), p.107
+[LibOver47.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/LibOver47.pdf), p.107
 
 ## img2tim semi-transparency options
 
