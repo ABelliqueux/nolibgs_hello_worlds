@@ -6,6 +6,8 @@ hello_cube:
 	$(MAKE) -C hello_cube 
 hello_cubetex:
 	$(MAKE) -C hello_cubetex 
+hello_cubetex_stp:
+	$(MAKE) -C hello_cubetex_stp 
 hello_poly_fun:
 	$(MAKE) -C hello_poly_fun 
 hello_gte_opti:
@@ -51,6 +53,7 @@ clean:
 	$(MAKE) -C hello_2pads clean
 	$(MAKE) -C hello_cube clean
 	$(MAKE) -C hello_cubetex clean
+	$(MAKE) -C hello_cubetex_stp clean
 	$(MAKE) -C hello_poly_fun clean
 	$(MAKE) -C hello_gte_opti clean
 	$(MAKE) -C hello_light clean
@@ -78,6 +81,7 @@ all:
 	$(MAKE) -C hello_2pads 
 	$(MAKE) -C hello_cube 
 	$(MAKE) -C hello_cubetex 
+	$(MAKE) -C hello_cubetex_stp 
 	$(MAKE) -C hello_poly_fun 
 	$(MAKE) -C hello_gte_opti 
 	$(MAKE) -C hello_light 
@@ -104,5 +108,5 @@ all:
 		hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt  \
 		hello_poly_gt_tw hello_poly_inline hello_sio hello_sprt hello_tile \
 		hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str \
-		hello_poly_stp \
+		hello_poly_stp hello_cubetex_stp \
 		clean all
