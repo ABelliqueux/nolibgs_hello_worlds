@@ -18,6 +18,8 @@ hello_pad:
 	$(MAKE) -C hello_pad 
 hello_poly:
 	$(MAKE) -C hello_poly 
+hello_poly_stp:
+	$(MAKE) -C hello_poly_stp 
 hello_poly_ft:
 	$(MAKE) -C hello_poly_ft 
 hello_poly_gt:
@@ -56,6 +58,7 @@ clean:
 	$(MAKE) -C hello_pad clean
 	$(MAKE) -C hello_poly clean
 	$(MAKE) -C hello_poly_ft clean
+	$(MAKE) -C hello_poly_stp clean
 	$(MAKE) -C hello_poly_gt clean
 	$(MAKE) -C hello_poly_gt_tw clean
 	$(MAKE) -C hello_poly_inline clean
@@ -97,5 +100,9 @@ all:
 	$(MAKE) -C hello_str all
 	
 # declare phony rules
-.PHONY: hello_2pads hello_cube hello_cubetex hello_poly_fun hello_gte_opti hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt hello_poly_gt_tw hello_poly_inline hello_sio hello_sprt hello_tile hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str \
+.PHONY: hello_2pads hello_cube hello_cubetex hello_poly_fun hello_gte_opti \
+		hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt  \
+		hello_poly_gt_tw hello_poly_inline hello_sio hello_sprt hello_tile \
+		hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str \
+		hello_poly_stp \
 		clean all
