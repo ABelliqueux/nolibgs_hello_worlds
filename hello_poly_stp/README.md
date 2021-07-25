@@ -1,17 +1,21 @@
+![Hello_stp](https://wiki.arthus.net/assets/hello-stp.png)
+
 # STP : Semi-Transparency usage
 
 This example shows the various way of converting an image with transparency to a TIM and use it in code.  
 It also shows the effect of activating Semi-Transparency on a primitive textured with those images.  
-
-**By default, the PSX will consider black pixels (0,0,0,0) as transparent**.  
-In order to display those black pixels as black, you have to set the STP on black (1,0,0,0).   
-Black pixels and non-black pixels with the STP bit will display as semi-transparent when using `SetSemiTrans()`.  
 
 Use the `SELECT` button to switch primitive semi-transparency on and off.  
 
 It also features a few C struct to facilitate access to the TIM file / pixel data.
 
 You can use Lameguy64's [img2tim](https://github.com/Lameguy64/img2tim) tool to convert most of image formats to the psx [TIM format.](https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/TIM).    
+
+## Important 
+
+**By default, the PSX will consider black pixels (0,0,0,0) as transparent**.  
+In order to display those black pixels as black, you have to set the STP on black (1,0,0,0).   
+Black pixels and non-black pixels with the STP bit will display as semi-transparent when using `SetSemiTrans()`.  
 
 ## STP on black 
  
