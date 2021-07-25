@@ -11,6 +11,10 @@ It also features a few C struct to facilitate access to the TIM file / pixel dat
 
 You can use Lameguy64's [img2tim](https://github.com/Lameguy64/img2tim) tool to convert most of image formats to the psx [TIM format.](https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/TIM).    
 
+## Semi-transparency rates
+
+You can find another example with the various transparency rates demoed here : https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/hello_cubetex_stp  
+
 ## Important 
 
 **By default, the PSX will consider black pixels (0,0,0,0) as transparent**.  
