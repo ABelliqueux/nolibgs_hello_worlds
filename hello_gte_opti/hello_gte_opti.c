@@ -11,6 +11,7 @@
 //
 // Credits, thanks : Nicolas Noble, Sickle, Lameguy64 @ psxdev discord : https://discord.com/invite/N2mmwp
 // https://discord.com/channels/642647820683444236/663664210525290507/834831466100949002
+// Schnappy 2021
 #include <sys/types.h>
 #include <stdio.h>
 #include <libetc.h>

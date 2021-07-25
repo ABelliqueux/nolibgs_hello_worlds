@@ -1,18 +1,9 @@
-// With help from Nicolas Noble, Jaby smoll Seamonstah
-// Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
+// Draw a colored poly primitive
 //
-// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
+// With help from Nicolas Noble, Jaby smoll Seamonstah, Lameguy64
 // 
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
+// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
+// Schnappy 2021
 
 #include <sys/types.h>
 #include <stdio.h>

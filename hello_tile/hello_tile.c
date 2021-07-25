@@ -1,3 +1,6 @@
+// Draw a tile primitive
+// Schnappy 2021
+// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

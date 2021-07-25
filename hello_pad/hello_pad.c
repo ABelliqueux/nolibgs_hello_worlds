@@ -2,7 +2,7 @@
 //
 // We're using libetc PadInit() and PadRead() that only supports the 16 buttons pad
 // but doesn't need the libpad lib. It's fine for prototyping and simple stuff.
-
+// Schnappy 2021
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

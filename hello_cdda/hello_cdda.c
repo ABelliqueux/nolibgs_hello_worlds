@@ -1,5 +1,5 @@
-// CDDA track playing example
-// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
+// CDDA track playback example
+// Schnappy 07-2021
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>
@@ -62,8 +62,11 @@ int main(void)
     // Init Spu
     SpuInit();
     // Set master & CD volume to max
-    spuSettings.mask = (SPU_COMMON_MVOLL | SPU_COMMON_MVOLR | SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX );
+    //~ spuSettings.mask = (SPU_COMMON_MVOLL | SPU_COMMON_MVOLR | SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX | SPU_COMMON_MVOLMODEL | SPU_COMMON_MVOLMODER);
+    spuSettings.mask = (SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX | SPU_COMMON_MVOLMODEL | SPU_COMMON_MVOLMODER);
     // Master volume should be in range 0x0000 - 0x3fff
+    //~ spuSettings.mvolmode.left = SPU_VOICE_LINEARIncN; 
+    //~ spuSettings.mvolmode.right = SPU_VOICE_LINEARIncN; 
     spuSettings.mvol.left  = 0x3fff;
     spuSettings.mvol.right = 0x3fff;
     // Cd volume should be in range 0x0000 - 0x7fff

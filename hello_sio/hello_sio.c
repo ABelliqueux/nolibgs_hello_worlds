@@ -1,15 +1,11 @@
 // hello_sio example
-//
 // This example will display the RX data in a 64 char rolling buffer.
-// 
 // Use minicom or any other serial comm program and a serial/USB cable.
 //
 // Relevant doc is libref47.pdf, l.1120-1127
-//
 // Schnappy - 04/2021
 //
 // Based on :  ../psyq/psx/sample/serial/SIO
-//
 // sio echo back 
 // 1.00     Jan.28.1997 shino
 #include <sys/types.h>

@@ -2,9 +2,6 @@
     - Draw a gouraud shaded mesh exported as a TMESH by the blender <= 2.79b plugin io_export_psx_tmesh.py
     based on primdraw.c by Lameguy64 (http://www.psxdev.net/forum/viewtopic.php?f=64&t=537)
     2014 Meido-Tek Productions.
-    Demonstrates:
-        - Using a primitive OT to draw triangles without libgs.
-        - Using the GTE to rotate, translate, and project 3D primitives.
     Controls:
         Start                           - Toggle interactive/non-interactive mode.
         Select                          - Reset object's position and angles.
@@ -13,16 +10,6 @@
         Up/Down/Left/Right              - Rotate object (XZ/YZ).
         Triangle/Cross/Square/Circle    - Move object up/down/left/right.
 */
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
 #include <sys/types.h>
 #include <libgte.h>
 #include <libgpu.h>

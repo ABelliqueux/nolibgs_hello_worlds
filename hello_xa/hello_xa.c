@@ -3,7 +3,7 @@
 // Refs : http://psx.arthus.net/code/XA/XATUT.pdf
 //        http://psx.arthus.net/code/XA/xatut.zip
 //        http://psx.arthus.net/code/XA/XA%20ADPCM%20documentation.txt
-// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
+// Schnappy 2021
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

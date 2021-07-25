@@ -1,4 +1,6 @@
-// This is stolen from Lameguy64 tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
+// Demonstrate DISP/DRAW env, font setup, and display a text.
+// Schnappy 2020
+// Based on Lameguy64 tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
 
 #include <sys/types.h>
 #include <stdio.h>

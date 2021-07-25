@@ -1,6 +1,5 @@
 // Load a BS file from CD, decompress and display it.
 // Schnappy 07-2021
-// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

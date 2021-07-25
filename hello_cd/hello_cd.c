@@ -1,6 +1,5 @@
 // Load files from CD and execute them
 // Schnappy 07-2021
-// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/1-display.html
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

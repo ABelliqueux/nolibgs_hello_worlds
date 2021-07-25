@@ -1,18 +1,9 @@
-// With help from Nicolas Noble, Jaby smoll Seamonstah
-// Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
+// Draw a textured poly primitive with gouraud shading
+//
+// With help from Nicolas Noble, Jaby smoll Seamonstah, Lameguy64
 // 
 // From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
-// 
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
+// Schnappy 2021
 
 
 #include <sys/types.h>

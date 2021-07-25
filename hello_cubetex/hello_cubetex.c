@@ -1,7 +1,6 @@
-
 /*  primdrawG.c, by Schnappy, 12-2020
     
-    - Draw a gouraud shaded mesh exported as a TMESH by the blender <= 2.79b plugin io_export_psx_tmesh.py
+    - Draw a gouraud shaded textured mesh exported as a TMESH by the blender <= 2.79b plugin io_export_psx_tmesh.py
     
     based on primdraw.c by Lameguy64 (http://www.psxdev.net/forum/viewtopic.php?f=64&t=537)
     2014 Meido-Tek Productions.
@@ -19,17 +18,6 @@
         Triangle/Cross/Square/Circle    - Move object up/down/left/right.
         
 */
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
-
 #include <sys/types.h>
 #include <libgte.h>
 #include <libgpu.h>

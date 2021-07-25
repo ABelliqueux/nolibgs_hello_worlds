@@ -6,13 +6,6 @@
 // Schnappy - 12/2020
 //
 // Based on :  ../psyq/addons/scea/CNTRL/PAD.C
-//
-// Controller demo                                          
-// Written by Mike Fulton                                   
-// Last Modified 6:25pm, 11/15/96                           
-// Copyright (c) 1996 Sony Computer Entertainment America 
-
-
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

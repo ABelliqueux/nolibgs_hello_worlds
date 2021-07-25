@@ -1,3 +1,7 @@
+// Draw a textured sprt primitive
+//
+// based on Lameguy64's tutorial : http://lameguy64.net/svn/pstutorials/chapter1/3-textures.html
+// Schnappy 2020
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>

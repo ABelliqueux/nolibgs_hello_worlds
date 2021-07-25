@@ -10,16 +10,6 @@
     based on primdraw.c by Lameguy64 (http://www.psxdev.net/forum/viewtopic.php?f=64&t=537)
     2014 Meido-Tek Productions.
 */
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
 #include <sys/types.h>
 #include <libgte.h>
 #include <libgpu.h>

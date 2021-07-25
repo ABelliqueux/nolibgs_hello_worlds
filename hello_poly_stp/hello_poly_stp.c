@@ -1,19 +1,6 @@
 // Demo the different settings for pixel and primitive semi-transparency
 //
-// Based on Lameguy64's tutorial series  : http://lameguy64.net/svn/pstutorials/chapter1/2-graphics.html
-// 
-// From ../psyq/addons/graphics/MESH/RMESH/TUTO0.C :
-// 
- /*        PSX screen coordinate system 
- *
- *                           Z+
- *                          /
- *                         /
- *                        +------X+
- *                       /|
- *                      / |
- *                     /  Y+
- *                   eye        */
+// Schnappy 07-2021
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>
@@ -28,7 +15,6 @@
 #define CENTERY SCREENYRES/2    // Center of screen on y
 #define MARGINX 16               // margins for text display
 #define MARGINY 16
-#define FONTSIZE 8 * 8             // Text Field Height
 #define OTLEN 8                    // Ordering Table Length 
 DISPENV disp[2];                   // Double buffered DISPENV and DRAWENV
 DRAWENV draw[2];
@@ -165,43 +151,44 @@ int main(void)
     // Init proto pad
     PadInit(0);
     int pad, oldPad;
-    POLY_FT4 * poly[4] = {0};                       // pointer to a POLY_G4 
+    // Pointer to a POLY_G4 
+    POLY_FT4 * poly[4] = {0};                       
     SVECTOR VertPos[4] = {                          // Set initial vertices position relative to 0,0 - see here : https://psx.arthus.net/docs/poly_f4.jpg
             {-32, -32, 1 },                         // Vert 1 
             {-32,  32, 1 },                         // Vert 2
             { 32, -32, 1 },                         // Vert 3
             { 32,  32, 1  }                         // Vert 4
         };                                          
-    VECTOR  TransVector = { SCREENXRES/3, SCREENYRES/4, 128, 0};               // Initialize translation vector {x, y, z, pad}
-    SVECTOR RotVector = {0};                        // Initialize rotation vector {x, y, z} 
+    VECTOR  transVector = { SCREENXRES/3, SCREENYRES/4, 128, 0};               // Initialize translation vector {x, y, z, pad}
+    SVECTOR rotVector = {0};                        // Initialize rotation vector {x, y, z} 
     
     // Load textures to VRAM
-    for (char tim = 0; tim < 4; tim++){
+    for (char tim = 0; tim < NUM_PRIM; tim++){
         LoadTexture(timFiles[tim], &timImages[tim]);
     }
     
     while (1)
     {
+        MATRIX Work;
         // Clear OT
         ClearOTagR(ot[db], OTLEN);
         // Use a temporary work matrix
-        MATRIX Work;
         // Set Trans/Rot vectors to work matrix
-        RotMatrix(&RotVector, &Work);           // Apply rotation matrix
-        TransMatrix(&Work, &TransVector);         // Apply translation matrix   
+        RotMatrix(&rotVector, &Work);           // Apply rotation matrix
+        TransMatrix(&Work, &transVector);         // Apply translation matrix   
         SetRotMatrix(&Work);                    // Set default rotation matrix
         SetTransMatrix(&Work);                  // Set default transformation matrix
         // Draw NUM_PRIM primitives
         for (int i = 0; i < NUM_PRIM; i++){
             long p, flag;
             // Draw prims with an offset base on iteration number
-            TransVector.vx = SCREENXRES/NUM_PRIM + (i * (SCREENXRES/NUM_PRIM + 32) ) ;
-            TransVector.vy = SCREENYRES/NUM_PRIM;
+            transVector.vx = SCREENXRES/NUM_PRIM + (i * (SCREENXRES/NUM_PRIM + 32) ) ;
+            transVector.vy = SCREENYRES/NUM_PRIM;
             if ( i >= 2) { 
-                TransVector.vx = SCREENXRES/NUM_PRIM + ((i - 2) * (SCREENXRES/NUM_PRIM + 32) ) ;
-                TransVector.vy = SCREENYRES/2 + 24;
+                transVector.vx = SCREENXRES/NUM_PRIM + ((i - 2) * (SCREENXRES/NUM_PRIM + 32) ) ;
+                transVector.vy = SCREENYRES/2 + 24;
             } 
-            TransMatrix(&Work, &TransVector);         
+            TransMatrix(&Work, &transVector);         
             SetTransMatrix(&Work);
             // Set poly 
             poly[i] = (POLY_FT4 *)nextpri;                    // Set poly to point to  the address of the next primitiv in the buffer
