@@ -29,7 +29,7 @@
 DISPENV disp[2];
 DRAWENV draw[2];
 u_long      ot[2][OTLEN];                   // Ordering table (contains addresses to primitives)
-char    primbuff[2][PRIMBUFFLEN] = {0};     // Primitive list // That's our prim buffer
+char    primbuff[2][PRIMBUFFLEN];     // Primitive list // That's our prim buffer
 char * nextpri = primbuff[0];               // Primitive counter
 short           db  = 0;                    // Current buffer counter
 // SIO

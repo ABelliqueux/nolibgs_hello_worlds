@@ -43,26 +43,6 @@ extern unsigned long _binary____TIM_bousai_tim_end[];
 extern unsigned long _binary____TIM_bousai_tim_length;
 
 TIM_IMAGE bousai;
-
-
-MATRIX identity(int num)           // generate num x num matrix 
-{
-   int row, col;
-   MATRIX matrix;
-   
-   for (row = 0; row < num; row++)
-   {
-      for (col = 0; col < num; col++)
-      {
-         if (row == col)
-            matrix.m[row][col] = 4096;
-         else
-            matrix.m[row][col] = 0;
-      }
-   }
-   return matrix;
-}
-
 void LoadTexture(u_long * tim, TIM_IMAGE * tparam){     // This part is from Lameguy64's tutorial series : lameguy64.net/svn/pstutorials/chapter1/3-textures.html login/pw: annoyingmous
         OpenTIM(tim);                                   // Open the tim binary data, feed it the address of the data in memory
         ReadTIM(tparam);                                // This read the header of the TIM data and sets the corresponding members of the TIM_IMAGE structure
@@ -132,9 +112,7 @@ void display(void)
 
 int main(void)
 {
-    
-    MATRIX IDMATRIX = identity(3);                  // Generate 3x3 identity matrix
-    
+        
     POLY_FT4 *poly = {0};                           // pointer to a POLY_G4 
     SVECTOR RotVector = {0, 0, 0};                  // Initialize rotation vector {x, y, z}
     VECTOR  MovVector = {0, 0, CENTERX/2, 0};               // Initialize translation vector {x, y, z, pad}
@@ -146,7 +124,7 @@ int main(void)
             { 32, -32, 1 },                         // Vert 3
             { 32,  32, 1  }                         // Vert 4
         };                                          
-    MATRIX PolyMatrix = IDMATRIX;                   
+    MATRIX PolyMatrix = {0};                   
         
     long polydepth;
     long polyflag;

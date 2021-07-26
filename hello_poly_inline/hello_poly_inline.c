@@ -34,7 +34,7 @@
 DISPENV disp[2];                        // Double buffered DISPENV and DRAWENV
 DRAWENV draw[2];
 u_long ot[2][OTLEN];               // double ordering table of length 8 * 32 = 256 bits / 32 bytes
-char primbuff[2][32768] = {0};     // double primitive buffer of length 32768 * 8 =  262.144 bits / 32,768 Kbytes
+char primbuff[2][32768];           // double primitive buffer of length 32768 * 8 =  262.144 bits / 32,768 Kbytes
 char *nextpri = primbuff[0];       // pointer to the next primitive in primbuff. Initially, points to the first bit of primbuff[0]
 short db = 0;                      // index of which buffer is used, values 0, 1
 
@@ -53,12 +53,7 @@ void init(void)
     SetDefDrawEnv(&draw[0], 0, SCREENYRES, SCREENXRES, SCREENYRES);
     SetDefDrawEnv(&draw[1], 0, 0, SCREENXRES, SCREENYRES);
     // If PAL, use 320x256, hence 256 - 240 = 16 / 2 = 8 px vertical offset
-    if (VMODE)
-    {
-        SetVideoMode(MODE_PAL);
-        disp[0].screen.y += 8;
-        disp[1].screen.y += 8;
-    }
+    if (VMODE) SetVideoMode(MODE_PAL);
     SetDispMask(1);
     // Set background color
     setRGB0(&draw[0], 50, 50, 50);

@@ -29,7 +29,7 @@
 DISPENV disp[2];
 DRAWENV draw[2];
 u_long      ot[2][OTLEN];                   // Ordering table (contains addresses to primitives)
-char        primbuff[2][PRIMBUFFLEN] = {0}; // Primitive list // That's our prim buffer
+char        primbuff[2][PRIMBUFFLEN]; // Primitive list // That's our prim buffer
 char * nextpri = primbuff[0];                       // Primitive counter
 short           db  = 0;                        // Current buffer counter
 long    t, p, OTz, Flag;                // t == vertex count, p == depth cueing interpolation value, OTz ==  value to create Z-ordered OT, Flag == see LibOver47.pdf, p.143
@@ -65,7 +65,6 @@ MATRIX cmat = {
 // Prototypes
 void init(void);
 void display(void);
-//~ void LoadTexture(u_long * tim, TIM_IMAGE * tparam);
 void init(){
     // Reset the GPU before doing anything and the controller
     PadInit(0);
