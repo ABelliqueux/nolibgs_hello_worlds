@@ -240,7 +240,7 @@ int main(void)
                     &polyS.depth,
                     &polyS.flag
                     );
-        addPrim(ot[db]+polyS.otz, polyS.poly_f4);
+        addPrim(ot[db][polyS.otz], polyS.poly_f4);
         nextpri += sizeof(POLY_F4);
         ///// Yellow
         poly1S.poly_f4 = (POLY_F4 *)nextpri;
@@ -258,7 +258,7 @@ int main(void)
                     &poly1S.depth,
                     &poly1S.flag
                     );
-        addPrim(ot[db]+poly1S.otz, poly1S.poly_f4);
+        addPrim(ot[db][poly1S.otz], poly1S.poly_f4);
         nextpri += sizeof(POLY_F4);
         ///// Green
         poly2S.poly_f4 = (POLY_F4 *)nextpri;
@@ -276,7 +276,7 @@ int main(void)
                     &poly2S.depth,
                     &poly2S.flag
                     );
-        addPrim(ot[db]+poly2S.otz, poly2S.poly_f4);
+        addPrim(ot[db][poly2S.otz], poly2S.poly_f4);
         nextpri += sizeof(POLY_F4);
         ///// Blue
         poly3S.poly_f4 = (POLY_F4 *)nextpri;
@@ -294,7 +294,7 @@ int main(void)
                     &poly3S.depth,
                     &poly3S.flag
                     );
-        addPrim(ot[db]+poly3S.otz, poly3S.poly_f4);
+        addPrim(ot[db][poly3S.otz], poly3S.poly_f4);
         nextpri += sizeof(POLY_F4);
         // Pad stuff
         int pad = PadRead(0); // init pad
