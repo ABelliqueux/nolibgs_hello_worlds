@@ -3,6 +3,24 @@
 You need [mkpsxiso](https://github.com/Lameguy64/mkpsxiso) in your $PATH to generate a PSX disk image.
 You also need [`psxavenc` and `xainterleave`](https://github.com/ABelliqueux/candyk-psx/tree/master/toolsrc/).
 
+## WAV creation
+
+Use ffmpeg to create a 16-bit ADPCM mono WAV file - change -ar to reduce filesize (and quality)
+
+```bash
+$ ffmpeg -i input.mp3 -acodec pcm_s16le -ac 1 -ar 44100 output.wav
+```
+
+You can use Audacity to edit sound, but as mentionned in [xatut.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/XATUT.pdf), p17 :
+
+> At this point it is worth mentioning that certain sound editing packages add some custom information at
+> the end of a .WAV file such as author and package used to create the file. This is normally not a
+> problem as the .WAV header contains details of the length of the data. However MovConv and
+> MovPack do not use the header information in this way, and so will convert .WAV files to .XA using
+> all the data after the .WAV header up to the end of the file. This can lead too .XA files with audible
+> noise such as clicks or pops where the custom information has been converted to sound data at the end
+> of the sample.
+
 ### Generate interleaved XA file
 
 ```bash
@@ -106,7 +124,7 @@ See here for more details : https://github.com/Lameguy64/mkpsxiso/blob/c44b78e37
 
 XA tutorial : http://psx.arthus.net/code/XA/XATUT.pdf  
 
-Full XAtut archive : http://psx.arthus.net/code/XA/xatut.zip  
+Full XAtut archive : http://psx.arthus.net/code/XA/xatut.zip  - https://web.archive.org/web/20060316213726/http://dev.paradogs.com/bin/docs/xatut.zip
 
 XA ADPCM documentation : http://psx.arthus.net/code/XA/XA%20ADPCM%20documentation.txt  
 
