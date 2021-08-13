@@ -25,7 +25,6 @@
 DISPENV disp[2];                 // Double buffered DISPENV and DRAWENV
 DRAWENV draw[2];
 short db = 0;                      // index of which buffer is used, values 0, 1
-
 // SPU attributes
 SpuCommonAttr spuSettings;
 #define CD_SECTOR_SIZE 2048
@@ -34,10 +33,6 @@ SpuCommonAttr spuSettings;
 #define XA_SECTOR_OFFSET 4
 // Number of XA files
 #define XA_TRACKS 1
-// Number of populated XA streams/channels in each XA file
-#define INDEXES_IN_XA   1
-#define TOTAL_TRACKS    (XA_TRACKS*INDEXES_IN_XA)
-
 typedef struct {
     int start;
     int end;
