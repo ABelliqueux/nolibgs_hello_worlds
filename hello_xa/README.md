@@ -8,7 +8,7 @@ You also need [`psxavenc` and `xainterleave`](https://github.com/ABelliqueux/can
 Use ffmpeg to create a 16-bit ADPCM mono WAV file - change -ar to reduce filesize (and quality)
 
 ```bash
-$ ffmpeg -i input.mp3 -acodec pcm_s16le -ac 1 -ar 44100 output.wav
+$ ffmpeg -i input.mp3 -acodec pcm_s16le -ac 2 -ar 44100 output.wav
 ```
 
 You can use Audacity to edit sound, but as mentionned in [xatut.pdf](http://psx.arthus.net/sdk/Psy-Q/DOCS/XATUT.pdf), p17 :
