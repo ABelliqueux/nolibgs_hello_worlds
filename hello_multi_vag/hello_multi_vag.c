@@ -1,26 +1,15 @@
-// VAGDEMO2020 by Schnappy
-// December 2020
-// Based on VAGDEMO_FIXED by Yagotzirck
-// Based on VAGDEMO by Shadow
-// based on psyq/addons/sound/TUTO3.C
+// Hello multi vag by Schnappy
+// August 2021
 //
 //
-// Load two VAG file to SPU sound buffer and play them back alternatively or simultaneously.
+// Load VAG samples to the SPU sound buffer and play them back with pad input
 //
-// WAV creation: use ffmpeg to create a 16-bit ADPCM mono WAV file - change -ar to reduce filesize (and quality)
-// $ ffmpeg -i input.ext -f s16le -ac 1 -ar 44100 tmp.dat
-//
-// WAV to VAG convertion using WAV2VAG : https://github.com/ColdSauce/psxsdk/blob/master/tools/wav2vag.c
-// change -freq according to the -ar setting above 
-// $ wav2vag tmp.dat output.vag -sraw16 -freq=44100 (-L) 
-//
-// Alternatively, you can use PsyQ VAGEDIT.EXE to change the sampling frequency of an existing VAG file.
-//
+// See here for more details, file format infos, tools, conversion :
+//        https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/VAG
 // Docs : see libformat47.pdf p.209
 //            libover47.pdf,  p.271
 //            libref47.pdf,   p.980
-// URLS : http://psx.arthus.net/code/VAG/
-//        https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/VAG
+
 #include <sys/types.h>
 #include <stdio.h>
 #include <libgte.h>
