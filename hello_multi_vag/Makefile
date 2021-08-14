@@ -1,6 +1,6 @@
-TARGET = hello_multivag_new
+TARGET = hello_multi_vag
 
-SRCS = hello_multivag_new.c \
+SRCS = hello_multi_vag.c \
 ../VAG/hello.vag \
 ../VAG/poly.vag \
 ../VAG/0_come.vag \
