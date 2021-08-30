@@ -62,11 +62,8 @@ int main(void)
     // Init Spu
     SpuInit();
     // Set master & CD volume to max
-    //~ spuSettings.mask = (SPU_COMMON_MVOLL | SPU_COMMON_MVOLR | SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX | SPU_COMMON_MVOLMODEL | SPU_COMMON_MVOLMODER);
-    spuSettings.mask = (SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX | SPU_COMMON_MVOLMODEL | SPU_COMMON_MVOLMODER);
+    spuSettings.mask = (SPU_COMMON_MVOLL | SPU_COMMON_MVOLR | SPU_COMMON_CDVOLL | SPU_COMMON_CDVOLR | SPU_COMMON_CDMIX);
     // Master volume should be in range 0x0000 - 0x3fff
-    //~ spuSettings.mvolmode.left = SPU_VOICE_LINEARIncN; 
-    //~ spuSettings.mvolmode.right = SPU_VOICE_LINEARIncN; 
     spuSettings.mvol.left  = 0x3fff;
     spuSettings.mvol.right = 0x3fff;
     // Cd volume should be in range 0x0000 - 0x7fff
