@@ -69,8 +69,8 @@ git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git --recursive
  3. Change to the repo's directory and get the PsyQ converted libraries:
 ```bash
 cd nolibgs_hello_worlds
-wget http://psx.arthus.net/sdk/Psy-Q/psyq-4_7-converted-light.zip
-unzip psyq-4_7-converted-light.zip
+wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+unzip psyq-4.7-converted-full.7z
 ```
  4. Try your setup :
 ```bash
