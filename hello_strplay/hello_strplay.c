@@ -77,18 +77,15 @@ void display(void)
 void main() {
 	
 	// Reset and initialize stuff
-	ResetCallback();
+	init();
 	CdInit();
 	PadInit(0);
-	ResetGraph(0);
-	SetGraphDebug(0);
 	
 	// Play the video in loop
 	while (1) {
 		
 		if (PlayStr(320, 240, 0, 0, &StrFile[0]) == 0)	// If player presses Start
 			break;	// Exit the loop
-		
 	}
 	
 }
