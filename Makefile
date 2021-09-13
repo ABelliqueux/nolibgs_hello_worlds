@@ -48,6 +48,8 @@ hello_bs:
 	$(MAKE) -C hello_bs all
 hello_str:
 	$(MAKE) -C hello_str all
+hello_strplay:
+	$(MAKE) -C hello_strplay all
 
 clean:
 	$(MAKE) -C hello_2pads clean
@@ -76,6 +78,7 @@ clean:
 	$(MAKE) -C hello_xa cleansub
 	$(MAKE) -C hello_bs cleansub
 	$(MAKE) -C hello_str cleansub
+	$(MAKE) -C hello_strplay cleansub
 
 all:
 	$(MAKE) -C hello_2pads 
@@ -102,11 +105,12 @@ all:
 	$(MAKE) -C hello_xa all
 	$(MAKE) -C hello_bs all
 	$(MAKE) -C hello_str all
+	$(MAKE) -C hello_strplay all
 	
 # declare phony rules
 .PHONY: hello_2pads hello_cube hello_cubetex hello_poly_fun hello_gte_opti \
 		hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt  \
 		hello_poly_gt_tw hello_poly_inline hello_sio hello_sprt hello_tile \
-		hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str \
+		hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str hello_strplay \
 		hello_poly_stp hello_cubetex_stp \
 		clean all
