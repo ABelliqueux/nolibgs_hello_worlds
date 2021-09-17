@@ -35,7 +35,7 @@ short db = 0;                   // index of which buffer is used, values 0, 1
 // convert Little endian to Big endian
 #define SWAP_ENDIAN32(x) (((x)>>24) | (((x)>>8) & 0xFF00) | (((x)<<8) & 0x00FF0000) | ((x)<<24))
 // Memory management table ; allow MALLOC_MAX calls to SpuMalloc() - libref47.pdf p.1044
-char spu_malloc_rec[SPU_MALLOC_RECSIZ * (2 + MALLOC_MAX + 1)]; 
+char spu_malloc_rec[SPU_MALLOC_RECSIZ * (MALLOC_MAX + 1)]; 
 // Custom struct to handle VAG files
 typedef struct VAGsound {
     u_char * VAGfile;        // Pointer to VAG data address

@@ -60,7 +60,7 @@ u_long vag_spu_address;                  // address allocated in memory for firs
 u_long spu_start_address;                
 u_long get_start_addr;
 u_long transSize;                            
-// Memory management table ; allow MALLOC_MAX calls to SpuMalloc() - ibref47.pdf p.1044
+// Memory management table ; allow MALLOC_MAX calls to SpuMalloc() - libref47.pdf p.1044
 char spu_malloc_rec[SPU_MALLOC_RECSIZ * (2 + MALLOC_MAX+1)]; 
 // VAG files
 // We're using GrumpyCoder's Nugget wrapper to compile the code with a modern GCC : https://github.com/grumpycoders/pcsx-redux/tree/main/src/mips/psyq

@@ -14,8 +14,8 @@ hello_gte_opti:
 	$(MAKE) -C hello_gte_opti 
 hello_light:
 	$(MAKE) -C hello_light 
-hello_multivag:
-	$(MAKE) -C hello_multivag 
+hello_multi_vag:
+	$(MAKE) -C hello_multi_vag 
 hello_pad:
 	$(MAKE) -C hello_pad 
 hello_poly:
@@ -59,7 +59,7 @@ clean:
 	$(MAKE) -C hello_poly_fun clean
 	$(MAKE) -C hello_gte_opti clean
 	$(MAKE) -C hello_light clean
-	$(MAKE) -C hello_multivag clean
+	$(MAKE) -C hello_multi_vag clean
 	$(MAKE) -C hello_pad clean
 	$(MAKE) -C hello_poly clean
 	$(MAKE) -C hello_poly_ft clean
@@ -88,7 +88,7 @@ all:
 	$(MAKE) -C hello_poly_fun 
 	$(MAKE) -C hello_gte_opti 
 	$(MAKE) -C hello_light 
-	$(MAKE) -C hello_multivag 
+	$(MAKE) -C hello_multi_vag 
 	$(MAKE) -C hello_pad 
 	$(MAKE) -C hello_poly 
 	$(MAKE) -C hello_poly_ft 
@@ -109,7 +109,7 @@ all:
 	
 # declare phony rules
 .PHONY: hello_2pads hello_cube hello_cubetex hello_poly_fun hello_gte_opti \
-		hello_light hello_multivag hello_pad hello_poly hello_poly_ft hello_poly_gt  \
+		hello_light hello_multi_vag hello_pad hello_poly hello_poly_ft hello_poly_gt  \
 		hello_poly_gt_tw hello_poly_inline hello_sio hello_sprt hello_tile \
 		hello_vag hello_world hello_cdda hello_cd hello_xa hello_bs hello_str hello_strplay \
 		hello_poly_stp hello_cubetex_stp \
