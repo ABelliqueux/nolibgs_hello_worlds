@@ -61,7 +61,7 @@ u_long spu_start_address;
 u_long get_start_addr;
 u_long transSize;                            
 // Memory management table ; allow MALLOC_MAX calls to SpuMalloc() - libref47.pdf p.1044
-char spu_malloc_rec[SPU_MALLOC_RECSIZ * (2 + MALLOC_MAX+1)]; 
+char spu_malloc_rec[SPU_MALLOC_RECSIZ * (MALLOC_MAX+1)]; 
 // VAG files
 // We're using GrumpyCoder's Nugget wrapper to compile the code with a modern GCC : https://github.com/grumpycoders/pcsx-redux/tree/main/src/mips/psyq
 // To include binary files in the exe, add your VAG files to the SRCS variable in Makefile
