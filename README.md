@@ -70,7 +70,7 @@ git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git --recursive
 ```bash
 cd nolibgs_hello_worlds
 wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-7z x psyq-4.7-converted-full.7z
+7z x psyq-4.7-converted-full.7z -o./psyq
 ```
  4. Try your setup :
 ```bash
