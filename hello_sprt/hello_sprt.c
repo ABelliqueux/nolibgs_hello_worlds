@@ -23,7 +23,7 @@ char primbuff[2][32768];     // double primitive buffer of length 32768 * 8 =  2
 char *nextpri = primbuff[0]; // pointer to the next primitive in primbuff. Initially, points to the first bit of primbuff[0]
 short db = 0;                // index of which buffer is used, values 0, 1
 // Embed TIM files
-// See https://github.com/ABelliqueux/nolibgs_hello_worlds#embedding-binary-data-in-a-ps-exe
+// See https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/(Archived)--Embedding-binary-data-in-your-psx-executable
 // 16bpp TIM
 extern unsigned long _binary____TIM_TIM16_tim_start[];
 extern unsigned long _binary____TIM_TIM16_tim_end[];
