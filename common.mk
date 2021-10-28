@@ -4,6 +4,7 @@ TYPE = ps-exe
 THISDIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 SRCS += $(THISDIR)thirdparty/nugget/common/crt0/crt0.s
+SRCS += $(THISDIR)thirdparty/nugget/common/syscalls/printf.s 
 
 CPPFLAGS += -I$(THISDIR)thirdparty/nugget/psyq/include -I$(THISDIR)psyq-4_7-converted/include -I$(THISDIR)psyq-4.7-converted-full/include -I$(THISDIR)psyq/include 
 LDFLAGS += -L$(THISDIR)thirdparty/nugget/psyq/lib -L$(THISDIR)psyq-4_7-converted/lib -L$(THISDIR)psyq-4.7-converted-full/lib -L$(THISDIR)psyq/lib
@@ -48,4 +49,8 @@ endef
 
 # convert VAG files to bin
 %.o: %.vag
+	$(call OBJCOPYME)
+	
+# convert HIT to bin
+%.o: %.HIT
 	$(call OBJCOPYME)
