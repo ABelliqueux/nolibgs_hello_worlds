@@ -185,7 +185,7 @@ void checkPad(void)
     if ( pad & PADselect && !(oldPad & PADselect) )
     {
         if ( state == PLAY ) { stopMusic(); state = STOP; }
-        else if ( state == STOP ) { startMusic(); state = PLAY; }
+        else if ( state == STOP ) { loadMod();startMusic(); state = PLAY; }
         oldPad = pad;
     }
     if ( !(pad & PADselect) && oldPad & PADselect )
@@ -216,7 +216,7 @@ int main() {
     // Main loop
     while (1) 
     {
-        // TODO: change volume, restart playback
+        // TODO: change volume
         t++;
         FntPrint("Hello mod ! %d\nUse pad buttons to play sounds.\n", t);
         FntPrint("State: %d\n", state);
