@@ -9,9 +9,9 @@ Use the `START` button to cycle throught the 4 transparency rates.
 
 It also features a few C struct to facilitate access to the TIM file / pixel data.
 
-See [here](https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/hello_poly_stp) for more information on how to convert your images to TIM while preserving transparency.
+See [https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/hello_poly_stp](https://github.com/ABelliqueux/nolibgs_hello_worlds/tree/main/hello_poly_stp) for more information on how to convert your images to TIM while preserving transparency.
 
-See [here](https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/TIM#transparency) for mor details on transparency.  
+See [https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/TIM#transparency](https://github.com/ABelliqueux/nolibgs_hello_worlds/wiki/TIM#transparency) for mor details on transparency.  
 
 ## Documentation 
 
