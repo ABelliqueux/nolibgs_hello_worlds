@@ -2,5 +2,5 @@ See the **wiki** for more details on MOD usage : [https://github.com/ABelliqueux
 
 ## Credits
 
-MOD : stardust memories by Jester : https://modarchive.org/index.php?request=view_by_moduleid&query=59344
+MOD : stardust memories by Jester : https://modarchive.org/index.php?request=view_by_moduleid&query=59344  
 Modplayer port by @NicolasNoble : https://github.com/grumpycoders/pcsx-redux/tree/main/src/mips/modplayer
