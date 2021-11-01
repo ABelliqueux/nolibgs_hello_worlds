@@ -22,8 +22,7 @@ jobs:
         7z.exe x psyq-4.7-converted-full.7z -o"D:\a\nolibgs_hello_worlds\nolibgs_hello_worlds\psyq"
         echo "$GITHUB_WORKSPACE/mkpsxiso" >> $GITHUB_PATH
         echo "$GITHUB_WORKSPACE/mipsel/bin" >> $GITHUB_PATH
-        dir D:\a\nolibgs_hello_worlds\nolibgs_hello_worlds\psyq
     - name: Make all
-      run: make all
+      run: make -C hello_2pads
 
         
