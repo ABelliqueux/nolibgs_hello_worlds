@@ -16,7 +16,7 @@
 #include <libetc.h>
 #include <stdio.h>
 // Sample vector model
-#include "../includes/cube.c"
+#include "cube.c"
 #define VMODE       0
 #define SCREENXRES 320
 #define SCREENYRES 240
@@ -81,7 +81,7 @@ int main() {
     int     AutoRotate=1;
     long    t, p, OTz, Flag;                // t == vertex count, p == depth cueing interpolation value, OTz ==  value to create Z-ordered OT, Flag == see LibOver47.pdf, p.143
     POLY_G3 *poly = {0};                           // pointer to a POLY_G4 
-    SVECTOR Rotate={ 0 };                   // Rotation coordinates
+    SVECTOR Rotate={ 232, 232, 0, 0 };                   // Rotation coordinates
     VECTOR  Trans={ 0, 0, CENTERX * 3, 0 };     // Translation coordinates
                                             // Scaling coordinates
     VECTOR  Scale={ ONE/2, ONE/2, ONE/2, 0 };     // ONE == 4096
@@ -124,8 +124,8 @@ int main() {
             TPressed = 0;
         }
         if (AutoRotate) {
-            Rotate.vy += 8; // Pan
-            Rotate.vx += 8; // Tilt
+            Rotate.vy += 28; // Pan
+            Rotate.vx += 28; // Tilt
             //~ Rotate.vz += 8; // Roll
         }
         // Clear the current OT

@@ -16,7 +16,7 @@
 #include <libetc.h>
 #include <stdio.h>
 // Sample vector model
-#include "../includes/cube.c"
+#include "cube.c"
 
 #define VMODE       0
 #define SCREENXRES 320
@@ -201,7 +201,7 @@ int main() {
             t+=3;
         }
         // Find and apply light rotation matrix
-        //~ // Find rotmat from light angles
+        // Find rotmat from light angles
         RotMatrix_gte(&lgtang, &rotlgt);
         // Find rotmat from cube angles
         RotMatrix_gte(&Rotate, &rotcube);  
