@@ -1,0 +1,25 @@
+name: Linux build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install mipsel toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip
+    - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive
+    - name: Get converted libs
+      run: |
+        wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z x psyq-4.7-converted-full.7z -o./psyq
+    - name: Make all
+      run: make all
