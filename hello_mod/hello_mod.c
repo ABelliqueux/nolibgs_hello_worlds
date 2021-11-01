@@ -25,12 +25,17 @@ short db = 1;                    // index of which buffer is used, values 0, 1
 CVECTOR fntColor = { 128, 255, 0 };
 CVECTOR fntColorBG = { 0, 0, 0 };
 
-// Playback state
+// MOD Playback
+#define MAXVOLUME 65536
+#define INCVOLUME 256
+// State
 enum PLAYBACK {
     STOP  = 0,
     PLAY  = 1,
     PAUSE = 2,
 };
+// Music volume should range from 0 to 65536
+u_int musicVolume = 2048;
 
 enum PLAYBACK state = PLAY;
 
@@ -78,7 +83,7 @@ void init(void)
     PutDispEnv(&disp[db]);          // set the disp and draw environnments
     PutDrawEnv(&draw[db]);
     FntLoad(FONTX, FONTY);                // Load font to vram at 960,0(+128)
-    FntOpen(32, 64, 260, 120, 0, 120 ); // FntOpen(x, y, width, height,  black_bg, max. nbr. chars
+    FntOpen(16, 60, 288, 260, 0, 256 ); // FntOpen(x, y, width, height,  black_bg, max. nbr. chars
     FntColor(fntColor, fntColorBG);
 }
 void display(void)
@@ -99,7 +104,7 @@ void checkPad(void)
     // Up
     if ( pad & PADLup && !(oldPad & PADLup) )
     {
-        MOD_PlayNote(11, 25, 15, 63);
+        MOD_PlaySoundEffect(11, 25, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADLup) && oldPad & PADLup )
@@ -109,7 +114,7 @@ void checkPad(void)
     // Down
     if ( pad & PADLdown && !(oldPad & PADLdown) )
     {
-        MOD_PlayNote(12, 26, 15, 63);
+        MOD_PlaySoundEffect(12, 26, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADLdown) && oldPad & PADLdown )
@@ -119,7 +124,7 @@ void checkPad(void)
     // Left
     if ( pad & PADLleft && !(oldPad & PADLleft) )
     {
-        MOD_PlayNote(13, 27, 15, 63);
+        MOD_PlaySoundEffect(13, 27, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADLleft) && oldPad & PADLleft )
@@ -130,7 +135,7 @@ void checkPad(void)
     if ( pad & PADLright && !(oldPad & PADLright) )
     {
         // Channel 1 is transition anim, only take input when !transition
-        MOD_PlayNote(6, 21, 15, 63);
+        MOD_PlaySoundEffect(6, 21, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADLright) && oldPad & PADLright )
@@ -141,7 +146,7 @@ void checkPad(void)
     if ( pad & PADRdown && !(oldPad & PADRdown) )
     {
         // Select sound
-        MOD_PlayNote(7, 22, 15, 63);
+        MOD_PlaySoundEffect(7, 22, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADRdown) && oldPad & PADRdown )
@@ -152,7 +157,7 @@ void checkPad(void)
     if ( pad & PADRleft && !(oldPad & PADRleft) )
     {
         // Select sound
-        MOD_PlayNote(8, 23, 15, 63);
+        MOD_PlaySoundEffect(8, 23, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADRleft) && oldPad & PADRleft )
@@ -163,7 +168,7 @@ void checkPad(void)
     if ( pad & PADRright && !(oldPad & PADRright) )
     {
         // Select sound
-        MOD_PlayNote(9, 28, 15, 63);
+        MOD_PlaySoundEffect(9, 28, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADRright) && oldPad & PADRright )
@@ -174,25 +179,25 @@ void checkPad(void)
     if ( pad & PADRup && !(oldPad & PADRup) )
     {
         // Select sound
-        MOD_PlayNote(9, 24, 15, 63);
+        MOD_PlaySoundEffect(9, 24, 15, 63);
         oldPad = pad;
     }
     if ( !(pad & PADRup) && oldPad & PADRup )
     {
         oldPad = pad;
     }
-    // Select button
+    // Select button : Stop mod / Play back from the start
     if ( pad & PADselect && !(oldPad & PADselect) )
     {
         if ( state == PLAY ) { stopMusic(); state = STOP; }
-        else if ( state == STOP ) { loadMod();startMusic(); state = PLAY; }
+        else if ( state == STOP ) { loadMod(); startMusic(); state = PLAY; }
         oldPad = pad;
     }
     if ( !(pad & PADselect) && oldPad & PADselect )
     {
         oldPad = pad;
     }
-    // Start button
+    // Start button : Toggle playback pause
     if ( pad & PADstart && !(oldPad & PADstart) )
     {
         if ( state == PLAY ) { pauseMusic(); state = PAUSE; }
@@ -200,6 +205,31 @@ void checkPad(void)
         oldPad = pad;
     }
     if ( !(pad & PADstart) && oldPad & PADstart )
+    {
+        oldPad = pad;
+    }
+    // R1/R2 : change music volume
+    if ( pad & PADR1 && !(oldPad & PADR1) )
+    {
+        if(musicVolume < MAXVOLUME) { 
+            musicVolume += INCVOLUME; 
+        }
+        MOD_SetMusicVolume(musicVolume);
+        oldPad = pad;
+    }
+    if ( !(pad & PADR1) && oldPad & PADR1 )
+    {
+        oldPad = pad;
+    }
+    if ( pad & PADR2 && !(oldPad & PADR2) )
+    {
+        if(musicVolume > 0) { 
+            musicVolume -= INCVOLUME; 
+        }
+        MOD_SetMusicVolume(musicVolume);
+        oldPad = pad;
+    }
+    if ( !(pad & PADR2) && oldPad & PADR2 )
     {
         oldPad = pad;
     }
@@ -213,14 +243,18 @@ int main() {
     // Mod Playback
     loadMod();
     startMusic();
+    MOD_SetMusicVolume(musicVolume);
     // Main loop
     while (1) 
     {
-        // TODO: change volume
+        // Timer
         t++;
-        FntPrint("Hello mod ! %d\nUse pad buttons to play sounds.\n", t);
-        FntPrint("State: %d\n", state);
+        // Print stuff
+        FntPrint("Hello mod ! %d\nUse the pad's buttons to\nplay sound effects.\n", t);
+        FntPrint("State: %d, music volume : %d\n", state, musicVolume);
         FntPrint("Start : play/pause music.\n");
+        FntPrint("select : stop/play music.\n");
+        FntPrint("R1/R2 : Change music volume.\n");
         FntFlush(-1);
         display();
     }
