@@ -24,6 +24,9 @@ jobs:
         repository: 'mkpsxiso'
     - name: Build mkpsxiso
       run: |
+        pwd
+        ls -l
+        tree -a
         cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/build -B ${{github.workspace}}/mkpsxiso/build
         cmake --build ${{github.workspace}}/mkpsxiso/build
         echo "${{github.workspace}}/mkpsxiso/build" >> $GITHUB_PATH
