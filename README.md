@@ -29,16 +29,28 @@ We'll keep things simple for now. If you want to read about more methods to get 
 
 #### MIPS toolchain setup
 1. Download the MIPS toolchain here : [https://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip](http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip)
-2. Unzip anywhere on your hard-drive and add the `bin` folder to [your $PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).
+2. Extract the archive's content in `C:\g++-mipsel-none-elf-10.3.0` and add the `C:\g++-mipsel-none-elf-10.3.0\bin` folder to [your $PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).
 3. Test everything is fine by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) and typing `mipsel-none-elf-gcc.exe --version`. If you get a message like `mipsel-none-gnu-gcc (GCC) 10.3.0`, then it's working !
 
 #### Nugget + PsyQ setup
 1. Download the PsyQ converted libraries here : [http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z)  
-2. Download this repository's release : [https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip](https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip)
-3. Unzip the **`nolibgs_hello_worlds.zip`** file anywhere on your hard-drive. We'll use `C:\psxdev\` as an example
-4. Unzip the `psyq-4.7-converted-full.7z` file in `C:\psxdev\psyq`. You should now have `C:\psxdev\psyq\include` and `C:\psxdev\psyq\lib`.
-5. Test everything is working by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089), change to the `C:\psxdev\` directory with the following command: `cd C:\psxdev\`, then type `make` and hit enter.  
-By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\psxdev\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
+2. Clone the 'nolibgs_hello_worlds' repo with `git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git` or download this [repository's release](https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip) and extract **`nolibgs_hello_worlds.zip`**'s content to `C:\no_libgs_hello_worlds\` .
+3. Extract the content of `psyq-4.7-converted-full.7z` in `C:\no_libgs_hello_worlds\psyq`. You should now have `C:\no_libgs_hello_worlds\psyq\include` and `C:\no_libgs_hello_worlds\psyq\lib` ;
+```
+no_libgs_hello_worlds
+├── common.mk
+├── hello_world
+|       ├── hello_world.c
+|       ├── Makefile
+├── hello_...
+└── psyq
+    ├── lib
+    |    └── *.a 
+    └── include
+         └── *.h  
+```
+4. Test everything is working by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089), change to the `C:\no_libgs_hello_worlds\` directory with the following command: `cd C:\no_libgs_hello_worlds\`, then type `make` and hit enter.  
+By default, this should build the `hello_world` example, and you should now have a `hello_world.ps-exe` file in `C:\no_libgs_hello_worlds\hello_world`. This a PSX executable that can be run in an emulator like [pcsx-redux](https://github.com/grumpycoders/pcsx-redux/).
 
 ### Linux 
 
