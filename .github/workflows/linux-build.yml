@@ -26,7 +26,7 @@ jobs:
       run: |
         sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
         mkdir ${{github.workspace}}/mkpsxiso/build
-        cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/build -B ${{github.workspace}}/mkpsxiso/build
+        cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/ -B ${{github.workspace}}/mkpsxiso/build
         cmake --build ${{github.workspace}}/mkpsxiso/build
         echo "${{github.workspace}}/mkpsxiso/build" >> $GITHUB_PATH
     - name: Get converted libs
