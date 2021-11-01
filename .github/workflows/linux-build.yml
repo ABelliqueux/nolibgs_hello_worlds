@@ -19,11 +19,17 @@ jobs:
       with:
         owner: 'Lameguy64'
         repository: 'mkpsxiso'
-    - name: Build mkpsxiso
+    - name: Configure mkpsxiso
       run: |
         cd mkpsxiso
-        cmake -S . -B build/ -DCMAKE_BUILD_TYPE=Release
-        cmake --build build/
+    - name: Build mkpsxiso
+      uses: ashutoshvarma/action-cmake-build@master
+      with:
+          build-dir: ${{ runner.workspace }}/build
+          build-type: Release
+          parallel: 14  
+    - name: Update path
+      run: |
         echo "$GITHUB_WORKSPACE/mkpsxiso/build" >> $GITHUB_PATH
         cd $GITHUB_WORKSPACE
     - uses: actions/checkout@v2
