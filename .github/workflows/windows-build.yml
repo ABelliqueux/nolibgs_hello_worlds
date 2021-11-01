@@ -23,6 +23,7 @@ jobs:
         echo "$GITHUB_WORKSPACE/mkpsxiso" >> $GITHUB_PATH
         echo "$GITHUB_WORKSPACE/mipsel/bin" >> $GITHUB_PATH
         dir $GITHUB_WORKSPACE
+        dir $GITHUB_WORKSPACE/mkpsxiso
         dir $GITHUB_WORKSPACE/mipsel/bin
     - name: Make all
       run: make all
