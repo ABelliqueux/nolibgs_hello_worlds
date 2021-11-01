@@ -11,14 +11,14 @@ jobs:
 
     steps:
     - name: Install mipsel toolchain
-        run: |
-          sudo apt-get update
-          sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip
+      run: |
+        sudo apt-get update
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip
     - name: Get converted libs
-        run: |
-          cd nolibgs_hello_worlds
-          wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-          7z x psyq-4.7-converted-full.7z -o./psyq
+      run: |
+        cd nolibgs_hello_worlds
+        wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z x psyq-4.7-converted-full.7z -o./psyq
     - uses: actions/checkout@v2
     - name: make all
       run: make all
