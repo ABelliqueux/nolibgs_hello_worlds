@@ -22,8 +22,6 @@ jobs:
         7z.exe x psyq-4.7-converted-full.7z -o"$GITHUB_WORKSPACE\psyq"
         echo "$GITHUB_WORKSPACE/mkpsxiso" >> $GITHUB_PATH
         echo "$GITHUB_WORKSPACE/mipsel/bin" >> $GITHUB_PATH
-    - name: Add Path
-      run: echo “##[add-path]$GITHUB_WORKSPACE/mkpsxiso;$GITHUB_WORKSPACE/mipsel/bin”
     - name: Make all
       run: make all
 
