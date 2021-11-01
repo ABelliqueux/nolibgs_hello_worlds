@@ -14,11 +14,13 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip
+    - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive
     - name: Get converted libs
       run: |
         cd nolibgs_hello_worlds
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
         7z x psyq-4.7-converted-full.7z -o./psyq
-    - uses: actions/checkout@v2
-    - name: make all
+    - name: Make all
       run: make all
