@@ -13,12 +13,12 @@ jobs:
     - name: Get prebuilt stuff
       run: |
         echo "C:\msys64\usr\bin" >> $GITHUB_PATH
-        wget http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-11.2.0.zip
-        wget http://lameguy64.github.io/mkpsxiso/mkpsxiso-1.20.zip
-        wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-        7z x g++-mipsel-none-elf-11.2.0.zip -o./mipsel
-        7z x mkpsxiso-1.20.zip -o./mkpsxiso
-        7z x psyq-4.7-converted-full.7z -o./psyq
+        wget.exe http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-11.2.0.zip
+        wget.exe http://lameguy64.github.io/mkpsxiso/mkpsxiso-1.20.zip
+        wget.exe http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z.exe x g++-mipsel-none-elf-11.2.0.zip -o./mipsel
+        7z.exe x mkpsxiso-1.20.zip -o./mkpsxiso
+        7z.exe x psyq-4.7-converted-full.7z -o./psyq
         echo "$GITHUB_WORKSPACE/mkpsxiso" >> $GITHUB_PATH
         echo "$GITHUB_WORKSPACE/mipsel/bin" >> $GITHUB_PATH
     - name: Make all
