@@ -13,7 +13,19 @@ jobs:
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
-        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip cmake build-essential libtinyxml-dev
+    - name: Clone mkpsxiso
+      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      with:
+        owner: 'Lameguy64'
+        repository: 'mkpsxiso'
+    - name: Build mkpsxiso
+      run: |
+        cd mkpsxiso
+        cmake -S . -B build/ -DCMAKE_BUILD_TYPE=Release
+        cmake --build build/
+        echo "$GITHUB_WORKSPACE/mkpsxiso/build" >> $GITHUB_PATH
+        cd $GITHUB_WORKSPACE
     - uses: actions/checkout@v2
     - name: Fetch submodules
       run: git submodule update --init --recursive
