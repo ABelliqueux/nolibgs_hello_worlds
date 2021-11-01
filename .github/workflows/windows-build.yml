@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive
     - name: Get prebuilt stuff
       run: |
         C:\msys64\usr\bin\wget.exe http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-11.2.0.zip
