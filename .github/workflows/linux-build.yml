@@ -13,24 +13,16 @@ jobs:
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
-        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip cmake build-essential libtinyxml-dev
-    - name: Clone mkpsxiso
-      uses: GuillaumeFalourd/clone-github-repo-action@v1
-      with:
-        owner: 'Lameguy64'
-        repository: 'mkpsxiso'
-    - name: Build mkpsxiso
-      run: |
-        cmake -DCMAKE_BUILD_TYPE=Release -S ./mkpsxiso -B ./mkpsxiso/build
-        cmake --build ./mkpsxiso/build
-        echo "$GITHUB_WORKSPACE/mkpsxiso/build" >> $GITHUB_PATH
-        cd $GITHUB_WORKSPACE
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip tinyxml2
     - uses: actions/checkout@v2
     - name: Fetch submodules
       run: git submodule update --init --recursive
     - name: Get converted libs
       run: |
+        wget http://psx.arthus.net/tools/mkpsxiso-linux.7z
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z x mkpsxiso-linux.7z -o./bin
         7z x psyq-4.7-converted-full.7z -o./psyq
+        echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
     - name: Make all
       run: make all
