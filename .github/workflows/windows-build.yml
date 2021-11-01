@@ -12,6 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Get prebuilt stuff
       run: |
+        echo C:\msys64\usr\bin >> $GITHUB_PATH
         wget http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-11.2.0.zip
         wget http://lameguy64.github.io/mkpsxiso/mkpsxiso-1.20.zip
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
