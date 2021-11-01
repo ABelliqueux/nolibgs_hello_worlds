@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
         sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml-dev
-    - uses: actions/checkout@v2
     - name: Fetch submodules
       run: git submodule update --init --recursive
     - name: Clone mkpsxiso
@@ -25,6 +25,7 @@ jobs:
     - name: Build mkpsxiso
       run: |
         sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
+        mkdir ${{github.workspace}}/mkpsxiso/build
         cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/build -B ${{github.workspace}}/mkpsxiso/build
         cmake --build ${{github.workspace}}/mkpsxiso/build
         echo "${{github.workspace}}/mkpsxiso/build" >> $GITHUB_PATH
