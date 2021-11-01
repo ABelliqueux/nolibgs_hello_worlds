@@ -14,7 +14,7 @@ jobs:
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
-        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml-dev
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml2-dev
     - name: Fetch submodules
       run: git submodule update --init --recursive
     - name: Clone mkpsxiso
