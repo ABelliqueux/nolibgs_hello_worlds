@@ -24,6 +24,6 @@ jobs:
         echo "$GITHUB_WORKSPACE/mkpsxiso" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
         echo $GITHUB_PATH
     - name: Make all
-      run: make -C hello_2pads
+      run: make all
 
         
