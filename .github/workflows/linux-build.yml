@@ -19,7 +19,6 @@ jobs:
       run: git submodule update --init --recursive
     - name: Get converted libs
       run: |
-        cd nolibgs_hello_worlds
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
         7z x psyq-4.7-converted-full.7z -o./psyq
     - name: Make all
