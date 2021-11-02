@@ -1,0 +1,50 @@
+name: macOS toolchain CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  macos-build-and-test-toolchain:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive
+
+
+steps:
+    - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive 
+    - name: Install cmake
+      run : |
+        brew install tinyxml2
+    - name: Install mipsel toolchain
+      run: |
+        wget https://github.com/grumpycoders/pcsx-redux/blob/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-binutils.rb -O ${{github.workspace}}/mipsel-none-elf-binutils.rb
+        wget https://github.com/grumpycoders/pcsx-redux/blob/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-gcc.rb -O ${{github.workspace}}/mipsel-none-elf-gcc.rb
+        brew install ${{github.workspace}}/mipsel-none-elf-binutils.rb --debug
+        brew install ${{github.workspace}}/mipsel-none-elf-gcc.rb --debug
+    - name: Clone mkpsxiso
+      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      with:
+        owner: 'Lameguy64'
+        repository: 'mkpsxiso'
+    - name: Build mkpsxiso
+      run: |
+        sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
+        mkdir ${{github.workspace}}/mkpsxiso/build
+        cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/ -B ${{github.workspace}}/mkpsxiso/build
+        cmake --build ${{github.workspace}}/mkpsxiso/build
+        echo "${{github.workspace}}/mkpsxiso/build" >> $GITHUB_PATH
+    - name: Get converted libs
+      run: |
+        wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z x psyq-4.7-converted-full.7z -o./psyq
+    - name: Make all
+      run: make all
