@@ -19,7 +19,7 @@ jobs:
           brew install p7zip
       - name: Build mkpsxiso
         run: |
-          wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}
+          wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}/master.zip
           7z x ${{github.workspace}}/master.zip -o${{github.workspace}}/mkpsxiso
           sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
           mkdir ${{github.workspace}}/mkpsxiso/build
