@@ -34,7 +34,7 @@ jobs:
       run: |
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
         7z x psyq-4.7-converted-full.7z -o${{github.workspace}}/nolibgs_hello_worlds/psyq
-        cd ${{github.workspace}}/nolibgs_hello_worlds
-        ls -l
     - name: Make all
-      run: make all
+      run: |
+        cd ${{github.workspace}}/nolibgs_hello_worlds
+        make all
