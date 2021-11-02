@@ -12,22 +12,15 @@ jobs:
       - uses: actions/checkout@v2
       - name: Fetch submodules
         run: git submodule update --init --recursive 
-      - name: Install cmake
+      - name: Install tinyxml2 and p7zip
         run : |
+          brew update --verbose
           brew install tinyxml2
-      - name: Install mipsel toolchain
-        run: |
-          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-binutils.rb -O ${{github.workspace}}/mipsel-none-elf-binutils.rb
-          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-gcc.rb -O ${{github.workspace}}/mipsel-none-elf-gcc.rb
-          brew install ${{github.workspace}}/mipsel-none-elf-binutils.rb --debug
-          brew install ${{github.workspace}}/mipsel-none-elf-gcc.rb --debug
-      - name: Clone mkpsxiso
-        uses: GuillaumeFalourd/clone-github-repo-action@v1
-        with:
-          owner: 'Lameguy64'
-          repository: 'mkpsxiso'
+          brew install p7zip
       - name: Build mkpsxiso
         run: |
+          wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}
+          7z x ${{github.workspace}}/master.zip -o${{github.workspace}}/mkpsxiso
           sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
           mkdir ${{github.workspace}}/mkpsxiso/build
           cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/ -B ${{github.workspace}}/mkpsxiso/build
