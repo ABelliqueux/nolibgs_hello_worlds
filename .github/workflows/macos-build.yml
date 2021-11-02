@@ -13,7 +13,8 @@ jobs:
         run: |
           wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}/master.zip
           7z x ${{github.workspace}}/master.zip -o${{github.workspace}}
-          awk 'n>=4 { print a[n%7] } { a[n%7]=$0; n=n+1 }' ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt >> ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
+          awk 'n>=4 { print a[n%7] } { a[n%7]=$0; n=n+1 }' ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt >> ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt.tmp
+          mv -f ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt.tmp ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
           cat ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
           mkdir ${{github.workspace}}/mkpsxiso-master/build
           ls -l ${{github.workspace}}
