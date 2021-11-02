@@ -14,14 +14,9 @@ jobs:
           wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}/master.zip
           7z x ${{github.workspace}}/master.zip -o${{github.workspace}}
           awk 'n>=4 { print a[n%7] } { a[n%7]=$0; n=n+1 }' ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt >> ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
+          cat ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
           mkdir ${{github.workspace}}/mkpsxiso-master/build
           ls -l ${{github.workspace}}
           cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso-master -B ${{github.workspace}}/mkpsxiso-master/build
           cmake --build ${{github.workspace}}/mkpsxiso-master/build
           echo "${{github.workspace}}/mkpsxiso-master/build" >> $GITHUB_PATH
-      - name: Get converted libs
-        run: |
-          wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-          7z x psyq-4.7-converted-full.7z -o./psyq
-      - name: Make all
-        run: make all
