@@ -1,0 +1,39 @@
+name: Linux build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get repo archive
+      run: |
+        wget https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip
+        7z x nolibgs_hello_worlds.zip -o${{github.workspace}}
+        cd ${{github.workspace}}
+    - name: Install mipsel toolchain
+      run: |
+        sudo apt-get update
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml2-dev
+    - name: Clone mkpsxiso
+      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      with:
+        owner: 'Lameguy64'
+        repository: 'mkpsxiso'
+    - name: Build mkpsxiso
+      run: |
+        sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
+        mkdir ${{github.workspace}}/mkpsxiso/build
+        cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/ -B ${{github.workspace}}/mkpsxiso/build
+        cmake --build ${{github.workspace}}/mkpsxiso/build
+        echo "${{github.workspace}}/mkpsxiso/build" >> $GITHUB_PATH
+    - name: Get converted libs
+      run: |
+        wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z x psyq-4.7-converted-full.7z -o${{github.workspace}}/psyq
+    - name: Make all
+      run: make all
