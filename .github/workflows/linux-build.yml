@@ -33,6 +33,5 @@ jobs:
       run: |
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
         7z x psyq-4.7-converted-full.7z -o./psyq
-        echo "$GITHUB_WORKSPACE/bin" >> $GITHUB_PATH
     - name: Make all
       run: make all
