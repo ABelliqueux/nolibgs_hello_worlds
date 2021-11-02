@@ -17,8 +17,8 @@ jobs:
           brew install tinyxml2
       - name: Install mipsel toolchain
         run: |
-          wget https://github.com/grumpycoders/pcsx-redux/blob/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-binutils.rb -O ${{github.workspace}}/mipsel-none-elf-binutils.rb
-          wget https://github.com/grumpycoders/pcsx-redux/blob/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-gcc.rb -O ${{github.workspace}}/mipsel-none-elf-gcc.rb
+          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-binutils.rb -O ${{github.workspace}}/mipsel-none-elf-binutils.rb
+          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-gcc.rb -O ${{github.workspace}}/mipsel-none-elf-gcc.rb
           brew install ${{github.workspace}}/mipsel-none-elf-binutils.rb --debug
           brew install ${{github.workspace}}/mipsel-none-elf-gcc.rb --debug
       - name: Clone mkpsxiso
