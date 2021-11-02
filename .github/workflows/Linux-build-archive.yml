@@ -1,4 +1,4 @@
-name: Linux build
+name: Linux archive build
 
 on:
   push:
@@ -14,7 +14,6 @@ jobs:
       run: |
         wget https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip
         7z x nolibgs_hello_worlds.zip -o${{github.workspace}}
-        cd ${{github.workspace}}
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
@@ -35,5 +34,7 @@ jobs:
       run: |
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
         7z x psyq-4.7-converted-full.7z -o${{github.workspace}}/psyq
+        cd ${{github.workspace}}
+        ls -l
     - name: Make all
       run: make all
