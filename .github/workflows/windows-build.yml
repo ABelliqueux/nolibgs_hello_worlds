@@ -25,10 +25,3 @@ jobs:
         echo $GITHUB_PATH
     - name: Make all
       run: make all
-    - name: Upload mkpsxiso-win
-      uses: actions/upload-artifact@v2
-      with: 
-        name: mkpsxiso-win
-        path: $GITHUB_WORKSPACE/mkpsxiso/build
-
-        
