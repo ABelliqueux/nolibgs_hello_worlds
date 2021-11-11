@@ -1,0 +1,57 @@
+name: macOS build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Fetch submodules
+        run: git submodule update --init --recursive 
+      - name: Install tinyxml2
+        run : |
+          brew update --verbose
+          brew install tinyxml2
+      - name: Install mipsel binutils
+        run: |
+          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-binutils.rb -O ${{github.workspace}}/mipsel-none-elf-binutils.rb
+          brew install ${{github.workspace}}/mipsel-none-elf-binutils.rb --debug
+      - name: Upload mipsel-binutils
+        uses: actions/upload-artifact@v2
+        with: 
+          name: mipsel-none-elf-binutils-macos
+          path: /usr/local/Cellar/mipsel-none-elf-binutils/
+      - name: Install mipsel gcc
+        run: |
+          wget https://raw.githubusercontent.com/grumpycoders/pcsx-redux/a899d09d81cf602ef48e51cda09a6c62638fa5c5/tools/macos-mips/mipsel-none-elf-gcc.rb -O ${{github.workspace}}/mipsel-none-elf-gcc.rb
+          brew install ${{github.workspace}}/mipsel-none-elf-gcc.rb --debug
+      - name: Upload mipsel-gcc
+        uses: actions/upload-artifact@v2
+        with: 
+          name: mipsel-none-elf-gcc-macos
+          path: /usr/local/Cellar/mipsel-none-elf-gcc/
+      - name: Build mkpsxiso
+        run: |
+          wget https://github.com/Lameguy64/mkpsxiso/archive/refs/heads/master.zip -O ${{github.workspace}}/master.zip
+          7z x ${{github.workspace}}/master.zip -o${{github.workspace}}
+          awk 'n>=4 { print a[n%7] } { a[n%7]=$0; n=n+1 }' ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt >> ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt.tmp
+          mv -f ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt.tmp ${{github.workspace}}/mkpsxiso-master/CMakeLists.txt
+          mkdir ${{github.workspace}}/mkpsxiso-master/build
+          cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso-master -B ${{github.workspace}}/mkpsxiso-master/build
+          cmake --build ${{github.workspace}}/mkpsxiso-master/build
+          echo "${{github.workspace}}/mkpsxiso-master/build" >> $GITHUB_PATH
+      - name: Upload mkpsxiso-macos
+        uses: actions/upload-artifact@v2
+        with: 
+          name: mkpsxiso-macos
+          path: ${{github.workspace}}/mkpsxiso-master/build
+      - name: Get converted libs
+        run: |
+          wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+          7z x psyq-4.7-converted-full.7z -o./psyq
+      - name: Make all
+        run: make all

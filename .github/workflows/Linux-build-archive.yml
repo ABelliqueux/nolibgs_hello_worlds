@@ -1,8 +1,8 @@
-name: Linux build
+name: Linux archive build
 
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [edited]
 
 jobs:
   build:
@@ -10,13 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Get repo archive
+      run: |
+        wget https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip
+        7z x nolibgs_hello_worlds.zip -o${{github.workspace}}
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
         sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml2-dev
-    - name: Fetch submodules
-      run: git submodule update --init --recursive
     - name: Clone mkpsxiso
       uses: GuillaumeFalourd/clone-github-repo-action@v1
       with:
@@ -32,6 +33,8 @@ jobs:
     - name: Get converted libs
       run: |
         wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
-        7z x psyq-4.7-converted-full.7z -o./psyq
+        7z x psyq-4.7-converted-full.7z -o${{github.workspace}}/nolibgs_hello_worlds/psyq
     - name: Make all
-      run: make all
+      run: |
+        cd ${{github.workspace}}/nolibgs_hello_worlds
+        make all

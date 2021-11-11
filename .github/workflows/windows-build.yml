@@ -1,0 +1,27 @@
+name: Windows build
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Fetch submodules
+      run: git submodule update --init --recursive
+    - name: Get prebuilt stuff
+      run: |
+        C:\msys64\usr\bin\wget.exe http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-11.2.0.zip
+        C:\msys64\usr\bin\wget.exe http://lameguy64.github.io/mkpsxiso/mkpsxiso-1.20.zip
+        C:\msys64\usr\bin\wget.exe http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+        7z.exe x g++-mipsel-none-elf-11.2.0.zip -o"$GITHUB_WORKSPACE\mipsel"
+        7z.exe x mkpsxiso-1.20.zip -o"$GITHUB_WORKSPACE\mkpsxiso"
+        7z.exe x psyq-4.7-converted-full.7z -o"D:\a\nolibgs_hello_worlds\nolibgs_hello_worlds\psyq"
+        echo "$GITHUB_WORKSPACE/mipsel/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        echo "$GITHUB_WORKSPACE/mkpsxiso" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        echo $GITHUB_PATH
+    - name: Make all
+      run: make all
