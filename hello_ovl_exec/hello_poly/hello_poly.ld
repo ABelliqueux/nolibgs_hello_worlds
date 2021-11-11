@@ -1,3 +1,0 @@
-TLOAD_ADDR = 0x8001E8480;
-__heap_base = 0x8001E8480;
-

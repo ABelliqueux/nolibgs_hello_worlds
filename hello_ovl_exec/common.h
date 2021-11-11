@@ -6,10 +6,12 @@
 #include <libetc.h>
 #include <libgpu.h>
 #include <libapi.h>
+#include <libcd.h>
 #include <malloc.h>
 #include <kernel.h>
-// CD library
-#include <libcd.h>
+
+#include "../thirdparty/nugget/common/syscalls/syscalls.h"
+#define printf ramsyscall_printf
 
 #define setRGB(p, r0, g0, b0)						\
 	(p)->r = r0, (p)->g = g0, (p)->b = b0
@@ -30,6 +32,7 @@ extern char primbuff[2][32768];
 extern char *nextpri;
 extern u_long ot[2][OTLEN];
 extern uint8_t db;
+extern uint8_t useOT;
 extern CVECTOR BGcolor;
 
 enum OverlayNumber {

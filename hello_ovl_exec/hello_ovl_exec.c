@@ -10,7 +10,7 @@ char primbuff[2][32768];        // double primitive buffer of length 32768 * 8 =
 u_long ot[2][OTLEN];
 char *nextpri = primbuff[0];  
 uint8_t db = 0;    
-CVECTOR BGcolor = { 0, 150, 255 };
+CVECTOR BGcolor, MScolor = { 224, 108, 76 };
 
 extern u_long load_all_overlays_here;
 
@@ -18,6 +18,7 @@ typedef struct Overlay {
   char filename[0x7c];
   int (*main)();
   char commandline[0x180];
+  CVECTOR BGcolor;
 } Overlay;
 
 int ovl_main_hello();
@@ -25,20 +26,24 @@ int ovl_main_tile();
 int ovl_main_poly();
 
 Overlay g_chainload[] = {
-    {"\\HELLO.OVL;1", ovl_main_hello, ""},
-    {"\\TILE.OVL;1", ovl_main_tile, ""},
-    {"\\POLY.OVL;1", ovl_main_poly, ""},
-    //~ { "\\POLY.OVL;1" , 0 },
+    {"\\HELLO.OVL;1", ovl_main_hello, "", { 225, 220, 40 }},
+    {"\\TILE.OVL;1", ovl_main_tile, "",  { 150, 30 , 40 }},
+    {"\\POLY.OVL;1", ovl_main_poly, "",  { 60 , 127, 0  }},
 };
 
 enum OverlayNumber next_overlay = MOTHERSHIP;
 enum OverlayNumber prev_overlay = MOTHERSHIP;
 
 int main(void);
-int loadOverlayAndStart(Overlay *);
-void EmptyOTag(u_long ot[2][OTLEN], char  primbuff[2][32768], char * nextpri );
+int loadOverlayAndStart(Overlay * overlay);
+void EmptyOTag(u_long ot[2][OTLEN]);
+void EmptyPrimBuf(char primbuff[2][32768], char ** nextpri);
+void preInitOvl(Overlay * overlay);
+void postInitOvl(Overlay * overlay);
+void clearVRAM(void);
 
 void (*dispp) (void);
+uint8_t useOT = 0;
 int CDreadOK = 0;
 
 void init(void)
@@ -72,11 +77,39 @@ void display(void)
     VSync(0);                       // Wait for the next vertical blank
     PutDispEnv(&disp[db]);          // set alternate disp and draw environnments
     PutDrawEnv(&draw[db]);
-    DrawOTag(&ot[db][OTLEN - 1]);
+    if (useOT)
+    {
+        DrawOTag(&ot[db][OTLEN - 1]);
+    }
     db = !db;                       // flip db value (0 or 1)
     nextpri = primbuff[db];
 }
-
+void clearVRAM(void)
+{
+    RECT vram = {0,0,1024,512};
+    ClearImage(&vram,0,0,0);
+}
+void preInitOvl(Overlay * overlay)
+{
+    //~ clearVRAM();
+    ResetCallback();
+    ResetGraph(3);
+    EmptyPrimBuf(primbuff, &nextpri);
+    EmptyOTag(&ot[db]);
+    setRGB(&BGcolor, overlay->BGcolor.r, overlay->BGcolor.g, overlay->BGcolor.b );
+}
+void postInitOvl(Overlay * overlay)
+{
+    //~ clearVRAM();
+    //~ ResetGraph(3);
+    EmptyPrimBuf(primbuff, &nextpri);
+    EmptyOTag(&ot[db]);
+    setRGB(&BGcolor, MScolor.r, MScolor.g, MScolor.b);
+    setRGB0(&draw[0], BGcolor.r, BGcolor.g, BGcolor.b); // set color for first draw area
+    setRGB0(&draw[1], BGcolor.r, BGcolor.g, BGcolor.b);
+    FntLoad(960, 0);                // Load font to vram at 960,0(+128)
+    FntOpen(MARGINX, SCREENYRES - MARGINY - FONTSIZE, SCREENXRES - MARGINX * 2, FONTSIZE, 0, 280 ); // FntOpen(x, y, width, height,  black_bg, max. nbr. chars
+}
 int loadOverlayAndStart(Overlay * overlay)
 {
     int CDreadResult = 0;
@@ -88,35 +121,41 @@ int loadOverlayAndStart(Overlay * overlay)
     // If file loaded sucessfully
     if (CDreadResult)
     {
-        //~ StopCallback(); 
-        ResetGraph(3);
-        // Execute
+        // Pre OVL
+        preInitOvl(overlay);
+        // Exec OVL
         next_ovl = overlay->main();
-        EmptyOTag(&ot[db], &primbuff[db], nextpri);
-        setRGB(&BGcolor, 0, 150, 255);
-        init();
+        // Post OVL
+        postInitOvl(overlay);
     }
     return next_ovl;
 }
-
-void EmptyOTag(u_long ot[2][OTLEN], char primbuff[2][32768], char * nextpri )
+void EmptyPrimBuf(char primbuff[2][32768], char ** nextpri)
+{
+    for(uint16_t p; p < 32768; p++)
+    {
+        primbuff[0][p] = 0;
+        primbuff[1][p] = 0;
+    }
+    *nextpri = primbuff[0];
+}
+void EmptyOTag(u_long ot[2][OTLEN])
 {
     for (uint16_t p; p < OTLEN; p++)
     {
         ot[0][p] = 0;
         ot[1][p] = 0;
     }
-    nextpri = primbuff[!db];
 }
 
 int main(void)
 {   
     int t = 0;
+    setRGB(&BGcolor, MScolor.r, MScolor.g, MScolor.b);
     // init() display
     init();          
     // Init CD system
     CdInit();
-    
     prev_overlay = next_overlay; 
     while(1){
         if (t == 100){

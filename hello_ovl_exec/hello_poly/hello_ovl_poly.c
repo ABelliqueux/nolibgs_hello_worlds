@@ -1,8 +1,11 @@
 #include "../common.h"
 
+
 int ovl_main_poly(void)
 {   
-    setRGB(&BGcolor, 250, 0, 250);
+    #ifndef STANDALONE
+        useOT = 1;
+    #endif
     init();
     uint16_t timer = 0;
     uint16_t timeout = 100;
@@ -59,14 +62,16 @@ int ovl_main_poly(void)
         timer++;
     
         FntPrint("Hello Poly ! %d", timer);                   
+        FntFlush(-1);
         #ifndef STANDALONE
             if (timer == timeout){
+                useOT = 0;
                 next_overlay = MOTHERSHIP;
                 break;
             }
         #endif
-        FntFlush(-1);
         display();
+
     }
     return next_overlay;
 };

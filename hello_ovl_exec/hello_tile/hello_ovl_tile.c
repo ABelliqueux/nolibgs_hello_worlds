@@ -2,14 +2,16 @@
 
 int ovl_main_tile(void)
 {
-    setRGB(&BGcolor, 150, 0, 50);
-    init();
+    #ifndef STANDALONE
+        useOT = 1;
+    #endif
     uint16_t timer = 0;
     uint16_t timeout = 100;
-    TILE * blue_tile;
-    TILE * pink_tile;
+    TILE * blue_tile = 0;
+    TILE * pink_tile = 0;
     // This one is added at a different OT index
-    TILE * yellow_tile;
+    TILE * yellow_tile = 0;
+    init();
     while(1)
     {
         // Initialize the reversed ordering table. This means the elements at index OTLEN - 1 is drawn first.
@@ -54,15 +56,14 @@ int ovl_main_tile(void)
         timer ++;
         
         FntPrint("Hello tile ! %d\n", timer);
+        FntFlush(-1);
         #ifndef STANDALONE
             if (timer == timeout){
+                useOT = 0;
                 next_overlay = OVERLAY_POLY;
-                // Empty ordering table
-                //~ EmptyOTag(&ot[db], &primbuff[db], nextpri);
                 break;
             }
         #endif
-        FntFlush(-1);
         display();
     }
     return next_overlay;

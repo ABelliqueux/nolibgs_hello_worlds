@@ -2,7 +2,6 @@
 
 int ovl_main_hello(void)
 {   
-    setRGB(&BGcolor, 0, 255, 100);
     init();
     int i = 0;
     while(1)
