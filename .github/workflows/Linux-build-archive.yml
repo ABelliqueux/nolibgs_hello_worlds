@@ -2,7 +2,7 @@ name: Linux archive build
 
 on:
   release:
-    types: [edited]
+    types: [edited, released, published]
 
 jobs:
   build:
