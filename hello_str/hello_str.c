@@ -8,13 +8,14 @@
 #include <libgte.h>
 #include <libetc.h>
 #include <libgpu.h>
+#include <libspu.h>
 // CD library
 #include <libcd.h>
 // CODEC library
 #include <libpress.h>
 
 #define VMODE 0                 // Video Mode : 0 : NTSC, 1: PAL
-#define TRUECOL 1               // 0 : 16bpp, 1: 24bpp
+#define TRUECOL 0               // 0 : 16bpp, 1: 24bpp
 #define SCREENXRES 320          // Screen width
 #define SCREENYRES 240 + (VMODE << 4)          // Screen height : If VMODE is 0 = 240, if VMODE is 1 = 256 
 #define CENTERX SCREENXRES/2    // Center of screen on x 
@@ -112,6 +113,7 @@ int main() {
     u_long * curVLCptr = VlcBuff[db];
     // Init Disp/Draw env, Font, etc.
     init();
+    SpuInit();
     // Init CDrom system
     CdInit();
     // Reset the MDEC
@@ -150,8 +152,8 @@ int main() {
         // While end of str is not reached, play it
         while (!endPlayback) {
             // Use this area to draw the slices
-            RECT curSlice = { 0, 
-                               (db * StrFileY) + STR_POS_Y,
+            RECT curSlice = { STR_POS_X, 
+                              (db * StrFileY) + STR_POS_Y,
                               // In 24bpp, use 24 pixels wide slices
                               16 * PPW ,
                               StrFileY};
@@ -163,11 +165,11 @@ int main() {
                 // Begin decoding RLE-encoded MDEC image data
                 DecDCTin( curVLCptr , DCT_MODE);
                 // Prepare to receive the decoded image data from the MDEC
-                while (curSlice.x < STR_POS_X + SCREENXRES * PPW) {
-                    // Receive decoded data : a 16*ppw*240 px slice 
+                while (curSlice.x < STR_POS_X + StrFileX * PPW) {
+                    // Receive decoded data : a 16*ppw*240 px slice in long word (4B), so / 2
                     DecDCTout( (u_long *) curIMGptr, curSlice.w * curSlice.h / 2);
                     // Wait for transfer end
-                    DecDCToutSync(1);
+                    DecDCToutSync(0);
                     // Transfer data from main memory to VRAM
                     LoadImage(&curSlice, (u_long *) curIMGptr );
                     // Increment drawArea's X with slice width (16 or 24 pix)
