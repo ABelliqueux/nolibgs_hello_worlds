@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Get repo archive
       run: |
-        wget https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip
+        wget https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.11/nolibgs_hello_worlds.zip
         7z x nolibgs_hello_worlds.zip -o${{github.workspace}}
     - name: Install mipsel toolchain
       run: |
