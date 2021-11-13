@@ -1,8 +1,8 @@
 name: Linux archive build
 
 on:
-  release:
-    types: [edited, released, published]
+  push:
+    branches: [ main ]
 
 jobs:
   build:
