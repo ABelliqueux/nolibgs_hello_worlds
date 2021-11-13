@@ -2,11 +2,12 @@
 // Schnappy 07-2021
 #include <sys/types.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <libgte.h>
 #include <libetc.h>
 #include <libgpu.h>
 // CD library
-#include <libds.h>
+#include <libcd.h>
 // SPU library
 #include <libspu.h>
 
@@ -55,10 +56,15 @@ void display(void)
     db = !db;                       // flip db value (0 or 1)
 }
 int main(void)
-{
-    init();                         // init() display
+{   
+    int count = 0;
+    int flip = 1;
+    CdlLOC loc[100];
+    int ntoc;
+    // Init display
+    init();                       
     // Init extended CD system
-    DsInit();
+    CdInit();
     // Init Spu
     SpuInit();
     // Set master & CD volume to max
@@ -75,35 +81,47 @@ int main(void)
     SpuSetCommonAttr(&spuSettings);
     // Set transfer mode 
     SpuSetTransferMode(SPU_TRANSFER_BY_DMA);
+    // CD Playback setup
+    // Play second audio track
+    // Get CD TOC
+    while ((ntoc = CdGetToc(loc)) == 0) { 		/* Read TOC */
+        FntPrint("No TOC found: please use CD-DA disc...\n");
+    }
+    // Prevent out of bound pos
+    for (int i = 1; i < ntoc; i++) {
+        CdIntToPos(CdPosToInt(&loc[i]) - 74, &loc[i]);
+    }
+    // Those array will hold the return values of the CD commands
+    u_char param[4], result[8];
+    // Set CD parameters ; Report Mode ON, CD-DA ON. See LibeOver47.pdf, p.188
+    param[0] = CdlModeRept|CdlModeDA;	
+    CdControlB (CdlSetmode, param, 0);	/* set mode */
+    VSync (3);				/* wait three vsync times */
+    // Play second track in toc array
+    CdControlB (CdlPlay, (u_char *)&loc[3], 0);	/* play */
 
-    int count = 0;
-    int flip = 0;
 
     while (1)  // infinite loop
-    {   
-        if ( count == 0){
-            DsPlay(2, tracks, 0);
-        }
-        
+    {           
         count ++;
-        
-        // Afer 5 seconds
-        if ( count == 300 ){
-            // Stop playback
-            DsPlay(0, tracks, 0);
+        // Get current track number ~ every second
+        // See LibeOver47.pdf, p.188
+        if (count%50 == 0){
+            CdReady(1, &result[0]);
+            // current track number can also be obtained with 
+            // CdControlB (CdlGetlocP, 0, &result[0]);
         }
-        // Wait one second
-        if ( count == 360 ){
-            // Flip value
-            flip = !flip;
-            // Switch track (can be 2 or 3)
-            tracks[0] = 2 + flip;
-            // Reset counter
-            count = 0;
+        // Switch track after ~ 20 seconds
+        if (count%(50*20) == 0){
+            // Flip can have a value of 1 or -1
+            flip *= -1;
+            uint8_t nextTrackIndex = result[1] + flip;
+            // Send CD command to switch track
+            CdControlB (CdlPlay, (u_char *)&loc[ nextTrackIndex ], 0);
         }
 
         FntPrint("Hello CDDA !\n");  // Send string to print stream
-        FntPrint("Playback status: %d", DsPlay(3, tracks, 0));  // Send string to print stream
+        FntPrint("Playback status: %d", result[1]);  // Send string to print stream
         
         FntFlush(-1);               // Draw printe stream
         display();                  // Execute display()
