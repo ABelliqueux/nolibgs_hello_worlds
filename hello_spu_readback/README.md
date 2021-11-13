@@ -19,8 +19,8 @@ The correct address ranges for the SPU buffer is :
 |-------------|---------------|
 | 0x000 - 0x3ff | CD Left channel |
 | 0x400 - 0x7ff | CD Right channel |
-| 0x600 - 0xbff | Voice 1 |
-| 0x800 - 0xfff | Voice 3 |
+| 0x800 - 0xbff | Voice 1 |
+| 0xC00 - 0xfff | Voice 3 |
 
 ## Compiling
 
