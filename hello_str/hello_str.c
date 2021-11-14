@@ -172,6 +172,8 @@ int main() {
                     DecDCToutSync(0);
                     // Transfer data from main memory to VRAM
                     LoadImage(&curSlice, (u_long *) curIMGptr );
+                    // Wait for drawing termination
+                    DrawSync(0);
                     // Increment drawArea's X with slice width (16 or 24 pix)
                     curSlice.x += 16 * PPW;
                 }
