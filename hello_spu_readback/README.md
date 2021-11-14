@@ -6,6 +6,11 @@ In this instance, it's used to determine the coordinates of a few primitives to 
 
 This technique is known to be used in certain games for lipsynching or audio visualization ( Crash team racing, Hercules, Vib Ribbon ...).
 
+## pcsx-redux : no animation 
+
+Pcsx-redux does not yet support these specific SPU buffers nor triggerring IRQ from them so as of 11-2021 this example doesn't work in this particular emulator.  
+If looking for an alternative, check [duckstation](https://www.duckstation.org/) out.  
+
 ## PsyQ's SpuReadDecodedData() doc errata
 
 The main function for transferring data from the SPU to the RAM is `SpuReadDecodedData()`, and is documented in **LibRef47.pdf, p1054**.  

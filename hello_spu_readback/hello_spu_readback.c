@@ -71,9 +71,9 @@ POLY_F4	* current[BARNUM];
 // Red : volume peak in the last 3 seconds
 POLY_F4	* peak[BARNUM];
 // Colors for the VU-metre
-CVECTOR bg = {0,90,255};
-CVECTOR fg = {255,190,0};
-CVECTOR cursor = {255,40,0};
+CVECTOR bg = {20, 10, 0};
+CVECTOR fg = {10,200,20};
+CVECTOR cursor = {200,40,10};
 
 void init(void)
 {
@@ -133,10 +133,14 @@ void initPrimitives(void)
         SetPolyF4 ( bar[i] );
         setRGB0 ( bar[i], bg.r,bg.g,bg.b );
         setXY4 ( bar[i],
-            MINBAR, BARTOP + i * MARGIN, /* NW */
-            MAXBAR, BARTOP + i * MARGIN, /* NE */
-            MINBAR, BARBOTTOM + i * MARGIN, /* SW */
-            MAXBAR, BARBOTTOM + i * MARGIN); /* SE */
+            // Top-left
+            MINBAR, BARTOP + i * MARGIN,
+            // Top-right
+            MAXBAR, BARTOP + i * MARGIN,
+            // Bottom-left
+            MINBAR, BARBOTTOM + i * MARGIN,
+            // Bottom-right
+            MAXBAR, BARBOTTOM + i * MARGIN);
 
         // Current volume is light purple-ish
         SetPolyF4 (current[i]);
@@ -284,7 +288,7 @@ void findSampleMaxVolume(void)
 
 int main(void)
 {    
-    // Values used to switch CD track after 
+    // Values used to switch CD track
     u_int counter = 0;
     int8_t flip = 1;
     // These will hold the normalised values of leftMax/rightMax, leftPeak/rightPeak
@@ -349,11 +353,13 @@ int main(void)
     // Those array will hold the return values of the CD commands
     u_char param[4], result[8];
     // Set CD parameters ; Report Mode ON, CD-DA ON. See LibeOver47.pdf, p.188
-    param[0] = CdlModeRept|CdlModeDA;	
-    CdControlB (CdlSetmode, param, 0);	/* set mode */
-    VSync (3);				/* wait three vsync times */
+    param[0] = CdlModeRept|CdlModeDA;
+    // Set CD mode
+    CdControlB (CdlSetmode, param, 0);	
+    // Wait 3 vsync
+    VSync (3);
     // Play second track in toc array
-    CdControlB (CdlPlay, (u_char *)&loc[3], 0);	/* play */
+    CdControlB (CdlPlay, (u_char *)&loc[3], 0);
     // Graphics setup 
     initPrimitives();    
     while (1) 
@@ -368,6 +374,7 @@ int main(void)
         rPeak = (rightPeak * 256) / 0x8000 + MINBAR;
         
         // Update primitives XY coordinates
+        // Set coordinates for volume bar polygons
         setXY4 ( current[LEFTBAR],
             MINBAR,     BARTOP,
             lMax + TSIZE, BARTOP,
@@ -378,6 +385,7 @@ int main(void)
             rMax + TSIZE, BARTOP + MARGIN,
             MINBAR,     BARBOTTOM + MARGIN,
             rMax + TSIZE, BARBOTTOM + MARGIN);
+        // Set coordinates for peak cursor polygons
         setXY4 (peak[LEFTBAR],
             lPeak,         BARTOP,
             lPeak + TSIZE, BARTOP,
