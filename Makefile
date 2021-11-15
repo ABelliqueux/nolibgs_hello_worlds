@@ -73,7 +73,10 @@ clean:
 	$(MAKE) -C hello_poly_fun clean
 	$(MAKE) -C hello_gte_opti clean
 	$(MAKE) -C hello_light clean
+	$(MAKE) -C hello_mod clean
 	$(MAKE) -C hello_multi_vag clean
+	$(MAKE) -C hello_multi_xa clean
+	$(MAKE) -C hello_ovl_exec clean
 	$(MAKE) -C hello_pad clean
 	$(MAKE) -C hello_poly clean
 	$(MAKE) -C hello_poly_ft clean
@@ -102,7 +105,10 @@ all:
 	$(MAKE) -C hello_poly_fun 
 	$(MAKE) -C hello_gte_opti 
 	$(MAKE) -C hello_light 
+	$(MAKE) -C hello_mod
 	$(MAKE) -C hello_multi_vag 
+	$(MAKE) -C hello_multi_xa 
+	$(MAKE) -C hello_ovl_exec
 	$(MAKE) -C hello_pad 
 	$(MAKE) -C hello_poly 
 	$(MAKE) -C hello_poly_ft 

@@ -10,9 +10,6 @@ cleansub:
 	$(MAKE) -C hello_ovl_world clean
 	$(MAKE) clean
 	rm -f hello_ovl_exec.cue hello_ovl_exec.bin
-	rm -f *.mcd *.frag *.lua *.vert
-	rm -f */*.mcd */*.frag */*.lua */*.vert */*.elf
-#~ 	rm -f */*.mcd */*.frag */*.lua */*.vert */*.elf  */*.map  */*.ps-exe */*.o */*.dep
 	
 TARGET = hello_ovl_exec
 
