@@ -50,6 +50,8 @@ hello_sio:
 	$(MAKE) -C hello_sio
 hello_sprt:
 	$(MAKE) -C hello_sprt
+hello_spu_readback:
+	$(MAKE) -C hello_spu_readback
 hello_str:
 	$(MAKE) -C hello_str
 hello_strplay:
@@ -76,7 +78,7 @@ clean:
 	$(MAKE) -C hello_mod clean
 	$(MAKE) -C hello_multi_vag clean
 	$(MAKE) -C hello_multi_xa clean
-	$(MAKE) -C hello_ovl_exec clean
+	$(MAKE) -C hello_ovl_exec cleansub
 	$(MAKE) -C hello_pad clean
 	$(MAKE) -C hello_poly clean
 	$(MAKE) -C hello_poly_ft clean
@@ -84,13 +86,13 @@ clean:
 	$(MAKE) -C hello_poly_gt clean
 	$(MAKE) -C hello_poly_gt_tw clean
 	$(MAKE) -C hello_poly_inline clean
-	$(MAKE) -C hello_rsd clean
 	$(MAKE) -C hello_sio clean
 	$(MAKE) -C hello_sprt clean
+	$(MAKE) -C hello_spu_readback cleansub
 	$(MAKE) -C hello_tile clean
 	$(MAKE) -C hello_vag clean
 	$(MAKE) -C hello_world clean
-	$(MAKE) -C hello_cdda clean cleansub
+	$(MAKE) -C hello_cdda cleansub
 	$(MAKE) -C hello_cd cleansub
 	$(MAKE) -C hello_xa cleansub
 	$(MAKE) -C hello_bs cleansub
@@ -117,6 +119,7 @@ all:
 	$(MAKE) -C hello_poly_inline 
 	$(MAKE) -C hello_sio 
 	$(MAKE) -C hello_sprt 
+	$(MAKE) -C hello_spu_readback
 	$(MAKE) -C hello_tile 
 	$(MAKE) -C hello_vag 
 	$(MAKE) -C hello_world 
@@ -128,5 +131,5 @@ all:
 	$(MAKE) -C hello_strplay all
 	
 # declare phony rules
-.PHONY: hello_2pads hello_bs hello_cd hello_cdda hello_cd_exec hello_cube hello_cubetex hello_cubetex_stp hello_font hello_fx hello_gte_opti hello_light hello_mod hello_multi_vag hello_multi_xa hello_ovl_exec hello_pad hello_poly hello_poly_ft hello_poly_fun hello_poly_gt hello_poly_gt_tw hello_poly_inline hello_poly_stp hello_sio hello_sprt hello_str hello_strplay hello_tile hello_vag hello_world hello_xa hello_xa_streaming \
+.PHONY: hello_2pads hello_bs hello_cd hello_cdda hello_cd_exec hello_cube hello_cubetex hello_cubetex_stp hello_font hello_fx hello_gte_opti hello_light hello_mod hello_multi_vag hello_multi_xa hello_ovl_exec hello_pad hello_poly hello_poly_ft hello_poly_fun hello_poly_gt hello_poly_gt_tw hello_poly_inline hello_poly_stp hello_sio hello_sprt hello_spu_readback hello_str hello_strplay hello_tile hello_vag hello_world hello_xa hello_xa_streaming \
 		clean all
