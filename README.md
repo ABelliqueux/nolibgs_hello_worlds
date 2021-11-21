@@ -36,7 +36,7 @@ We'll keep things simple for now. If you want to read about more methods to get 
 1. Download the PsyQ converted libraries here : [http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z)  
 2. Clone the 'nolibgs_hello_worlds' repo with  
 `git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git --recursive`  
-or download this [repository's release](https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.1/nolibgs_hello_worlds.zip) and extract **`nolibgs_hello_worlds.zip`**'s content to `C:\no_libgs_hello_worlds\` .
+or download this [repository's release](https://github.com/ABelliqueux/nolibgs_hello_worlds/releases/download/v0.11/nolibgs_hello_worlds.zip) and extract **`nolibgs_hello_worlds.zip`**'s content to `C:\no_libgs_hello_worlds\` .
 3. Extract the content of `psyq-4.7-converted-full.7z` in `C:\no_libgs_hello_worlds\psyq`. You should now have `C:\no_libgs_hello_worlds\psyq\include` and `C:\no_libgs_hello_worlds\psyq\lib` ;
 ```
 no_libgs_hello_worlds
