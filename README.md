@@ -28,9 +28,15 @@ We'll keep things simple for now. If you want to read about more methods to get 
 ### Windows
 
 #### MIPS toolchain setup
-1. Download the MIPS toolchain here : [https://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip](http://static.grumpycoder.net/pixel/mips/g++-mipsel-none-elf-10.3.0.zip)
-2. Extract the archive's content in `C:\g++-mipsel-none-elf-10.3.0` and add the `C:\g++-mipsel-none-elf-10.3.0\bin` folder to [your $PATH](https://stackoverflow.com/questions/44272416/how-to-add-a-folder-to-path-environment-variable-in-windows-10-with-screensho#44272417).
-3. Test everything is fine by [launching a command prompt](https://www.lifewire.com/how-to-open-command-prompt-2618089) and typing `mipsel-none-elf-gcc.exe --version`. If you get a message like `mipsel-none-gnu-gcc (GCC) 10.3.0`, then it's working !
+
+You can setup a pre-built MIPS toolchain by copy-pasting the following into a command prompt:
+```
+powershell -c "& { iwr https://raw.githubusercontent.com/grumpycoders/pcsx-redux/main/mips.ps1 | iex }"
+```
+Then, open a new command prompt, and type the following:
+```
+mips install 11.2.0
+```
 
 #### Nugget + PsyQ setup
 1. Download the PsyQ converted libraries here : [http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z](http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z)  
