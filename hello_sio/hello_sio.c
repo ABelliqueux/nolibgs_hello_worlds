@@ -85,7 +85,6 @@ int main() {
                 ResetCallback();
                 // Load SIO driver at 115200bps
                 AddSIO(115200);
-                ResetGraph(0);
                 // Use _sio_control to clear driver status error-related bits
                 // See psyq's libref47.pdf, p.1125 for the commands and status tables
                 _sio_control(2,1,0);
