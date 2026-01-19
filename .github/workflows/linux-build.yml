@@ -25,6 +25,7 @@ jobs:
     - name: Build mkpsxiso
       run: |
         sudo chown -R runner:docker ${{github.workspace}}/mkpsxiso/
+        git -C ${{github.workspace}}/mkpsxiso/ submodule update --init --recursive
         mkdir ${{github.workspace}}/mkpsxiso/build
         cmake -DCMAKE_BUILD_TYPE=Release -S ${{github.workspace}}/mkpsxiso/ -B ${{github.workspace}}/mkpsxiso/build
         cmake --build ${{github.workspace}}/mkpsxiso/build
