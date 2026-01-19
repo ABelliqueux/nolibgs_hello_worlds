@@ -70,10 +70,11 @@ On Debian derivatives (Ubuntu, Mint...) :
 ```bash
 sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
 ```
-On Arch derivatives (Manjaro), the mipsel environment can be installed from [AUR](https://wiki.archlinux.org/index.php/Aur) : [cross-mipsel-linux-gnu-binutils](https://aur.archlinux.org/packages/cross-mipsel-linux-gnu-binutils/) and [cross-mipsel-linux-gnu-gcc](https://aur.archlinux.org/packages/cross-mipsel-linux-gnu-gcc/) using your [AURhelper](https://wiki.archlinux.org/index.php/AUR_helpers) of choice:
+On Arch derivatives (Manjaro), the mipsel environment can be installed from [AUR](https://wiki.archlinux.org/index.php/Aur) : [mipsel-linux-gnu-binutils](https://aur.archlinux.org/packages/mipsel-linux-gnu-binutils/) and [mipsel-linux-gnu-gcc](https://aur.archlinux.org/packages/mipsel-linux-gnu-gcc/) using your [AURhelper](https://wiki.archlinux.org/index.php/AUR_helpers) of choice:
 ```bash
-trizen -S cross-mipsel-linux-gnu-binutils cross-mipsel-linux-gnu-gcc
+yay -S mipsel-linux-gnu-binutils mipsel-linux-gnu-gcc
 ```
+
 #### Nugget + PsyQ setup
 
 Let's do it all on the [CLI](https://en.wikipedia.org/wiki/Command-line_interface) !
