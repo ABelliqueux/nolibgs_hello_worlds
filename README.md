@@ -68,11 +68,11 @@ In a terminal :
 
 On Debian derivatives (Ubuntu, Mint...) :
 ```bash
-sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
+sudo apt-get install make gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu
 ```
 On Arch derivatives (Manjaro), the mipsel environment can be installed from [AUR](https://wiki.archlinux.org/index.php/Aur) : [mipsel-linux-gnu-binutils](https://aur.archlinux.org/packages/mipsel-linux-gnu-binutils/) and [mipsel-linux-gnu-gcc](https://aur.archlinux.org/packages/mipsel-linux-gnu-gcc/) using your [AURhelper](https://wiki.archlinux.org/index.php/AUR_helpers) of choice:
 ```bash
-yay -S mipsel-linux-gnu-binutils mipsel-linux-gnu-gcc
+yay -S make mipsel-linux-gnu-binutils mipsel-linux-gnu-gcc
 ```
 
 #### Nugget + PsyQ setup
@@ -90,7 +90,7 @@ git clone https://github.com/ABelliqueux/nolibgs_hello_worlds.git --recursive
  3. Change to the repo's directory and get the PsyQ converted libraries:
 ```bash
 cd nolibgs_hello_worlds
-wget http://psx.arthus.net/sdk/Psy-Q/psyq-4.7-converted-full.7z
+wget http://psx.schnappy.xyz/sdk/Psy-Q/psyq-4.7-converted-full.7z
 7z x psyq-4.7-converted-full.7z -o./psyq
 ```
  4. Try your setup :

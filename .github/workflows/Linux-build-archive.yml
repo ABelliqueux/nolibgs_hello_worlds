@@ -17,7 +17,7 @@ jobs:
     - name: Install mipsel toolchain
       run: |
         sudo apt-get update
-        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-6 libtinyxml2-dev
+        sudo apt-get install gcc-mipsel-linux-gnu g++-mipsel-linux-gnu binutils-mipsel-linux-gnu p7zip  cmake build-essential libtinyxml2-10 libtinyxml2-dev
     - name: Clone mkpsxiso
       uses: GuillaumeFalourd/clone-github-repo-action@v1
       with:
